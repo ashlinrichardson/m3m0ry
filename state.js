@@ -103,7 +103,6 @@ function state( ctx,                 // meta4 graphics context
     this.ctx.clear_tmr();
     this.t1 = window.performance.now(); //record a stop time.
     this.end_date_time = date_time();
-    click();
     console.log('end');
     // now that this `event' is ending, 
     // 1) record our data to the global csv-line record.
