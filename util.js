@@ -10,10 +10,13 @@ function load_img(fn){
   return img;
 }
 
-/* display an error message */
-function error(m){
-  console.log('Error: ' + trim(m.toString()));
+var x = .5; 
+function rand(){
+  x = x/Math.sin(1./x);
+  x = Math.ceil(x)-x;
+  return(x);
 }
+
 
 /* pad to length n (with 0's on the left) */
 function pad_n(x, n){
