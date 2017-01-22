@@ -67,7 +67,7 @@
   ctx.state().start();
   
   // turn on kb hook... kb event handler
-  function kb_call(kb_map, unicode_map){ 
+  function kb_call(key_unicode){ 
     var now = ctx.state();
     if(now && now.key_expiry){
         ctx.clear_tmr();
@@ -75,7 +75,7 @@
     }
   }
 
-  kb_map, unicode_map = keyboard_module(kb_call);
+  key_unicode = keyboard_module(kb_call);
   ctx.t0 = window.performance.now(); 
 
   function resize(){ 

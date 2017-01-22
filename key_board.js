@@ -4,10 +4,7 @@ function unicode_from_key_event(e){
 }
 
 /* keyboard status array (unicode format).. */
-var unicode_map = {};
-
-/* keyboard status array (readable format).. */
-var kb_map = {};
+var key_unicode = {};
 
 function keyboard_module(onUpdate) {
 
@@ -15,13 +12,12 @@ function keyboard_module(onUpdate) {
   document.onkeydown = function(e) {
     var unicode = unicode_from_key_event(e);
     var key =  String.fromCharCode(unicode);
-    kb_map[key] = true;
-    unicode_map[unicode] = true;
+    key_unicode[unicode] = true;
     if(onUpdate){
-      onUpdate(kb_map, unicode_map);
+      onUpdate(key_unicode);
     }
   }
-  return kb_map, unicode_map;
+  return key_unicode;
 
 }
 

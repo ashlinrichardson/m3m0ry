@@ -5,27 +5,28 @@ function wrap_text(s, ctx = document.getElementsByTagName("canvas")[0].getContex
   var myY = 50;
   var line = ''; 
   var lines = []; 
-  var fontSize = 30; 
-  var lineTest = '';
+  var font_size = 30; 
+  var line_test = '';
   var w = canvas.width;
+  var h = canvas.height;
   var words = s.split(" ");
-  ctx.font = fontSize +"px Arial";
+  ctx.font = font_size +"px Arial";
   for(var j=0; j<words.length; j++){
-    lineTest = line + words[j] + ' ';
-    if(ctx.measureText(lineTest).width > w){
-      myY = lines.length * fontSize + fontSize;
+    line_test = line + words[j] + ' ';
+    if(ctx.measureText(line_test).width > w){
+      myY = lines.length * font_size + font_size;
       lines.push({text: line, height: myY});
       line = words[j] + ' ';
     }else
-      line = lineTest;
+      line = line_test;
   }
   // catch last line if something left over
   if (line.length > 0) {
-    currentY = lines.length * fontSize + fontSize;
-    lines.push({text: line.trim(), height: currentY});
+    current_y = lines.length * font_size + font_size;
+    lines.push({text: line.trim(), height: current_y});
   }
   // visually output text
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.clearRect(0, 0, w, h);
   for(var j = 0, len = lines.length; j < len; j++){
     ctx.fillText(lines[j].text, 0, lines[j].height + start_y);
   }
