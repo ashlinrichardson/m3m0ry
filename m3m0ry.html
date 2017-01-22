@@ -1,0 +1,124 @@
+<html><body>
+<canvas></canvas>
+<script src="util.js"></script>
+<script src="state.js"></script>
+<script src="audio.js"></script>
+<script src="keyboard.js"></script>
+<script>
+  console.log('dont forget to set random seed.'); // want same results every time.
+  console.log('dont forget to filter keys.'); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//does user enter a code? do they have to copy a result file?
+// random sample doesn't change on revisit.
+ 
+  // somewhere to put the history (print it out at the end? or send it with AJAX?)
+  // probably put up a python cgi hook to store the results. 
+  var history = []; 
+
+  // graphics ctx
+  var canvas = document.getElementsByTagName("canvas")[0];
+  var ctx = canvas.getContext("2d"); document.bgColor = "#FFFFFF"; 
+
+  // padded window dimensions
+  ctx.pad = 20; var less = function(x){ return x - ctx.pad; }
+  ctx.w = function(){ return less(window.innerWidth); }
+  ctx.h = function(){ return less(window.innerHeight); }
+
+  // logo scaling algorithm
+  ctx.symbol = load_image("logo/uvic_gray.png");
+  ctx.draw_symbol = function(){
+    var s_f = 5;
+    var pad = this.pad;
+    var s = this.symbol;
+    var ww = window.innerWidth; 
+    var wh = window.innerHeight;
+    var w = ww - pad; var h = wh - pad; 
+    var w_s = s.width; var h_s = s.height;
+    var wf = (ww - pad) / (s_f * w_s);
+    var lwf = w_s * wf; var lhf = h_s * wf; 
+    this.drawImage(s, w - lwf, h - lhf, lwf, lhf);
+  };
+
+  // access current state.
+  ctx.set_state = function(s){ ctx.current_state = s; return(s); };
+  ctx.get_state = function(){ return ctx.current_state; };
+
+  // adapted from developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/clearTimeout 
+  var alarm = {
+    ding: function(callback) {
+      var can_stop = callback();
+      if(can_stop){
+        this.timeoutID = undefined;
+      }
+    },
+    call_back: function(){
+      return (this.callback_obj);
+    },
+    setup: function(t_ms, my_obj, callback) {
+      this.my_callback = callback;
+      this.callback_obj = my_obj;
+      if (typeof this.timeoutID === "number") {
+        this.cancel();
+      }
+      this.timeoutID = window.setTimeout(function(){ //function(callback)
+        this.ding(callback);
+      }.bind(this), t_ms, "Wake up!");
+    },
+  
+    cancel: function() {
+      window.clearTimeout(this.timeoutID);
+      this.timeoutID = undefined;
+    }
+  };
+  ctx.alarm = alarm;
+  ctx.clear_tmr = function(){
+    ctx.alarm.cancel();
+  };
+  ctx.init_tmr = function(t_ms, my_obj, callback){
+    ctx.alarm.setup(t_ms, my_obj, callback);
+  };
+    
+  //developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
+  var imgs = new Array(); 
+  var n_imgs = 10; //200;
+  for(var i=1; i<= n_imgs; i++){ // should only load the used ones..
+    imgs.push(load_image('images/' + i + '.jpg'));
+  }
+
+  // event example hello world
+  ctx.set_state(state(ctx));
+  ctx.get_state().expiry_ms = 777;
+  ctx.get_state().key_expiry =true;// false;
+  console.log('start')
+  ctx.get_state().start();
+  //console.log('clr_tmr!!!'); ctx.clear_tmr();
+  
+  // turn on kb hook
+  function kb_call(kb_map, unicode_map){ //kb event handler..
+    alarm_call_back = alarm.call_back;
+    ctx.clear_tmr();
+    alarm_call_back().expire();
+    //alarm.call_back();
+    //console.log('hook into who needs the data', unicode_map); 
+  }
+
+  kb_map, unicode_map = keyboard_module(kb_call);
+  ctx.t0 = window.performance.now(); var t1,t2,i=0;
+
+  function resize(){ canvas.width = ctx.w(); canvas.height = ctx.h(); }
+  function update() { 
+    resize(); 
+    var dt = Math.ceil((t1 - ctx.t0) / 1000.);
+    i++; 
+    ctx.get_state().show();
+  }
+  
+  window.onresize = function(event){ update(); }; // any other possibilities?
+  
+  // seems to be this is the `in' hook..
+  window.onload = function(){
+    //set up all the events in a chain... 
+    update();
+  }
+</script>
+</body></html>
+
