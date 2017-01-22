@@ -8,9 +8,8 @@ var egg_timer = {
   call_back: function(){
     return (this.callback_obj);
   },
-  setup: function(t_ms, /* my_obj,*/ callback) {
+  setup: function(t_ms, callback) {
     this.my_callback = callback;
-    //this.callback_obj = my_obj;
     if (typeof this.timeoutID === "number")
       this.cancel();
     this.timeoutID = window.setTimeout(function(){

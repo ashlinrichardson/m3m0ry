@@ -114,11 +114,12 @@ function state( ctx,                 // meta4 graphics context
 
   // function gets called if the state is active for exiry_ms
   this.expire = function(){ // egg is cooked. 
+    end();
     //close barn door even if the horse is gone  
     //end(); return (this.key_expiry == true);
     // record data and proceed to next state.
     if(this.key_expiry == true){
-      end();
+      
       return true;
     }else{
       return false;

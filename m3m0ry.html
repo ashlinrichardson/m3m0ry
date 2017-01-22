@@ -16,7 +16,8 @@
 
   // graphics ctx
   var canvas = document.getElementsByTagName("canvas")[0];
-  var ctx = canvas.getContext("2d"); document.bgColor = "#FFFFFF"; 
+  var ctx = canvas.getContext("2d"); 
+  document.bgColor = "#FFFFFF"; 
 
   // padded window dimensions
   ctx.pad = 20; 
@@ -66,14 +67,16 @@
   // event example hello world
   ctx.set_state(state(ctx));
   ctx.state().set_expiry(777);
+  //ctx.state().key_expiry =false;
   ctx.state().start();
   
   // turn on kb hook... kb event handler
   function kb_call(kb_map, unicode_map){ 
-    ctx.clear_tmr();
     var now = ctx.state();
-    if(now && now.key_expiry)
+    if(now && now.key_expiry){
+        ctx.clear_tmr();
         now.expire();
+    }
   }
 
   kb_map, unicode_map = keyboard_module(kb_call);
@@ -86,7 +89,8 @@
   function update() { 
     resize(); 
     var now = ctx.state();
-    if(now) now.show();
+    if(now) 
+      now.show();
   }
   
   window.onresize = function(event){ update(); }; // any other possibilities?
