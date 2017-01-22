@@ -2,6 +2,7 @@
 <canvas></canvas>
 <script src="util.js"></script>
 <script src="state.js"></script>
+<script src="wrap_text.js"></script>
 <script src="egg_timer.js"></script>
 <script src="key_board.js"></script>
 <script>
@@ -15,21 +16,16 @@
   var history = []; 
 
   // graphics ctx
-  document.bgColor = "#FFFFFF"; 
   var canvas = document.getElementsByTagName("canvas")[0];
   var ctx = canvas.getContext("2d"); 
-  
+  document.bgColor = "#FFFFFF"; 
+
   // padded window dimensions
   ctx.pad = 20; 
-  var less = function(x){
-    return x - ctx.pad;
-  }
-  ctx.w = function(){ 
-    return less(window.innerWidth); 
-  }
-  ctx.h = function(){ 
-    return less(window.innerHeight); 
-  }
+  var less = function(x){ return x - ctx.pad; }
+  ctx.w = function(){ return less(window.innerWidth); }
+  ctx.h = function(){  return less(window.innerHeight); }  
+  
   // logo scaling algorithm
   ctx.symbol = load_img("logo/uvic_gray.png");
   ctx.draw_symbol = function(){

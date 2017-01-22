@@ -4,8 +4,8 @@ var egg_timer = {
     this.my_callback = callback;
     if (typeof this.timeoutID === "number")
       this.cancel();
-    this.timeoutID = window.setTimeout(function(){
-      callback();
+    this.timeoutID = window.setTimeout(function(){ 
+        callback();
     }.bind(this), t_ms);
   },
   cancel: function() {

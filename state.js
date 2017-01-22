@@ -66,7 +66,8 @@ function state( ctx,                 // meta4 graphics context
 
   this.show = function(){
     var ctx = this.ctx;
-    ctx.draw_symbol();
+    wrap_text("This is a psychology test.", ctx, 0);
+    ctx.draw_symbol(); // need this line?
   };
   this.get_ctx = function(){
     return this.ctx;
