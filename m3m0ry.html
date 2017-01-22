@@ -4,6 +4,7 @@
 <script src="state.js"></script>
 <script src="audio.js"></script>
 <script src="keyboard.js"></script>
+<script src="egg_timer.js"></script>
 <script>
   console.log('dont forget to set random seed.'); // want same results every time.
   console.log('dont forget to filter keys.'); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -42,39 +43,12 @@
   ctx.set_state = function(s){ ctx.current_state = s; return(s); };
   ctx.get_state = function(){ return ctx.current_state; };
 
-  // adapted from developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/clearTimeout 
-  var alarm = {
-    ding: function(callback) {
-      var can_stop = callback();
-      if(can_stop){
-        this.timeoutID = undefined;
-      }
-    },
-    call_back: function(){
-      return (this.callback_obj);
-    },
-    setup: function(t_ms, my_obj, callback) {
-      this.my_callback = callback;
-      this.callback_obj = my_obj;
-      if (typeof this.timeoutID === "number") {
-        this.cancel();
-      }
-      this.timeoutID = window.setTimeout(function(){ //function(callback)
-        this.ding(callback);
-      }.bind(this), t_ms, "Wake up!");
-    },
-  
-    cancel: function() {
-      window.clearTimeout(this.timeoutID);
-      this.timeoutID = undefined;
-    }
-  };
-  ctx.alarm = alarm;
+  ctx.egg_timer = egg_timer;
   ctx.clear_tmr = function(){
-    ctx.alarm.cancel();
+    ctx.egg_timer.cancel();
   };
   ctx.init_tmr = function(t_ms, my_obj, callback){
-    ctx.alarm.setup(t_ms, my_obj, callback);
+    ctx.egg_timer.setup(t_ms, my_obj, callback);
   };
     
   //developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
@@ -94,10 +68,10 @@
   
   // turn on kb hook
   function kb_call(kb_map, unicode_map){ //kb event handler..
-    alarm_call_back = alarm.call_back;
+    egg_timer_call_back = egg_timer.call_back;
     ctx.clear_tmr();
-    alarm_call_back().expire();
-    //alarm.call_back();
+    egg_timer_call_back().expire();
+    //egg_timer.call_back();
     //console.log('hook into who needs the data', unicode_map); 
   }
 
