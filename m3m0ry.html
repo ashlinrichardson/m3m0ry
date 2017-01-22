@@ -19,12 +19,18 @@
   var ctx = canvas.getContext("2d"); document.bgColor = "#FFFFFF"; 
 
   // padded window dimensions
-  ctx.pad = 20; var less = function(x){ return x - ctx.pad; }
-  ctx.w = function(){ return less(window.innerWidth); }
-  ctx.h = function(){ return less(window.innerHeight); }
-
+  ctx.pad = 20; 
+  var less = function(x){
+    return x - ctx.pad;
+  }
+  ctx.w = function(){ 
+    return less(window.innerWidth); 
+  }
+  ctx.h = function(){ 
+    return less(window.innerHeight); 
+  }
   // logo scaling algorithm
-  ctx.symbol = load_image("logo/uvic_gray.png");
+  ctx.symbol = load_img("logo/uvic_gray.png");
   ctx.draw_symbol = function(){
     var s_f = 5;
     var pad = this.pad;
@@ -40,38 +46,34 @@
 
   // access current state.
   ctx.set_state = function(s){ ctx.current_state = s; return(s); };
-  ctx.get_state = function(){ return ctx.current_state; };
+  ctx.state = function(){ return ctx.current_state; };
 
   ctx.egg_timer = egg_timer;
   ctx.clear_tmr = function(){
     ctx.egg_timer.cancel();
   };
-  ctx.init_tmr = function(t_ms, my_obj, callback){
-    ctx.egg_timer.setup(t_ms, my_obj, callback);
+  ctx.init_tmr = function(t_ms, callback){
+    ctx.egg_timer.setup(t_ms, callback);
   };
     
-  //developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
-  var imgs = new Array(); 
   var n_imgs = 10; //200;
-  for(var i=1; i<= n_imgs; i++){ // should only load the used ones..
-    imgs.push(load_image('images/' + i + '.jpg'));
-  }
+  var imgs = new Array(); 
+   
+  // should only load the used ones..
+  for(var i=1; i <= n_imgs; i++)
+    imgs.push(load_img('images/' + i + '.jpg'));
 
   // event example hello world
   ctx.set_state(state(ctx));
-  ctx.get_state().set_expiry(0);
-  ctx.get_state().start();
+  ctx.state().set_expiry(777);
+  ctx.state().start();
   
   // turn on kb hook... kb event handler
   function kb_call(kb_map, unicode_map){ 
     ctx.clear_tmr();
-    var now = ctx.get_state();
-    if(now){
-      if(now.key_expiry){ 
+    var now = ctx.state();
+    if(now && now.key_expiry)
         now.expire();
-      }
-    }
-    //console.log('hook into who needs the data', unicode_map); 
   }
 
   kb_map, unicode_map = keyboard_module(kb_call);
@@ -83,7 +85,8 @@
   }
   function update() { 
     resize(); 
-    ctx.get_state().show();
+    var now = ctx.state();
+    if(now) now.show();
   }
   
   window.onresize = function(event){ update(); }; // any other possibilities?

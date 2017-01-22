@@ -87,9 +87,9 @@ function state( ctx,                 // meta4 graphics context
     // start `slide' expiry timer : - )
     if(this.expiry_ms > 0){
       // there's no time like the present
-      var now = this.ctx.get_state();  
+      var now = this.ctx.state();  
       var expiry = this.expiry_ms;
-      ctx.init_tmr(expiry, now, now.expire);
+      ctx.init_tmr(expiry, now.expire);
     }
     return null;
     //if `expiry' > 0 (mS) set a timer-interrupt, too!
@@ -147,13 +147,5 @@ function state( ctx,                 // meta4 graphics context
 
  return this;
 }
-
-/* load image data */
-function load_image(fn){
-  var img = new Image(); 
-  img.src = fn; 
-  return img;
-}
-
 // random selection: extra feedback on subsample of trials. 
 
