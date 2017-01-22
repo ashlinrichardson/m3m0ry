@@ -60,7 +60,7 @@
 
   // event example hello world
   ctx.set_state(state(ctx));
-  ctx.get_state().set_expiry(777);
+  ctx.get_state().set_expiry(0);
   ctx.get_state().start();
   
   // turn on kb hook... kb event handler
@@ -75,7 +75,6 @@
 
   kb_map, unicode_map = keyboard_module(kb_call);
   ctx.t0 = window.performance.now(); 
-  var t1,t2,i=0;
 
   function resize(){ 
     canvas.width = ctx.w(); 
@@ -83,8 +82,6 @@
   }
   function update() { 
     resize(); 
-    var dt = Math.ceil((t1 - ctx.t0) / 1000.);
-    i++; 
     ctx.get_state().show();
   }
   

@@ -77,7 +77,7 @@ function state( ctx,                 // meta4 graphics context
     // follow clock or key to keep the show going
     this.expiry_ms = t_ms;
     if(t_ms <= 0){
-      this.key_expiry = false;
+      this.key_expiry = true;
     }
   }
 
