@@ -61,6 +61,7 @@ function state( ctx,                 // meta4 graphics context
   this.key_expiry = key_expiry; // boolean
   this.img_idx = img_idx; // global image index (images added as member of ctx).
   //plot the text, logo, and possible answers, and collect any key presses.
+  this.awake = true;
   
   var this_state = this;
 
@@ -72,21 +73,33 @@ function state( ctx,                 // meta4 graphics context
     return this.ctx;
   }
 
+  this.set_expiry = function(t_ms){
+    // follow clock or key to keep the show going
+    this.expiry_ms = t_ms;
+    if(t_ms <= 0){
+      this.key_expiry = false;
+    }
+  }
 
   this.start = function(){
     this.ctx.clear_tmr();
     this.t0 = window.performance.now(); // record a start time.
     this.start_date_time = date_time();
+    // start `slide' expiry timer : - )
     if(this.expiry_ms > 0){
-      // get the `slide' expiry timer going. : - )
-      ctx.init_tmr(this.expiry_ms, this.ctx.get_state(), this.expire);
+      // there's no time like the present
+      var now = this.ctx.get_state();  
+      var expiry = this.expiry_ms;
+      ctx.init_tmr(expiry, now, now.expire);
     }
     return null;
     //if `expiry' > 0 (mS) set a timer-interrupt, too!
     // force no timers open. add at ctx.tmr ?
   };
-
+  
+  // should there only be one (end + expire) function?
   this.end = function(){  
+    this.awake = false;
     this.ctx.clear_tmr();
     this.t1 = window.performance.now(); //record a stop time.
     this.end_date_time = date_time();
@@ -100,6 +113,7 @@ function state( ctx,                 // meta4 graphics context
 
   // function gets called if the state is active for exiry_ms
   this.expire = function(){ // egg is cooked. 
+    console.log('expire');
     //close barn door even if the horse is gone  
     //end(); return (this.key_expiry == true);
     // record data and proceed to next state.

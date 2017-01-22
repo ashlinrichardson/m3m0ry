@@ -1,4 +1,4 @@
-  // adapted from developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/clearTimeout 
+   
   var egg_timer = {
     ding: function(callback) {
       var can_stop = callback();
@@ -24,4 +24,4 @@
       window.clearTimeout(this.timeoutID);
       this.timeoutID = undefined;
     }
-  };
+  }; // adapted from developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/clearTimeout
