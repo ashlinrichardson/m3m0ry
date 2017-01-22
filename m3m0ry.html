@@ -66,8 +66,10 @@
   function kb_call(kb_map, unicode_map){ 
     ctx.clear_tmr();
     var now = ctx.get_state();
-    if(now.key_expiry){ 
-      now.expire();
+    if(now){
+      if(now.key_expiry){ 
+        now.expire();
+      }
     }
     //console.log('hook into who needs the data', unicode_map); 
   }

@@ -47,22 +47,25 @@ function date_time(){
 
 /* write the above to a standardized format.. */
 function parse_date_time(today){
-  var yyyy = today.getFullYear();
-  var   mm = today.getMonth()+1; //January is 0!
-  var   dd = today.getDate();
-  var   hh = today.getHours();
-  var   mn = today.getMinutes();
-  var   ss = today.getSeconds();
-  var   ms = today.getMilliseconds();
+ 
+  // jan is 0
+  var bits = [ 
+    today.getFullYear(), 
+    today.getMonth()+1,
+    today.getDate(), 
+    today.getHours(), 
+    today.getMinutes(), 
+    today.getSeconds(), 
+    today.getMilliseconds()
+  ];
+    
+  // pad with zeros
+  for(var i = 0; i<bits.length; i++){
+    var n_pad = 2;
+    if(i==0) n_pad = 4;
+    if(i== 6) n_pad = 3;
+    bits[i] = pad_n(bits[i].toString(), n_pad)
+  }
 
-  // make sure the right number of places..
-      yyyy = pad_n(yyyy.toString(),  4);
-        mm = pad_n(mm.toString(),    2);
-        dd = pad_n(dd.toString(),    2);
-        hh = pad_n(hh.toString(),    2);
-        mn = pad_n(mn.toString(),    2);
-        ss = pad_n(ss.toString(),    2);
-        ms = pad_n(ms.toString(),    3);
-  c = ":";
-  return(yyyy + c + mm + c + dd + c + hh + c + mn + c + ss + c + ms);  
+  return(bits.join(':'));
 }

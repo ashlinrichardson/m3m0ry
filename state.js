@@ -61,8 +61,7 @@ function state( ctx,                 // meta4 graphics context
   this.key_expiry = key_expiry; // boolean
   this.img_idx = img_idx; // global image index (images added as member of ctx).
   //plot the text, logo, and possible answers, and collect any key presses.
-  this.awake = true;
-  
+  this.successor = null;  
   var this_state = this;
 
   this.show = function(){
@@ -98,12 +97,15 @@ function state( ctx,                 // meta4 graphics context
   };
   
   // should there only be one (end + expire) function?
-  this.end = function(){  
-    this.awake = false;
+  this.end = function(){
+    // try to stop timer from running
     this.ctx.clear_tmr();
-    this.t1 = window.performance.now(); //record a stop time.
+    //record a stop time. 
     this.end_date_time = date_time();
-    console.log('end');
+    this.t1 = window.performance.now(); 
+    console.log('end '+parse_date_time(this.end_date_time));
+    this.ctx.set_state(this.successor);
+    
     // now that this `event' is ending, 
     // 1) record our data to the global csv-line record.
     // 2) proceed to the next state.
@@ -112,7 +114,6 @@ function state( ctx,                 // meta4 graphics context
 
   // function gets called if the state is active for exiry_ms
   this.expire = function(){ // egg is cooked. 
-    console.log('expire');
     //close barn door even if the horse is gone  
     //end(); return (this.key_expiry == true);
     // record data and proceed to next state.
