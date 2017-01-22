@@ -119,12 +119,7 @@ function state( ctx,                 // meta4 graphics context
     //close barn door even if the horse is gone  
     //end(); return (this.key_expiry == true);
     // record data and proceed to next state.
-    if(this.key_expiry == true){
-      
-      return true;
-    }else{
-      return false;
-    }
+
   };
 
   /* print out the data for the object.. */

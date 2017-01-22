@@ -6,10 +6,8 @@
 <script src="egg_timer.js"></script>
 <script src="key_board.js"></script>
 <script>
-  //console.log('dont forget to set random seed.'); // want same results every time.
   //console.log('dont forget to filter keys.'); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//does user enter a code? do they have to copy a result file?
-// random sample doesn't change on revisit.
+  //does user enter a code? do they have to copy a result file?
  
   // somewhere to put the history (print it out at the end? or send it with AJAX?)
   // probably put up a python cgi hook to store the results. 
@@ -62,7 +60,7 @@
 
   // event example hello world
   ctx.set_state(state(ctx));
-  ctx.state().set_expiry(777);
+  ctx.state().set_expiry(0);
   //ctx.state().key_expiry =false;
   ctx.state().start();
   
