@@ -10,6 +10,16 @@ function load_img(fn){
   return img;
 }
 
+/* draw an image */
+function draw_img(x, ctx){
+  var lw = x.width; var lh = x.height;
+  var w = ctx.width; var h = ctx.height; 
+  var sf = Math.min(w,h) / Math.max(lw, lh);
+  var a = (w - lw * sf) / 2; var b = (h - lh * sf) / 2;
+  var c = lw * sf; var d = lh * sf;
+  ctx.drawImage(x, a, b, c, d);
+}
+
 var x = .5; 
 function rand(){
   x = x/Math.sin(1./x);

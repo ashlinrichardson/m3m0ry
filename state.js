@@ -48,12 +48,16 @@ function state( ctx,                 // meta4 graphics context
                 key_expiry =  true, // expiry by key-press (true <--> on)
                 intvl_ms   =     0,    // interval btwn stimuli.. (ISI) `blank slide'
                 img_idx    =    -1,     //image data (if any)
-                txt_idx    =    -1,      //text data (if any)
-                daddy = null // parent object...
+                txt    =    null,      //text data (if any)
+                daddy = null, // parent object... 
+                successor = null //child 
                 //txt2_idx ? how many possible messages?
               ){ 
   // leaves (trials) default to parent params? should be equal anyways.
-  this.ctx = ctx; // reference to graphics context
+  this.ctx = ctx; // reference to graphics context  
+  if(ctx == null || this.ctx==null){
+    console.log('state(): error: ctx.=null');
+  }
   this.idx = idx;  // global id for this object
   this.kind = kind; // type of this object..
   this.intvl_ms = intvl_ms; //only applies if there's a `next' trial.. (if this is a trial).
@@ -62,16 +66,23 @@ function state( ctx,                 // meta4 graphics context
   this.img_idx = img_idx; // global image index (images added as member of ctx).
   //plot the text, logo, and possible answers, and collect any key presses.
   this.successor = null;  
-  var this_state = this;
+  //var this_state = this;
+  this.daddy = daddy;
+
+
+  this.set_txt = function(s){
+    this.txt = s;
+  };
+  this.set_successor = function(s){
+    this.successor=s;
+  };
 
   this.show = function(){
-    var ctx = this.ctx;
-    wrap_text("This is a psychology test.", ctx, 0);
+    if(this.txt){
+      wrap_text(this.txt, this.ctx, 0);
+    }
     ctx.draw_symbol(); // need this line?
   };
-  this.get_ctx = function(){
-    return this.ctx;
-  }
 
   this.set_expiry = function(t_ms){
     // follow clock or key to keep the show going
@@ -79,47 +90,56 @@ function state( ctx,                 // meta4 graphics context
     if(t_ms <= 0){
       this.key_expiry = true;
     }
-  }
+  };
 
   this.start = function(){
+    console.log('start()'+this.txt);
+    this.show(this.ctx);
     this.ctx.clear_tmr();
     this.t0 = window.performance.now(); // record a start time.
     this.start_date_time = date_time();
     // start `slide' expiry timer : - )
     if(this.expiry_ms > 0){
       // there's no time like the present
-      var now = this.ctx.state();  
+      //   var now = this.ctx.get_state();  
       var expiry = this.expiry_ms;
-      ctx.init_tmr(expiry, now.expire);
+      ctx.init_tmr(expiry, this.expire);
     }
     return null;
     //if `expiry' > 0 (mS) set a timer-interrupt, too!
     // force no timers open. add at ctx.tmr ?
   };
   
-  // should there only be one (end + expire) function?
-  this.end = function(){
+  this.expire = function(){
+    console.log('expire()');
     // try to stop timer from running
+    var txt = this.txt; 
+    var suc = this.successor;
+    var suc_txt = null;
+    if(suc!=null && suc.txt !=null){
+      suc_txt = suc.txt;
+    }
+    console.log('expire()' + txt + ' successor ' + suc_txt)
+    if( this.ctx == null){
+      console.log('error: this.ctx==null');
+    }
     this.ctx.clear_tmr();
-    //record a stop time. 
+    //record stop time 
     this.end_date_time = date_time();
     this.t1 = window.performance.now(); 
     console.log('end '+parse_date_time(this.end_date_time));
-    this.ctx.set_state(this.successor);
+    if(this.successor==null){
+      console.log('null successor.');
+    }
+    else{
+      this.ctx.set_state(this.successor);
+      this.ctx.get_state().start();
+    }
     
     // now that this `event' is ending, 
     // 1) record our data to the global csv-line record.
     // 2) proceed to the next state.
     return null;
-  };
-
-  // function gets called if the state is active for exiry_ms
-  this.expire = function(){ // egg is cooked. 
-    end();
-    //close barn door even if the horse is gone  
-    //end(); return (this.key_expiry == true);
-    // record data and proceed to next state.
-
   };
 
   /* print out the data for the object.. */
@@ -139,10 +159,9 @@ function state( ctx,                 // meta4 graphics context
   this.field_names = function(){
     return 't(mS),start(yyyy:mm:dd:hh:mn:ss:mls),end(yyyy:mm:dd:hh:mn:ss:mls)';
   };
+  return this;
 
 
-
- return this;
 }
 // random selection: extra feedback on subsample of trials. 
 

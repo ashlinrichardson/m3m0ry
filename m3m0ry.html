@@ -5,6 +5,7 @@
 <script src="wrap_text.js"></script>
 <script src="egg_timer.js"></script>
 <script src="key_board.js"></script>
+<script src="experiment.js"></script>
 <script>
   //console.log('dont forget to filter keys.'); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   //does user enter a code? do they have to copy a result file?
@@ -20,9 +21,14 @@
 
   // padded window dimensions
   ctx.pad = 20; 
-  var less = function(x){ return x - ctx.pad; }
-  ctx.w = function(){ return less(window.innerWidth); }
-  ctx.h = function(){  return less(window.innerHeight); }  
+  var less = function(x){ 
+    return x - ctx.pad; }
+  ctx.w = function(){ 
+    return less(window.innerWidth); 
+  }
+  ctx.h = function(){  
+    return less(window.innerHeight);  
+  }  
   
   // logo scaling algorithm
   ctx.symbol = load_img("logo/uvic_gray.png");
@@ -40,8 +46,34 @@
   };
 
   // access current state.
-  ctx.set_state = function(s){ ctx.current_state = s; return(s); };
-  ctx.state = function(){ return ctx.current_state; };
+  ctx.set_state = function(s){
+    last_state = null;
+    if(ctx.current_state != null){
+      last_state = ctx.current_state;
+    } 
+    ctx.current_state = s; 
+    if(s != null){
+      s.daddy = last_state;
+    }
+    var st = '';
+    try{
+      st=s.txt;
+    }catch(e){
+    }
+    console.log('ctx.set_state' , st);    
+    return(s); 
+  };
+  ctx.get_state = function(){
+    var s = ctx.current_state;
+    var st = '';
+    try{
+      st=s.txt;
+    }catch(e){
+      st='';
+    }
+    console.log('ctx.get_state ' , st);
+    return s 
+  };
 
   ctx.egg_timer = egg_timer;
   ctx.clear_tmr = function(){
@@ -57,23 +89,16 @@
   // should only load the used ones..
   for(var i=1; i <= n_imgs; i++)
     imgs.push(load_img('images/' + i + '.jpg'));
-
-  // event example hello world
-  ctx.set_state(state(ctx));
-  ctx.state().set_expiry(0);
-  //ctx.state().key_expiry =false;
-  ctx.state().start();
   
-  // turn on kb hook... kb event handler
-  function kb_call(key_unicode){ 
-    var now = ctx.state();
-    if(now && now.key_expiry){
-        ctx.clear_tmr();
-        now.expire();
-    }
-  }
+  var s1 = instructions( '1) welcome to the lab',ctx);
+  var s2 = instructions( '2) this is a psych test',ctx); s1.set_successor(s2);
+  var s3 = instructions( '3) it will be relatively painless',ctx); s2.set_successor(s3);
+  var s4 = instructions( '4) thank you.',ctx); s3.set_successor(s4);
 
-  key_unicode = keyboard_module(kb_call);
+  ctx.set_state(s1);
+  ctx.get_state().start();
+
+  key_unicode = keyboard_module();
   ctx.t0 = window.performance.now(); 
 
   function resize(){ 
@@ -82,9 +107,9 @@
   }
   function update() { 
     resize(); 
-    var now = ctx.state();
-    if(now) 
-      now.show();
+    var now = ctx.get_state();
+    if(now!=null) 
+      now.show(ctx);
   }
   
   window.onresize = function(event){ update(); }; // any other possibilities?
@@ -94,6 +119,7 @@
     //set up all the events in a chain... 
     update();
   }
+
 </script>
 </body></html>
 

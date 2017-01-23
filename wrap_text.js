@@ -1,5 +1,5 @@
 /* wrap text around a window region.. */
-function wrap_text(s, ctx = document.getElementsByTagName("canvas")[0].getContext("2d"), start_y=0){
+function wrap_text(s, ctx, start_y=0){
   // with help from ashblue
   var myX = 10; 
   var myY = 50;
