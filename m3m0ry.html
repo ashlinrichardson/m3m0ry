@@ -88,6 +88,7 @@
   // should only load the used ones..
   for(var i=1; i <= n_imgs; i++)
     imgs.push(load_img('images/' + i + '.jpg'));
+  ctx.imgs = imgs;
   
   var s1 = instructions( '1) welcome to the lab',ctx);
   var s2 = instructions( '2) this is a psych test',ctx); s1.set_successor(s2);

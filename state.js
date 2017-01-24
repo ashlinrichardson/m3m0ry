@@ -55,6 +55,11 @@ function state( ctx,                 // meta4 graphics context
     if(this.txt){
       wrap_text(this.txt, this.ctx, 0);
     }
+    var x = ctx.imgs[4];
+    draw_img(x, ctx);
+
+    //draw_img(ctx.imgs[0], ctx);
+    //ctx.drawImage(ctx.imgs[0], 0, 0);
     ctx.draw_symbol(); // need this line?
   };
 
