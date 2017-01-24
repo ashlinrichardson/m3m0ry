@@ -20,6 +20,7 @@ function draw_img(x, ctx){
   ctx.drawImage(x, a, b, c, d);
 }
 
+/* random-number generator (rand() analog) */
 var x = .5; 
 function rand(){
   x = x/Math.sin(1./x);
