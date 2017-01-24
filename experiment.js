@@ -41,7 +41,11 @@ function delay_task(ctx){
   // play a video. 
 };
 
+// object that has words or images added to it. 
+// need a separate render routine for the words... 
+// also need to implement the shuffling routine.. 
 function stimuli_pool(ctx){
+  
 };
 
 function test(){

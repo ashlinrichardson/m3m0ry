@@ -12,14 +12,14 @@ function load_img(fn){
 
 /* draw an image */
 function draw_img(x, ctx){
-    var lw = x.width; 
+    var lw = x.width; var cf = 4*ctx.font_size;
     var lh = x.height;
     var w = ctx.w();
-    var h = ctx.h();
+    var h = ctx.h() - cf;
     var sf = Math.min(w,h) / Math.max(lw, lh);
     var a = (w - lw * sf) / 2; var b = (h - lh * sf) / 2;
     var c = lw * sf; var d = lh * sf;
-    ctx.drawImage(x, a, b, c, d);
+    ctx.drawImage(x, a, b+(cf/2), c, d);
 }
 
 /* random-number generator (rand() analog) */
