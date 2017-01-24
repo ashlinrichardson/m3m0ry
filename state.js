@@ -1,23 +1,9 @@
-/* 
-               -- record data to global record..
-               -- plot i) image ii) text.  
-               -- reset the keymap...  
+// record data to global record..
+// reset keymap... 
+// random selection: extra feedback on subsample of trials.  
   
-*/
-
-/* stimulus pool */
-function pool(ctx){
-  this.stimuli = Array();
-  this.add = function(stim){
-    this.stimuli.push(stim);
-  }
-  return this;
-}
-
 /* generic object representing task or trial.. */ 
 function state( ctx,                 // meta4 graphics context
-                idx        =    -1,   // global object id
-                kind       =    -1,   // object type
                 expiry_ms  =     0,    // max. presentation time (mS)     
                 key_expiry =  true, // expiry by key-press (true <--> on)
                 intvl_ms   =     0,    // interval btwn stimuli.. (ISI) `blank slide'
@@ -29,88 +15,79 @@ function state( ctx,                 // meta4 graphics context
               ){ 
   // leaves (trials) default to parent params? should be equal anyways.
   this.ctx = ctx; // reference to graphics context  
-  if(ctx == null || this.ctx==null){
-    console.log('state(): error: ctx.=null');
-  }
-  this.idx = idx;  // global id for this object
-  this.kind = kind; // type of this object..
   this.intvl_ms = intvl_ms; //only applies if there's a `next' trial.. (if this is a trial).
   this.expiry_ms = expiry_ms; // numeric 
   this.key_expiry = key_expiry; // boolean
   this.img_idx = img_idx; // global image index (images added as member of ctx).
-  //plot the text, logo, and possible answers, and collect any key presses.
+  //plottext, logo, and possible answers, collect any key presses.
   this.successor = null;  
-  //var this_state = this;
-  this.daddy = daddy;
+  this.daddy = daddy; // super-ordinate state
 
-
-  this.set_txt = function(s){
-    this.txt = s;
-  };
+  // where are we going?
   this.set_successor = function(s){
     this.successor=s;
   };
 
+  // pl0t t3xt 0r 1mag3s 
   this.show = function(){
-    if(this.txt){
+    // 1) draw upper text.
+    if(this.txt)
       wrap_text(this.txt, this.ctx, 0);
-    }
-    var x = ctx.imgs[4];
-    draw_img(x, ctx);
 
-    //draw_img(ctx.imgs[0], ctx);
-    //ctx.drawImage(ctx.imgs[0], 0, 0);
+    // 2) img or middle text (if word stim)
+    var x = ctx.imgs[4]; // what is the data here?
+    draw_img(x, ctx);
+  
+    // 3) bottom text
+
+    // 4) logo if no image/ lower text present (add conditional)..
     ctx.draw_symbol(); // need this line?
   };
 
+  // state expires by timer or key-press 
   this.set_expiry = function(t_ms){
+
     // follow clock or key to keep the show going
     this.expiry_ms = t_ms;
+
     if(t_ms <= 0){
+      // state expires by key press 
       this.key_expiry = true;
     }
   };
 
+  // 3nt3r 4 5t4t3
   this.start = function(){
-    console.log('start()'+this.txt);
+    // st4rt th3 cl0ck
+    this.t0 = window.performance.now(); 
+    this.start_date_time = date_time(); 
+    this.ctx.clear_tmr(); // cl34r th3 t1m3r
     this.show(this.ctx);
-    this.ctx.clear_tmr();
-    this.t0 = window.performance.now(); // record a start time.
-    this.start_date_time = date_time();
-    // start `slide' expiry timer : - )
-    if(this.expiry_ms > 0){
-      // there's no time like the present
-      //   var now = this.ctx.get_state();  
-      var expiry = this.expiry_ms;
-      ctx.init_tmr(expiry, this.expire);
-    }
+    
+    // maybe start timer 
+    if(this.expiry_ms > 0)
+      ctx.init_tmr(this.expiry_ms, this.expire);
     return null;
-    //if `expiry' > 0 (mS) set a timer-interrupt, too!
-    // force no timers open. add at ctx.tmr ?
   };
   
+  // pr0c33d t0 n3x+ st4+3
   this.expire = function(){
-    console.log('expire()');
-    // try to stop timer from running
-    var txt = this.txt; 
-    var suc = this.successor;
-    var suc_txt = null;
-    if(suc!=null && suc.txt !=null){
-      suc_txt = suc.txt;
-    }
-    console.log('expire()' + txt + ' successor ' + suc_txt)
-    if( this.ctx == null){
-      console.log('error: this.ctx==null');
-    }
+    // 5t0p 4ll th3 cl0ck5
     this.ctx.clear_tmr();
+
     //record stop time 
     this.end_date_time = date_time();
     this.t1 = window.performance.now(); 
-    console.log('end '+parse_date_time(this.end_date_time));
-    if(this.successor==null){
-      console.log('null successor.');
-    }
-    else{
+
+    var txt = this.txt;
+    var suc_txt = null; 
+    var suc = this.successor;
+    
+    if(suc!=null && suc.txt !=null)
+      suc_txt = suc.txt;
+    
+    if(this.successor!=null){
+      // enter next state
       this.ctx.set_state(this.successor);
       this.ctx.get_state().start();
     }
@@ -118,29 +95,29 @@ function state( ctx,                 // meta4 graphics context
     // now that this `event' is ending, 
     // 1) record our data to the global csv-line record.
     // 2) proceed to the next state.
-    return null;
   };
 
   /* print out the data for the object.. */
   this.data = function(){
-    var t0 = this.t0; var start_dt = this.start_date_time;
-    var t1 = this.t1; var end_dt = this.end_date_time;
-    var dt = t1-t0; // duration in state: record <=1 decimal place.
-    dt = Math.round(10. * dt) / 10.;   
-    var dt_0 = parse_date_time(start_dt);
-    var dt_1 = parse_date_time(end_dt);
+    // duration in state (ms): not more than one decimal place
+    var dt = Math.round(10. * (this.t1 - this.t0)) / 10.;   
+    var dt_0 = parse_date_time(this.start_date_time);
+    var dt_1 = parse_date_time(this.end_date_time);
+    
+    // csv record
     p = function(s){ return s.toString() +','; };
     s = trim( p(dt) + p(dt_0) + dt_1.toString() );
     console.log(s);
     return(s); 
   };
 
-  this.field_names = function(){
+  this.fields = function(){
+    // descriptive csv header (mls: milliseconds-- three digits)
     return 't(mS),start(yyyy:mm:dd:hh:mn:ss:mls),end(yyyy:mm:dd:hh:mn:ss:mls)';
   };
   return this;
 
 
 }
-// random selection: extra feedback on subsample of trials. 
+
 

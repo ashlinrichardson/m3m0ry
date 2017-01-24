@@ -15,7 +15,6 @@
 function instructions(txt, ctx){
   console.log('instructions ['+txt+']');
   var x = new state(ctx);
-  x.set_txt(txt);
   x.txt = txt;
   x.set_expiry(0); // no timer
   return x;
@@ -44,9 +43,14 @@ function delay_task(ctx){
 // object that has words or images added to it. 
 // need a separate render routine for the words... 
 // also need to implement the shuffling routine.. 
-function stimuli_pool(ctx){
-  
-};
+/* stimulus pool */
+function pool(ctx){
+  this.stimuli = Array();
+  this.add = function(stim){
+    this.stimuli.push(stim);
+  }
+  return this;
+}
 
 function test(){
   console.log('test []');
