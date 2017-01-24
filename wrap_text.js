@@ -28,8 +28,7 @@ function wrap_text(s, ctx, start_y=0){
     current_y = lines.length * font_size + font_size;
     lines.push({text: line.trim(), height: current_y});
   }
-  //plot the text text
-  ctx.clearRect(0, 0, w, h);
+  //plot the text 
   for(var j = 0, len = lines.length; j < len; j++){
     ctx.fillText(lines[j].text, 0, lines[j].height + start_y);
   }

@@ -30,6 +30,12 @@ function state( ctx,                 // meta4 graphics context
 
   // pl0t t3xt 0r 1mag3s 
   this.show = function(){
+    var ctx = this.ctx;
+    ctx.clearRect(0, 0, ctx.w(), ctx.h());
+    // 3) bottom text
+    if(this.txt2)
+      wrap_text(this.txt2, this.ctx, this.ctx.h() - (2* this.ctx.font_size+20));
+
     // 1) draw upper text.
     if(this.txt)
       wrap_text(this.txt, this.ctx, 0);
@@ -38,13 +44,11 @@ function state( ctx,                 // meta4 graphics context
     var x = ctx.imgs[4]; // what is the data here?
     draw_img(x, ctx);
   
-    // 3) bottom text
-    if(this.txt2)
-      wrap_text(this.txt2, this.ctx, this.ctx.h() - 2* this.ctx.font_size);
 
 
     // 4) logo if no image/ lower text present (add conditional)..
-    ctx.draw_symbol(); // need this line?
+    if(!this.txt2)
+      ctx.draw_symbol(); // need this line?
   };
 
   // state expires by timer or key-press 

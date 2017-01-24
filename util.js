@@ -10,12 +10,17 @@ function load_img(fn){
   return img;
 }
 
-// random-number generator
-var x = .5; 
-function rand(){
-  x = x / Math.sin(1 / x);
-  x = Math.ceil(x) - x;
-  return(x);
+// random-number generator http://indiegamr.com/generate-repeatable-random-numbers-in-js/
+// the initial seed
+var seed = 5;
+ // in order to work 'Math.seed' must NOT be undefined,
+// so in any case, you HAVE to provide a Math.seed
+function rand(max, min) {
+    max = max || 1;
+    min = min || 0;
+    seed = (seed * 9301 + 49297) % 233280;
+    var rnd = seed / 233280;
+    return min + rnd * (max - min);
 }
 
 // pad to length n (with 0's on the left) 
@@ -53,7 +58,7 @@ function draw_img(x, ctx){
     var b = (h - lh * sf) / 2;
     var c = lw * sf; 
     var d = lh * sf;
-    ctx.drawImage(x, a, b + (cf / 2), c, d);
+    ctx.drawImage(x, a, b + (-20 + cf / 2), c, d);
 }
 
 // write the above to a standardized format

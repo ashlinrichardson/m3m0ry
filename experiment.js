@@ -44,12 +44,34 @@ function delay_task(ctx){
 // also need to implement the shuffling routine.. 
 /* stimulus pool */
 function pool(ctx){
-  this.stimuli = Array();
+  this.ctx = ctx;
+  this.stimuli = new Array();
   this.add = function(stim){
     this.stimuli.push(stim);
-  }
+    return stim;
+  };
+  // draw a selection of size 'm'
+  this.draw = function(m){
+    if(this.selection){
+      console.log('error: selection already made from this pool.');
+      return null;
+    }
+    var n = parseInt(m);
+    if(n > this.stimuli.length){
+      console.log('error: n > this.stimuli.length');
+      return null;
+    }
+    this.selection = new Array();
+    for(var i = 0; i < n; i++){ 
+      var qx = rand()*parseFloat(this.stimuli.length);
+      var idx = parseInt(qx);
+      console.log('idx '+ idx.toString()+','+qx.toString());
+      this.selection.push(this.stimuli[idx]);
+      delete this.stimuli[idx];
+    }
+  };
   return this;
-}
+};
 
 function test(){
   var x = new state(ctx);
