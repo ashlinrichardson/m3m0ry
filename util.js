@@ -53,13 +53,10 @@ function get_keys(dictionary){
 
 /* write the above to a standardized format.. */
 function parse_date_time(today){
- 
-  // jan is 0
-  var bits = [ 
+  var bits = [  
     today.getFullYear(), today.getMonth()+1, today.getDate(), 
     today.getHours(), today.getMinutes(), today.getSeconds(), 
-    today.getMilliseconds()];
-    
+    today.getMilliseconds()]; 
   // pad with zeros
   for(var i = 0; i<bits.length; i++){
     var n_pad = 2;
@@ -67,7 +64,6 @@ function parse_date_time(today){
     if(i== 6) n_pad = 3;
     bits[i] = pad_n(bits[i].toString(), n_pad)
   }
-
   return(bits.join(':'));
 }
 

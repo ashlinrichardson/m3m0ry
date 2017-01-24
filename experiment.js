@@ -1,3 +1,17 @@
+/*
+  Event hierarchy:
+    1) Experiment (includes multiple tasks)
+    2) Task (includes multiple trials)
+    3) Trial (each task includes multiple basic events) 
+
+    Types of Task:
+    1) Instructions Task (really just a 1-trial thing... except needs to be placed properly).
+    2) Response Task (display instructions once, then...?)
+    3) Delay Task (name as many cities as you can... or display a video!!).
+    4) Orientation task
+    5) Recognition task (shares a stimulus pool with the latter..) 
+*/
+
 function instructions(txt, ctx){
   console.log('instructions ['+txt+']');
   var x = new state(ctx);
