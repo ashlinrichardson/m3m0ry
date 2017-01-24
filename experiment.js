@@ -19,31 +19,11 @@ function instructions(txt, ctx){
   return x;
 };
 
-/* formerly known as orientation task*/
-function study_phase(ctx){
-};
-
-/* formerly known as recognition task */
-function test_phase(ctx){
-};
-
-/* formerly known as feedback task */
-function response_task(ctx){ 
-  // there might be a mode where this functionality has to mix with test-phase. 
-
-  // block these out by trial first... 
-};
-
-function delay_task(ctx){
-  // list as many countries as possible during a 3-minute period.
-  // play a video. 
-};
-
 // object that has words or images added to it. 
 // need a separate render routine for the words... 
 // also need to implement the shuffling routine.. 
 /* stimulus pool */
-function pool(ctx){
+function pool(){//ctx){
   this.ctx = ctx;
   this.stimuli = new Array();
   this.add = function(stim){
@@ -62,8 +42,10 @@ function pool(ctx){
       return null;
     }
     this.selection = new Array();
+    var rem = this.stimuli.length;
     for(var i = 0; i < n; i++){ 
-      var qx = rand()*parseFloat(this.stimuli.length);
+      var qx = rand()*parseFloat(rem); //this.stimuli.length);
+      rem -= 1;
       var idx = parseInt(qx);
       console.log('idx '+ idx.toString()+','+qx.toString());
       this.selection.push(this.stimuli[idx]);
@@ -73,8 +55,35 @@ function pool(ctx){
   return this;
 };
 
-function test(){
-  var x = new state(ctx);
-}
+/* formerly known as orientation task*/
+function study_phase(my_pool){  
+  this.ctx = ctx;
+  this.p = my_pool;
+  for(var i  in my_pool.selection){
+    console.log('pool',i);
+  }
+  for(var i  in my_pool.stimuli){
+    console.log('stim',i);
+  }
+  return this;
+};
 
+/* formerly known as recognition task */
+function test_phase(ctx, my_study_phase){
+  // deja vu vs. not deja-vu.... (this has more stuff in it..) 
+  this.p = my_study_phase.p; // same pool as study phase. now extra stuff is mixed in...
+  return this;
+};
+
+/* formerly known as feedback task */
+function response_task(ctx){ 
+  // there might be a mode where this functionality has to mix with test-phase. 
+
+  // block these out by trial first... 
+};
+
+function delay_task(ctx){
+  // list as many countries as possible during a 3-minute period.
+  // play a video. 
+};
 

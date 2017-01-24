@@ -9,7 +9,6 @@ function state( ctx,                 // meta4 graphics context
                 intvl_ms   =     0,    // interval btwn stimuli.. (ISI) `blank slide'
                 img_idx    =    -1,     //image data (if any)
                 txt    =    null,      //text data (if any)
-                daddy = null, // parent object... 
                 successor = null //child 
                 //txt2_idx ? how many possible messages?
               ){ 
@@ -21,7 +20,13 @@ function state( ctx,                 // meta4 graphics context
   this.img_idx = img_idx; // global image index (images added as member of ctx).
   //plottext, logo, and possible answers, collect any key presses.
   this.successor = null;  
-  this.daddy = daddy; // super-ordinate state
+
+  // 
+  this.predecessor = ctx.last_new_state;
+  ctx.last_new_state = this;
+  if(this.predecessor != null){
+    this.predecessor.set_successor(this);
+  } 
 
   // where are we going?
   this.set_successor = function(s){

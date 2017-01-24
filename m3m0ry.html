@@ -79,11 +79,20 @@
     imgs.push(load_img('images/' + i + '.jpg'));
   ctx.imgs = imgs;
   
+  ctx.last_new_state = null;
+
   var s1 = instructions( 'Welcome to the recognition memory experiment framework.',ctx);
   s1.txt2 = 'Have you seen this image before? If so, please press m. Otherwise, please press n.';
-  var s2 = instructions( '2) this is a psych test',ctx); s1.set_successor(s2);
-  var s3 = instructions( '3) it will be relatively painless',ctx); s2.set_successor(s3);
-  var s4 = instructions( '4) thank you.',ctx); s3.set_successor(s4);
+  var s2 = instructions( '2) this is a psych test',ctx); //s1.set_successor(s2);
+  var s3 = instructions( '3) it will be relatively painless',ctx); //s2.set_successor(s3);
+  var s4 = instructions( '4) thank you.',ctx); //s3.set_successor(s4);
+
+  var p = pool();
+  for(var i=0; i<5; i++){
+    p.add(imgs[i+4]);
+  }
+  p.draw(3);
+  var my_study_phase = new study_phase(p);
 
   ctx.set_state(s1);
   ctx.get_state().start();
