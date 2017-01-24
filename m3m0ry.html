@@ -15,24 +15,18 @@
 
   // graphics ctx
   var canvas = document.getElementsByTagName("canvas")[0];
-  var ctx = canvas.getContext("2d"); 
-  document.bgColor = "#FFFFFF"; 
+  var ctx = canvas.getContext("2d"); document.bgColor = "#FFFFFF"; 
 
-  // padded window dimensions
-  ctx.pad = 20; 
-  // font size;
-  ctx.font_size = 30;
-  var less = function(x){ 
-    return x - ctx.pad; }
-  ctx.w = function(){ 
-    return less(window.innerWidth); 
-  }
-  ctx.h = function(){  
-    return less(window.innerHeight);  
-  }  
+  ctx.pad = 20; // aesthetic parameter
+  ctx.font_size = 30; // font size
+  
+  var less = function(x){ return x - ctx.pad; }
+  ctx.w = function(){ return less(window.innerWidth); }
+  ctx.h = function(){ return less(window.innerHeight); }  
   
   // logo scaling algorithm
   ctx.symbol = load_img("logo/uvic_gray.png");
+
   ctx.draw_symbol = function(){
     var s_f = 5;
     var pad = this.pad;
@@ -49,20 +43,14 @@
   // access current state.
   ctx.set_state = function(s){
     last_state = null;
-    if(ctx.current_state != null){
+    if(ctx.current_state != null)
       last_state = ctx.current_state;
-    } 
     ctx.current_state = s; 
     if(s != null){
+      // no!! not true!!!:::  
       s.daddy = last_state;
     }
-    var st = '';
-    try{
-      st=s.txt;
-    }catch(e){
-    }
-    console.log('ctx.set_state' , st);    
-    return(s); 
+    return(s);
   };
   ctx.get_state = function(){
     var s = ctx.current_state;
@@ -72,7 +60,6 @@
     }catch(e){
       st='';
     }
-    console.log('ctx.get_state ' , st);
     return s 
   };
 

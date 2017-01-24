@@ -39,6 +39,9 @@ function state( ctx,                 // meta4 graphics context
     draw_img(x, ctx);
   
     // 3) bottom text
+    if(this.txt2)
+      wrap_text(this.txt2, this.ctx, this.ctx.h() - 2* this.ctx.font_size);
+
 
     // 4) logo if no image/ lower text present (add conditional)..
     ctx.draw_symbol(); // need this line?

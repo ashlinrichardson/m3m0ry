@@ -71,10 +71,8 @@ function parse_date_time(today){
   // pad with zeros
   for(var i = 0; i<bits.length; i++){
     var n_pad = 2;
-    if(i==0) 
-      n_pad = 4;
-    if(i== 6) 
-      n_pad = 3;
+    if(i==0) n_pad = 4;
+    if(i== 6) n_pad = 3;
     var bts = bits[i].toString();
     bits[i] = pad_n(bts, n_pad);
   }

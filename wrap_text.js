@@ -8,9 +8,9 @@ function wrap_text(s, ctx, start_y=0){
   var w = ctx.w();
   var h = ctx.h();
   var line_test = '';
-  var words = s.split(" ");
+  var words = s.split(' ');
   var font_size = ctx.font_size; 
-  ctx.font = font_size +"px Arial";
+  ctx.font = font_size +'px Arial';
 
   // place words one by one  
   for(var j = 0; j < words.length; j++){

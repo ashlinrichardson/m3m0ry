@@ -14,10 +14,10 @@ function keyboard_module(){
     var key =  String.fromCharCode(unicode);
     key_unicode[unicode] = true;
 
-    // where are we?
+    // when are we?
     var now = ctx.get_state();
     if(now && now.key_expiry){
-        // go to the next state
+         // t <-- t + 1
         ctx.clear_tmr();
         now.expire();
     }
