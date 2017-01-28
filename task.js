@@ -5,10 +5,8 @@
     3) Trial (each task includes multiple basic events) 
 
     Types of Task:
-    1) Instructions Task (really just a 1-trial thing... except needs to be placed properly).
     2) Response Task (display instructions once, then...?)
     3) Delay Task (name as many cities as you can... or display a video!!).
-    4) Orientation task
     5) Recognition task (shares a stimulus pool with the latter..) 
 */
 
@@ -62,11 +60,12 @@ function instructions(txt, ctx){
 };
 
 /* formerly known as orientation task*/
-function study_phase(my_pool){  
+function study_phase(my_pool, ctx){  
   this.ctx = ctx;
   this.p = my_pool;
   for(var i  in my_pool.selection){
     var x = new state(ctx);
+    x.set_expiry(0);
     //x.txt = 'image'+i.toString();
     var data = my_pool.selection[i];
     console.log(i,'pool',my_pool.selection[i]);

@@ -4,9 +4,10 @@
 <script src="key.js"></script>
 <script src="util.js"></script>
 <script src="state.js"></script>
-<script src="wrap_text.js"></script>
+<script src="text.js"></script>
 <script src="egg_timer.js"></script>
 <script src="task.js"></script>
+<script src="experiment.js"></script>
 <script>
   // filter keys
   // does user enter a code, copy a result file, or send it with AJAZ?
@@ -93,42 +94,27 @@
   };
     
   ctx.last_new_state = null;
+  ctx.first_new_state = null;
 
   var n_imgs = 10; //200;
 
-//------------------------------------------------
-  var imgs = new Array(); 
-  // should only load the used ones..
-  for(var i=1; i <= n_imgs; i++)
-    imgs.push(load_img('images/' + i + '.jpg'));
-  ctx.imgs = imgs;
-//------------------------------------------------
-
-
-  var s1 = instructions( 'Welcome to the recognition memory experiment framework.',ctx);
-  s1.txt2 = 'Have you seen this image before? If so, please press m. Otherwise, please press n.';
-  var s2 = instructions( '2) this is an instructions slide..',ctx); 
-  var s3 = instructions( '3) this is another instructions slide...',ctx); 
-  var s4 = instructions( '4) study phase coming next:',ctx);
-  var s5 = instructions('please press one of the following two keys: {m,n}', ctx);
-
-  var p = pool();
-  for(var i=0; i<10; i++){
-    p.add(imgs[i]);
-  }
-  p.add('word stimulus');
-  p.add('supercalifragilisticexpialidocious');
-  p.add('umdiddlediddlediddleumdiddlei');
-  p.draw(5);
-  var my_study_phase = new study_phase(p);
+  ctx.load_imgs = function (n_imgs){
+    var imgs = new Array(); 
+    // should only load the used ones..
+    for(var i=1; i <= n_imgs; i++)
+      imgs.push(load_img('images/' + i + '.jpg'));
+    ctx.imgs = imgs;
+  };
   
+  ctx.load_imgs(10);
+
+  my_experiment(ctx);
 
   // ASH: please set up test phase, data recording, and score! 
 
-  ctx.set_state(s1);
+  ctx.set_state(ctx.first_new_state);
   ctx.get_state().start();
 //------------------------------------------------
-
 
   key_unicode = keyboard_module();
   ctx.t0 = window.performance.now(); 

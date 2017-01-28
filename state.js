@@ -12,6 +12,9 @@ function state( ctx,                 // meta4 graphics context
                 successor = null //child 
                 //txt2_idx ? how many possible messages?
               ){ 
+  if(ctx.first_new_state == null){
+    ctx.first_new_state = this;
+  }
   // leaves (trials) default to parent params? should be equal anyways.
   this.ctx = ctx; // reference to graphics context  
   this.intvl_ms = intvl_ms; //only applies if there's a `next' trial.. (if this is a trial).
@@ -32,16 +35,6 @@ function state( ctx,                 // meta4 graphics context
   this.set_successor = function(s){
     this.successor=s;
   };
-  function centre_text(s){
-      var font_size = ctx.font_size; 
-      ctx.font = 30 +'px Arial';
-
-
-      var textString = s;//this.wrd_stim;
-      textWidth = ctx.measureText(textString ).width;
-      ctx.fillText(textString , (canvas.width/2) - (textWidth / 2), canvas.height/2);
-
-  }
 
   // pl0t t3xt 0r 1mag3s 
   this.show = function(){
@@ -64,13 +57,13 @@ function state( ctx,                 // meta4 graphics context
   
     if(this.wrd_stim){
       console.log('word stim');
-      //wrap_text(this.wrd_stim, this.ctx, this.ctx.h()/2);
+      //might need the wrap_text back on for long strings..:
+        //wrap_text(this.wrd_stim, this.ctx, this.ctx.h()/2);
 
-
+      //for now, centre justif (doesn't wrap)...
       centre_text(this.wrd_stim);
 
     }
-   
   
     // 4) logo if no image/ lower text present (add conditional)..
     if(!this.txt2)

@@ -34,3 +34,11 @@ function wrap_text(s, ctx, start_y=0){
   }
 }
 
+function centre_text(s){
+  var font_size = ctx.font_size; 
+  ctx.font = 30 +'px Arial';
+  var textString = s;//this.wrd_stim;
+  textWidth = ctx.measureText(textString ).width;
+  ctx.fillText(textString , (canvas.width/2) - (textWidth / 2), canvas.height/2);
+}
+
