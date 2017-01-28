@@ -1,16 +1,16 @@
 <html><body>
 <canvas></canvas>
+
 <script src="key.js"></script>
 <script src="util.js"></script>
 <script src="state.js"></script>
 <script src="wrap_text.js"></script>
 <script src="egg_timer.js"></script>
-<script src="experiment.js"></script>
+<script src="task.js"></script>
 <script>
   // filter keys
   // does user enter a code, copy a result file, or send it with AJAZ?
   // likely put up a python cgi hook to store results. 
-
   var history = []; 
 
   // graphics ctx
@@ -63,61 +63,76 @@
     return s 
   };
 
-  ctx.egg_timer = egg_timer;
-  ctx.clear_tmr = function(){
-    ctx.egg_timer.cancel();
-  };
-  ctx.init_tmr = function(t_ms, callback){
-    ctx.egg_timer.setup(t_ms, callback);
-  };
-    
-  var n_imgs = 10; //200;
-  var imgs = new Array(); 
-   
-  // should only load the used ones..
-  for(var i=1; i <= n_imgs; i++)
-    imgs.push(load_img('images/' + i + '.jpg'));
-  ctx.imgs = imgs;
-  
-  ctx.last_new_state = null;
-
-  var s1 = instructions( 'Welcome to the recognition memory experiment framework.',ctx);
-  s1.txt2 = 'Have you seen this image before? If so, please press m. Otherwise, please press n.';
-  var s2 = instructions( '2) this is a psych test',ctx); //s1.set_successor(s2);
-  var s3 = instructions( '3) it will be relatively painless',ctx); //s2.set_successor(s3);
-  var s4 = instructions( '4) thank you.',ctx); //s3.set_successor(s4);
-
-  var p = pool();
-  for(var i=0; i<5; i++){
-    p.add(imgs[i+4]);
-  }
-  p.draw(3);
-  var my_study_phase = new study_phase(p);
-
-  ctx.set_state(s1);
-  ctx.get_state().start();
-
-  key_unicode = keyboard_module();
-  ctx.t0 = window.performance.now(); 
-
   function resize(){ 
     canvas.width = ctx.w(); 
     canvas.height = ctx.h(); 
-  }
-  function update() { 
+  };
+  function update(){ 
     resize(); 
     var now = ctx.get_state();
     if(now!=null) 
       now.show(ctx);
-  }
+  };
   
-  window.onresize = function(event){ update(); }; // any other possibilities?
+  window.onresize = function(event){ 
+    update(); 
+  }; 
   
-  // seems to be this is the `in' hook..
+  // seems to be the `in' hook..
   window.onload = function(){
     //set up all the events in a chain... 
     update();
+  };
+
+  ctx.egg_timer = egg_timer;
+  ctx.clear_tmr = function(){
+    ctx.egg_timer.cancel(); 
+  };
+  ctx.init_tmr = function(t_ms, callback){ 
+    ctx.egg_timer.setup(t_ms, callback);
+  };
+    
+  ctx.last_new_state = null;
+
+  var n_imgs = 10; //200;
+
+//------------------------------------------------
+  var imgs = new Array(); 
+  // should only load the used ones..
+  for(var i=1; i <= n_imgs; i++)
+    imgs.push(load_img('images/' + i + '.jpg'));
+  ctx.imgs = imgs;
+//------------------------------------------------
+
+
+  var s1 = instructions( 'Welcome to the recognition memory experiment framework.',ctx);
+  s1.txt2 = 'Have you seen this image before? If so, please press m. Otherwise, please press n.';
+  var s2 = instructions( '2) this is an instructions slide..',ctx); 
+  var s3 = instructions( '3) this is another instructions slide...',ctx); 
+  var s4 = instructions( '4) study phase coming next:',ctx);
+  var s5 = instructions('please press one of the following two keys: {m,n}', ctx);
+
+  var p = pool();
+  for(var i=0; i<10; i++){
+    p.add(imgs[i]);
   }
+  p.add('word stimulus');
+  p.add('supercalifragilisticexpialidocious');
+  p.add('umdiddlediddlediddleumdiddlei');
+  p.draw(5);
+  var my_study_phase = new study_phase(p);
+  
+
+  // ASH: please set up test phase, data recording, and score! 
+
+  ctx.set_state(s1);
+  ctx.get_state().start();
+//------------------------------------------------
+
+
+  key_unicode = keyboard_module();
+  ctx.t0 = window.performance.now(); 
+
 
 </script>
 </body></html>

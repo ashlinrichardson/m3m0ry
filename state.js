@@ -32,25 +32,46 @@ function state( ctx,                 // meta4 graphics context
   this.set_successor = function(s){
     this.successor=s;
   };
+  function centre_text(s){
+      var font_size = ctx.font_size; 
+      ctx.font = 30 +'px Arial';
+
+
+      var textString = s;//this.wrd_stim;
+      textWidth = ctx.measureText(textString ).width;
+      ctx.fillText(textString , (canvas.width/2) - (textWidth / 2), canvas.height/2);
+
+  }
 
   // pl0t t3xt 0r 1mag3s 
   this.show = function(){
     var ctx = this.ctx;
     ctx.clearRect(0, 0, ctx.w(), ctx.h());
     // 3) bottom text
-    if(this.txt2)
-      wrap_text(this.txt2, this.ctx, this.ctx.h() - (2* this.ctx.font_size+20));
-
+    if(this.txt2 && (!this.wrd_stim)){
+      //wrap_text(this.txt2, this.ctx, this.ctx.h() - (2* this.ctx.font_size+20));
+    }
     // 1) draw upper text.
-    if(this.txt)
-      wrap_text(this.txt, this.ctx, 0);
+    if(this.txt) centre_text(this.txt);
+      //wrap_text(this.txt, this.ctx, 0);
 
     // 2) img or middle text (if word stim)
-    var x = ctx.imgs[4]; // what is the data here?
-    draw_img(x, ctx);
+    //var x = ctx.imgs[4]; // what is the data here?
+    if(this.img_stim){
+      x = this.img_stim;
+     draw_img(x, ctx);  
+    }
   
+    if(this.wrd_stim){
+      console.log('word stim');
+      //wrap_text(this.wrd_stim, this.ctx, this.ctx.h()/2);
 
 
+      centre_text(this.wrd_stim);
+
+    }
+   
+  
     // 4) logo if no image/ lower text present (add conditional)..
     if(!this.txt2)
       ctx.draw_symbol(); // need this line?
