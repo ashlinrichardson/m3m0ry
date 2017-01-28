@@ -11,55 +11,23 @@
 */
 
 
-// object that has words or images added to it. 
-// need a separate render routine for the words... 
-// also need to implement the shuffling routine.. 
-/* stimulus pool */
-function pool(){//ctx){
-  this.ctx = ctx;
-  this.stimuli = new Array();
-  this.add = function(stim){
-    this.stimuli.push(stim);
-    return stim;
-  };
-  // draw a selection of size 'm'
-  this.draw = function(m){
-    if(this.selection){
-      console.log('error: selection already made from this pool.');
-      return null;
-    }
-    var n = parseInt(m);
-    if(n > this.stimuli.length){
-      console.log('error: n > this.stimuli.length');
-      return null;
-    }
-    this.selection = new Array();
-    var rem = this.stimuli.length;
-    for(var i = 0; i < n; i++){ 
-      var qx = rand()*parseFloat(rem); //this.stimuli.length);
-      rem -= 1;
-      var idx = parseInt(qx);
-      console.log(rem, '=rem,','idx '+ idx.toString()+','+qx.toString(), this.stimuli[idx], this.stimuli);
-      this.selection.push(this.stimuli[idx]);
-
-      // deleting doesn't empty (strange..).. it cuts out, but it leaves a hole..:P
-      delete this.stimuli[idx];
-      // remove empty elements.. 
-      this.stimuli = this.stimuli.filter(function() { return true; });
-
-    }
-      };
-  return this;
-};
-
+/* instructions task (show a slide with a message on it) `one trial'..  */ 
 function instructions(txt, ctx){
   var x = new state(ctx);
   x.txt = txt;
   x.set_expiry(0); // no timer
   return x;
 };
+/* 
 
-/* formerly known as orientation task*/
+study phase, formerly known as orientation task
+
+    multiple `trials' / events occur here... 
+      based on a random selection... 
+
+  (for the test phase, the random selection is shuffled back into the pool).. 
+
+*/
 function study_phase(my_pool, ctx){  
   this.ctx = ctx;
   this.p = my_pool;
@@ -68,12 +36,12 @@ function study_phase(my_pool, ctx){
     x.set_expiry(0);
     //x.txt = 'image'+i.toString();
     var data = my_pool.selection[i];
-    console.log(i,'pool',my_pool.selection[i]);
+    //console.log(i,'pool',my_pool.selection[i]);
     if( typeof(data) === 'object'){
-      console.log('\timage');
+      //console.log('\timage');
       x.img_stim = data;    
     }else if(typeof(data) ==='string'){
-      console.log('\tstring');
+      //console.log('\tstring');
       x.wrd_stim = data
     }  
   }
@@ -88,10 +56,21 @@ function study_phase(my_pool, ctx){
   return this;
 };
 
-/* formerly known as recognition task */
-function test_phase(ctx, my_study_phase){
+/* 
+
+test phase, formerly known as recognition task
+
+for this phase, the random selection is shuffled back into the pool..
+
+all elements from the pool are shown (feedback is recorded).. 
+
+ */
+function test_phase(my_pool, ctx){
   // deja vu vs. not deja-vu.... (this has more stuff in it..) 
-  this.p = my_study_phase.p; // same pool as study phase. now extra stuff is mixed in...
+  this.ctx = ctx;
+  this.p = my_pool;
+
+
   return this;
 };
 

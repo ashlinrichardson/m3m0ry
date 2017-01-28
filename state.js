@@ -1,6 +1,6 @@
 // record data to global record..
 // reset keymap... 
-// random selection: extra feedback on subsample of trials.  
+// random selection: extra feedback on subsample of trials?  
   
 /* generic object representing task or trial.. */ 
 function state( ctx,                 // meta4 graphics context
@@ -58,13 +58,12 @@ function state( ctx,                 // meta4 graphics context
     if(this.wrd_stim){
       console.log('word stim');
       //might need the wrap_text back on for long strings..:
-        //wrap_text(this.wrd_stim, this.ctx, this.ctx.h()/2);
+      //  wrap_text(this.wrd_stim, this.ctx, this.ctx.h()/2);
 
       //for now, centre justif (doesn't wrap)...
       centre_text(this.wrd_stim);
 
     }
-  
     // 4) logo if no image/ lower text present (add conditional)..
     if(!this.txt2)
       ctx.draw_symbol(); // need this line?

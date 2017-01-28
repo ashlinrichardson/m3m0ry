@@ -1,5 +1,6 @@
 /* 
-    API usage example for recognition memory experiment    
+    API usage example for recognition memory experiment. in future, will wrap the functions so the words `new' and `ctx' won't be needed.
+
 */
 
 var my_experiment = function(ctx){
@@ -38,4 +39,5 @@ var my_experiment = function(ctx){
   new test_phase(p, ctx);
   
 }
+
 
