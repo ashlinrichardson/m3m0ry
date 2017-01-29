@@ -48,8 +48,8 @@ function state(ctx,                 // meta4 graphics context
       wrap_text(this.txt2, this.ctx, this.ctx.h() - (2* this.ctx.font_size+20));
     }
     // 1) draw upper text.
-    if(this.txt) centre_text(this.txt);
-      //wrap_text(this.txt, this.ctx, 0);
+    if(this.txt) //centre_text(this.txt);
+      wrap_text(this.txt, this.ctx, 0);
 
     // 2) img or middle text (if word stim)
     //var x = ctx.imgs[4]; // what is the data here?
