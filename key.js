@@ -12,11 +12,21 @@ function keyboard_module(){
   document.onkeydown = function(e) {
     var unicode = unicode_from_key_event(e);
     var key =  String.fromCharCode(unicode);
+    console.log('unicode', unicode, 'key', key);
     key_unicode[unicode] = true;
 
     // when are we?
     var now = ctx.get_state();
-    if(now && now.key_expiry){
+    var go = true;
+    if(now.require_key()){
+      if(unicode == 77 || unicode ==78){
+        go = true;
+      }else{
+        go = false;
+      }
+    }
+    console.log(go);    
+    if(now && now.key_expiry && go){
          // t <-- t + 1
         ctx.clear_tmr();
         now.expire();
