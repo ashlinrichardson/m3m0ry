@@ -58,7 +58,8 @@ function draw_img(x, ctx){
     var b = (h - lh * sf) / 2;
     var c = lw * sf; 
     var d = lh * sf;
-    ctx.drawImage(x, a, b + (-20 + cf / 2), c, d);
+    var df =  (-20 + cf / 2);
+    ctx.drawImage(x, a, b + df , c, d);
 }
 
 // write the above to a standardized format

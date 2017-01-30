@@ -28,9 +28,11 @@ var my_experiment = function(ctx){
   new study_phase(p, ctx);  
 
   // some instructions before `test phase'
-  new instructions('test phase is coming up', ctx);
+  new instructions('test phase coming up', ctx);
   new instructions('when you see an image/word, please press m or n', ctx);
-
+  new instructions('please press m if you saw an image/word before', ctx);
+  new instructions('please press n if you did not see the image/word before', ctx);
+ 
   // set up `test phase' (user input recorded for whole randomized pool)
   new test_phase(p, ctx);
 

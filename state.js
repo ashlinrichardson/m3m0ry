@@ -8,6 +8,10 @@ function state(ctx,                 // meta4 graphics context
                 successor = null){
   
 //  console.log('state', txt);
+  this.key_presses = new Array();
+  this.add_key_press = function(k){
+    this.key_presses.push(k);
+  };
 
   // keep a reference to this state (if it's the first one ever..) 
   if(ctx.first_new_state == null){

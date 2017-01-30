@@ -67,8 +67,8 @@ function pool(ctx){
       delete to_shuffle[idx];
       to_shuffle = to_shuffle.filter(function(){return true;});
     }
-  var ret = [shuffled, deja_vu];
-  return ret;//shuffled;
+    var ret = [shuffled, deja_vu];
+    return ret;//shuffled;
   };
 };
 

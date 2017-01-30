@@ -88,6 +88,9 @@ function test_phase(my_pool, ctx){
     x.key_required=true;
     var data = shuffled[i];
     var deja = deja_vu[i];
+  
+    // record within the object whether we have deja-vu or not.. 
+    x.deja = deja; 
     //x.txt2 = 'please press m or n';//if you saw the word/ image before (else n)';
     // discriminate by image or word, respectively..
     if( typeof(data) === 'object'){

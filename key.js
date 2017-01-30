@@ -17,6 +17,12 @@ function keyboard_module(){
 
     // when are we?
     var now = ctx.get_state();
+
+    // record the key press 
+    // if key expiry, only one key press recorded
+    //   otherwise, multiple keys are recorded, in order
+    now.add_key_press(unicode);
+
     var go = true;
     if(now.require_key()){
       if(unicode == 77 || unicode ==78){
@@ -25,7 +31,7 @@ function keyboard_module(){
         go = false;
       }
     }
-    console.log(go);    
+    //console.log(go);    
     if(now && now.key_expiry && go){
          // t <-- t + 1
         ctx.clear_tmr();
