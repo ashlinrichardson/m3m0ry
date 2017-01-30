@@ -105,6 +105,10 @@
   ctx.last_new_state = null;
   ctx.first_new_state = null;
 
+  // count the amount of questions correct (redundant as can be calculated from `the data')
+  ctx.questions_correct = 0;
+  ctx.questions_total = 0;
+
 
   // load some image files (n.b., to use more images, increase n_imgs)
   var n_imgs = 10; //200;

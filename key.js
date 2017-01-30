@@ -17,14 +17,15 @@ function keyboard_module(){
 
     // when are we?
     var now = ctx.get_state();
+    console.log('\tdeja', now.deja, 'unicode', unicode, 'key', key, 'now.txt', now.img_stim, now.wrd_stim); 
 
     // record the key press 
     // if key expiry, only one key press recorded
     //   otherwise, multiple keys are recorded, in order
     now.add_key_press(unicode);
 
-    var go = true;
-    if(now.require_key()){
+    var go = true; //77 = m, 78= n 
+    if(now.require_key()){ // in the future this needs to match possible input keys (if key in require_key kind of thing..)
       if(unicode == 77 || unicode ==78){
         go = true;
       }else{
