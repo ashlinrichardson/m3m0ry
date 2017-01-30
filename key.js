@@ -27,6 +27,14 @@ function keyboard_module(){
     var go = true; //77 = m, 78= n 
     if(now.require_key()){ // in the future this needs to match possible input keys (if key in require_key kind of thing..)
       if(unicode == 77 || unicode ==78){
+        if(!(now.deja==undefined)){
+          ctx.questions_total+=1;
+          if((now.deja==true && unicode ==77)||(now.deja==false && unicode==78)){
+            ctx.questions_correct+=1;
+          }
+          var msg ='Your score: '+ctx.questions_correct.toString()+'/'+ctx.questions_total.toString();
+          ctx.last_state.txt2 = msg;
+        }
         go = true;
       }else{
         go = false;

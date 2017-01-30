@@ -125,6 +125,7 @@ function state(ctx,                 // meta4 graphics context
     if(this.successor!=null){
       this.ctx.set_state(this.successor);
       this.ctx.get_state().start();
+    }else{
     }
     
     // now that this `event' is ending, 
