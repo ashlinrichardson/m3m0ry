@@ -16,7 +16,7 @@ var my_experiment = function(ctx){
   }
 
   // add words to stimulus pool 
-  p.add('another word stimulus');
+  p.add('floccinaucinihilipilification');
   p.add('supercalifragilisticexpialidocious');
   p.add('umdiddlediddlediddleumdiddlei');
 
