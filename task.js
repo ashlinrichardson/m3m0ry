@@ -28,7 +28,6 @@ study phase, formerly known as orientation task
 
 */
 function study_phase(my_pool){  
-  console.log('study_phase');
   // record references to graphics context, and stimulus pool
   this.ctx = ctx;
   this.p = my_pool;
@@ -83,7 +82,6 @@ function test_phase(my_pool){
     x.key_required=true;
     var data = shuffled[i];
     var deja = deja_vu[i];
-    console.log('test_phase', i, shuffled[i], 'deja', deja);
     // record within the object whether we have deja-vu or not.. 
     x.deja = deja; 
     //x.txt2 = 'please press m or n';//if you saw the word/ image before (else n)';

@@ -1,4 +1,4 @@
-/* API use example: recognition memory experiment set-up. */
+/* recognition memory experiment set-up. */
 
 var my_experiment = function(){
   //set up some instruction slides..
@@ -37,7 +37,4 @@ var my_experiment = function(){
 
   // by message
   instructions('thanks you finished the test')
-
 }
-
-

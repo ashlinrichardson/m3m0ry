@@ -16,7 +16,6 @@ function pool(ctx){
 
   // draw a pseudorandom selection of size 'm'
   this.draw = function(m){
-    console.log('draw');
     if(this.selection){
       console.log('error: selection already made from this pool.');
       return null;
@@ -35,11 +34,8 @@ function pool(ctx){
       //console.log(rem, '=rem,','idx '+ idx.toString()+','+qx.toString(), this.stimuli[idx], this.stimuli);
       this.selection.push(this.stimuli[idx]);
 
-      // deleting doesn't empty (strange..).. it cuts out, but it leaves a hole..:P
       delete this.stimuli[idx];
-      // remove empty elements.. 
       this.stimuli = this.stimuli.filter(function() { return true; });
-
     }
   };
 
@@ -51,15 +47,13 @@ function pool(ctx){
       var dat_i = new Array();
       dat_i.push(this.selection[i]);
       dat_i.push(true);
-      to_shuffle.push(dat_i);//this.selection[i]);
-      console.log('this.selection[i]', this.selection[i], 'true', 'dat_i', dat_i);
+      to_shuffle.push(dat_i);
     }      
     for(var i=0; i<this.stimuli.length; i++){  
       var dat_i = new Array();
       dat_i.push(this.stimuli[i]);
       dat_i.push(false);
-      to_shuffle.push(dat_i);//this.stimuli[i]); 
-      console.log('this.stimuli[i]', this.stimuli[i], 'false', 'dat_i', dat_i);
+      to_shuffle.push(dat_i);
     } 
     console.log(to_shuffle.length);
     var shuffled = new Array();
@@ -71,13 +65,11 @@ function pool(ctx){
       var dat_i = to_shuffle[idx];
       shuffled.push(dat_i[0]);
       deja_vu.push(dat_i[1]);
-      console.log('\tpush',idx, to_shuffle.length, dat_i[0]);
       delete to_shuffle[idx];
       to_shuffle = to_shuffle.filter(function(){return true;});
     }
-    console.log('deja_vu', deja_vu);
     var ret = [shuffled, deja_vu];
-    return ret;//shuffled;
+    return ret;
   };
   return this;
 };
