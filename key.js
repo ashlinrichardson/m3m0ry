@@ -6,6 +6,7 @@ function unicode_from_key_event(e){
 // keyboard status array (unicode format)
 var key_unicode = {};
 
+// keyboard handling function
 function keyboard_module(){
 
   // set up key-down event handler 
@@ -25,8 +26,10 @@ function keyboard_module(){
       now.record_key_stroke(unicode);
     }
 
+    // by default, transition from a slide upon key-press.
     var go = true; 
 
+    // check if this state `requires' keyboard input
     if(now.require_key()){
       if(admissible_keys.includes(unicode)){
         if(!(now.deja==undefined)){
@@ -40,8 +43,8 @@ function keyboard_module(){
 
           // reminder to dump data at this point
         }
-        go = true;
       }else{
+        // block if a key was required but the one entered was not admissible
         go = false;
       }
     }
