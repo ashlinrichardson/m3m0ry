@@ -6,7 +6,7 @@
 */
 
 // instructions task (show a slide with a message on it) `one trial'.. 
-function instructions(txt, ctx){
+function instructions(txt){
   // initialize generic `trial' object
   var x = new state(ctx);
 
@@ -27,7 +27,7 @@ study phase, formerly known as orientation task
   (for the test phase, the random selection is shuffled back into the pool).. 
 
 */
-function study_phase(my_pool, ctx){  
+function study_phase(my_pool){  
   console.log('study_phase');
   // record references to graphics context, and stimulus pool
   this.ctx = ctx;
@@ -68,7 +68,7 @@ test phase, formerly known as recognition task
 - all elements from the pool are shown (feedback is recorded).. 
 
  */
-function test_phase(my_pool, ctx){
+function test_phase(my_pool){
   // deja vu vs. not deja-vu.... (this has more stuff in it..) 
   this.ctx = ctx;
   this.p = my_pool;
@@ -98,12 +98,12 @@ function test_phase(my_pool, ctx){
 };
 
 /* formerly known as feedback task */
-function response_task(ctx){ 
+function response_task(){ 
 
 
 };
 
-function delay_task(ctx){
+function delay_task(){
   // list as many countries as possible during a 3-minute period.
 
   //response_task subsumes this...

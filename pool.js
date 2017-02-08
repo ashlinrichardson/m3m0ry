@@ -79,5 +79,6 @@ function pool(ctx){
     var ret = [shuffled, deja_vu];
     return ret;//shuffled;
   };
+  return this;
 };
 

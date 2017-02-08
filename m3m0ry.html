@@ -115,12 +115,14 @@
   ctx.load_imgs = function (n_imgs){
     var imgs = new Array(); 
     // should only load the used ones..
-    for(var i=1; i <= n_imgs; i++)
+    for(var i=1; i <= n_imgs; i++){
       imgs.push(load_img('images/' + i + '.jpg'));
+    }
     ctx.imgs = imgs;
+    return ctx.imgs;
   };
-  ctx.load_imgs(10);
-
+  var my_images = ctx.load_imgs(10);
+  
   // set up an experiment according to user specfications/code
   my_experiment(ctx);
   
