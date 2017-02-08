@@ -101,7 +101,6 @@ function test_phase(my_pool, ctx){
 function response_task(ctx){ 
 
 
-
 };
 
 function delay_task(ctx){
