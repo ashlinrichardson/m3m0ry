@@ -19,9 +19,7 @@ function keyboard_module(){
     var now = ctx.get_state();
     console.log('\tdeja', now.deja, 'unicode', unicode, 'key', key, 'now.txt', now.img_stim, now.wrd_stim); 
 
-    // record the key press 
-    // if key expiry, only one key press recorded
-    //   otherwise, multiple keys are recorded, in order
+    // record the key press if admissible
     var admissible_keys = now.get_admissible_keys();
     if(admissible_keys.includes(unicode)){
       now.record_key_stroke(unicode);
@@ -36,22 +34,23 @@ function keyboard_module(){
           if((now.deja==true && unicode ==77)||(now.deja==false && unicode==78)){
             ctx.questions_correct+=1;
           }
+          // display message at end of test
           var msg ='Your score: '+ctx.questions_correct.toString()+'/'+ctx.questions_total.toString();
           ctx.last_state.txt2 = msg;
+
+          // reminder to dump data at this point
         }
         go = true;
       }else{
         go = false;
       }
     }
-    //console.log(go);    
     if(now && now.key_expiry && go){
          // t <-- t + 1
         ctx.clear_tmr();
         now.expire();
     }
-  }// document.onkeydown
-
+  }
   return key_unicode;
 }
 
