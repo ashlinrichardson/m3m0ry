@@ -22,15 +22,15 @@ function keyboard_module(){
     // record the key press 
     // if key expiry, only one key press recorded
     //   otherwise, multiple keys are recorded, in order
-    now.record_key_stroke(unicode);
+    var admissible_keys = now.get_admissible_keys();
+    if(admissible_keys.includes(unicode)){
+      now.record_key_stroke(unicode);
+    }
 
-    var go = true; //77 = m, 78= n 
+    var go = true; 
 
-    // add a now.get_admissible_keys() to state::
-    // add a now.record_keystroke() 
-
-    if(now.require_key()){ // in the future this needs to match possible input keys (if key in require_key kind of thing..)
-      if(unicode == 77 || unicode ==78){
+    if(now.require_key()){
+      if(admissible_keys.includes(unicode)){
         if(!(now.deja==undefined)){
           ctx.questions_total+=1;
           if((now.deja==true && unicode ==77)||(now.deja==false && unicode==78)){

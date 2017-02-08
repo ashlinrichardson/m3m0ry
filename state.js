@@ -8,7 +8,7 @@ function state(ctx,                 // meta4 graphics context
                 successor = null){
   
   // array for storing admissible key-codes for data entry or transition to next slide
-  this.admissible_keys = new Array();
+  this.admissible_keys = [77,78];
   this.get_admissible_keys = function(){
     return this.admissible_keys;
   };
@@ -16,13 +16,9 @@ function state(ctx,                 // meta4 graphics context
     this.admissible_keys = new Array();
   };
   this.add_admissible_key = function(k){
-    this.admissible_keys.push_back(k);
+    this.admissible_keys.push(k);
   };
   
-  //
-  this.add_admissible_key(77); //m 
-  this.add_admissible_key(78); //n
-
   // this array will record the keystroke data received while residing in this state
   this.key_strokes = new Array();
   this.record_key_stroke = function(k){
