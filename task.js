@@ -3,12 +3,7 @@
     1) Experiment (includes multiple tasks)
     2) Task (includes multiple trials)
     3) Trial (each task includes multiple basic events) 
-
-    Types of Task (still to implement):
-    2) Response Task (display instructions once, then...?)
-    3) Delay Task (name as many cities as you can... or display a video!!).
 */
-
 
 // instructions task (show a slide with a message on it) `one trial'.. 
 function instructions(txt, ctx){
@@ -104,13 +99,14 @@ function test_phase(my_pool, ctx){
 
 /* formerly known as feedback task */
 function response_task(ctx){ 
-  // there might be a mode where this functionality has to mix with test-phase. 
 
-  // block these out by trial first... 
+
+
 };
 
 function delay_task(ctx){
   // list as many countries as possible during a 3-minute period.
-  // play a video. 
+
+  //response_task subsumes this...
 };
 
