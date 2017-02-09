@@ -13,12 +13,12 @@ function keyboard_module(){
   document.onkeydown = function(e) {
     var unicode = unicode_from_key_event(e);
     var key =  String.fromCharCode(unicode);
-    console.log('unicode', unicode, 'key', key);
+    // console.log('unicode', unicode, 'key', key);
     key_unicode[unicode] = true;
 
     // when are we?
     var now = ctx.get_state();
-    console.log('\tdeja', now.deja, 'unicode', unicode, 'key', key, 'now.txt', now.img_stim, now.wrd_stim); 
+    //console.log('\tdeja', now.deja, 'unicode', unicode, 'key', key, 'now.txt', now.img_stim, now.wrd_stim); 
 
     // record the key press if admissible
     var admissible_keys = now.get_admissible_keys();

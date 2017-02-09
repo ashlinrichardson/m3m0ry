@@ -117,7 +117,6 @@
   my_experiment(ctx);
   
   ctx.last_state = ctx.last_new_state;
-  console.log('start');
   // start at the very beginning, it's a very good place to start..
   ctx.set_state(ctx.first_new_state);
   ctx.get_state().start();

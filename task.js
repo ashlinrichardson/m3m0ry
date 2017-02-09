@@ -52,7 +52,6 @@ function study_phase(my_pool){
   }
   // dummy iteration over remaining stimuli that weren't selected at first..(for future reference)..
   for(var i  in my_pool.stimuli){ 
-    //console.log('stim',my_pool.stimuli[i], typeof(i));
     if( typeof(my_pool.selection[i]) === 'object'){
     }else if(typeof(my_pool.selection[i]) ==='undefined'){
     }

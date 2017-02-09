@@ -5,11 +5,9 @@ stimulus pool - object that has words or images added to it.
 
 */
 function pool(){
-  console.log('pool');
   this.ctx = ctx;
   this.stimuli = new Array();
   this.add = function(stim){
-    console.log('add ',stim);
     this.stimuli.push(stim);
     return stim;
   };
@@ -41,7 +39,6 @@ function pool(){
 
   // for use when initializing a test phase: mixed selection back in with other stimuli.
   this.reshuffle = function(){
-    console.log('reshuffle');
     var to_shuffle = []; //new Array();
     for(var i=0; i<this.selection.length; i++){
       var dat_i = new Array();
@@ -55,7 +52,6 @@ function pool(){
       dat_i.push(false);
       to_shuffle.push(dat_i);
     } 
-    console.log(to_shuffle.length);
     var shuffled = new Array();
     var deja_vu = new Array();
     var rem =to_shuffle.length;
