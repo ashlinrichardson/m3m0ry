@@ -91,7 +91,7 @@ function state(expiry_ms  =     0,    // max. presentation time (mS)
       draw_img(x, ctx);  
     }
   
-    if(this.wrd_stim){
+    if(this.wrd_stim!=null){
       //console.log('word stim');
       //might need the wrap_text back on for long strings..:
       //  wrap_text(this.wrd_stim, ctx, ctx.h()/2);

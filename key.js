@@ -18,7 +18,7 @@ function keyboard_module(){
 
     // when are we?
     var now = ctx.get_state();
-    //console.log('\tdeja', now.deja, 'unicode', unicode, 'key', key, 'now.txt', now.img_stim, now.wrd_stim); 
+    console.log('\tdeja', now.deja, 'unicode', unicode, 'key', key, 'now.txt', now.img_stim, now.wrd_stim); 
 
     // record the key press if admissible
     var admissible_keys = now.get_admissible_keys();
@@ -28,6 +28,14 @@ function keyboard_module(){
 
     // by default, transition from a slide upon key-press.
     var go = true; 
+
+    if(now.type=='delay'){
+      if(now.wrd_stim ==null){
+        now.wrd_stim ='';
+      }
+      now.wrd_stim += key;
+      update();
+    }
 
     // check if this state `requires' keyboard input
     if(now.require_key() == true){

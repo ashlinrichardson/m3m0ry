@@ -119,7 +119,7 @@ function delay_task(txt){
     x.txt = txt;//'top text';
     x.set_expiry(thirty_seconds);
     x.key_expiry =false;
-
+    x.wrd_stim = 'hiasdfkahjsfklasdf';
     x.type = 'delay';
     x.trial_id = 0;
     return this;
