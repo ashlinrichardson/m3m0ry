@@ -87,8 +87,8 @@
   ctx.clear_tmr = function(){
     ctx.egg_timer.cancel(); 
   };
-  ctx.init_tmr = function(t_ms, callback){ 
-    ctx.egg_timer.setup(t_ms, callback);
+  ctx.init_tmr = function(t_ms){//, callback){ 
+    ctx.egg_timer.setup(t_ms);//, callback);
   };
       
   // initialize reference to first and most-recently-initialized trials..

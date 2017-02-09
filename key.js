@@ -30,7 +30,7 @@ function keyboard_module(){
     var go = true; 
 
     // check if this state `requires' keyboard input
-    if(now.require_key()){
+    if(now.require_key() == true){
       if(admissible_keys.includes(unicode)){
         if(!(now.deja==undefined)){
           ctx.questions_total+=1;
@@ -50,6 +50,7 @@ function keyboard_module(){
     }
     if(now && now.key_expiry && go){
          // t <-- t + 1
+        console.log('t <-- t+1')
         ctx.clear_tmr();
         now.expire();
     }

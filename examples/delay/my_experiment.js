@@ -3,32 +3,12 @@
 var my_experiment = function(){
   //set up some instruction slides..
 
-  instructions('study phase: please remember images and press any key')
-  // set up a stimulus pool
-  var p = pool()
-  // add images to stimulus pool  
-  for(var i=0; i<10; i++){
-    p.add(ctx.imgs[i])
-  }
+  instructions('delay phase: please press any key to start')
 
-  // add words to stimulus pool 
-  p.add('floccinaucinihilipilification')
-  p.add('supercalifragilisticexpialidocious')
-  p.add('umdiddlediddlediddleumdiddlei')
+  delay_task('please type in the names of as many countries as you can think of in 30 seconds')
 
-  // select portion of items from stimulus pool
-  p.draw(5)  
+instructions('thanks again')
 
-  // set up `study phase': show selected portions of pool
-  study_phase(p)
-
-  // some instructions before `test phase'
-  instructions('test phase coming up')
-  instructions('when you see an image/word, please press m or n')
-  instructions('please press m if you saw an image/word before')
-  instructions('please press n if you did not see the image/word before')
- 
-  // set up `test phase' (user input recorded for whole randomized pool)
-  test_phase(p)
+  
 
 }

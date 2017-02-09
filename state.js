@@ -1,4 +1,13 @@
 /* state: generic object representing a trial.. */ 
+var state_id = -1;
+function get_id(){
+  state_id += 1;
+  return state_id;
+};
+
+function get_ctx(){
+  return document.getElementsByTagName("canvas")[0].getContext("2d"); 
+};
 function state(expiry_ms  =     0,    // max. presentation time (mS)     
                key_expiry =  true, // expiry by key-press (true <--> on)
                intvl_ms   =     0,    // interval btwn stimuli.. (ISI) `blank slide'
@@ -6,7 +15,12 @@ function state(expiry_ms  =     0,    // max. presentation time (mS)
                txt    =    null,      //text data (if any)
               successor = null){
 
-  var ctx = document.getElementsByTagName("canvas")[0].getContext("2d"); 
+  var ctx = get_ctx()
+
+  this.id = get_id()
+
+  this.key_required = false;
+  
   
   // array for storing admissible key-codes for data entry or transition to next slide
   this.admissible_keys = [77,78];
@@ -31,7 +45,7 @@ function state(expiry_ms  =     0,    // max. presentation time (mS)
     ctx.first_new_state = this;
   } 
   // leaves (trials) default to parent params? should be equal anyways.
-  this.ctx = ctx; // reference to graphics context  
+  //ctx = ctx; // reference to graphics context  
   this.intvl_ms = intvl_ms; //only applies if there's a `next' trial.. (if this is a trial).
   this.expiry_ms = expiry_ms; // numeric 
   this.key_expiry = key_expiry; // boolean
@@ -43,6 +57,8 @@ function state(expiry_ms  =     0,    // max. presentation time (mS)
 
   // 
   this.predecessor = ctx.last_new_state;
+  var id = this.predecessor==null ? -1 : this.predecessor.id; 
+  console.log(this.id, 'predecessor=', id, this.predecessor)
   ctx.last_new_state = this;
   if(this.predecessor != null){
     this.predecessor.set_successor(this);
@@ -55,18 +71,18 @@ function state(expiry_ms  =     0,    // max. presentation time (mS)
 
   // pl0t t3xt 0r 1mag3s 
   this.show = function(){
-    var ctx = this.ctx;
+    var ctx = get_ctx()
     ctx.clearRect(0, 0, ctx.w(), ctx.h());
     // 3) bottom text
     if(this.txt2 && (!this.wrd_stim)){
-      //wrap_text(this.txt2, this.ctx, this.ctx.h() - (2* this.ctx.font_size+20));
+      //wrap_text(this.txt2, ctx, ctx.h() - (2* ctx.font_size+20));
     }
     if(this.txt2){
-      wrap_text(this.txt2, this.ctx, this.ctx.h() - (2* this.ctx.font_size+20));
+      wrap_text(this.txt2, ctx, ctx.h() - (2* ctx.font_size+20));
     }
     // 1) draw upper text.
     if(this.txt) // centre_text(this.txt);
-      wrap_text(this.txt, this.ctx, 0);
+      wrap_text(this.txt, ctx, 0);
 
     // 2) img or middle text (if word stim)
     //var x = ctx.imgs[4]; // what is the data here?
@@ -78,7 +94,7 @@ function state(expiry_ms  =     0,    // max. presentation time (mS)
     if(this.wrd_stim){
       //console.log('word stim');
       //might need the wrap_text back on for long strings..:
-      //  wrap_text(this.wrd_stim, this.ctx, this.ctx.h()/2);
+      //  wrap_text(this.wrd_stim, ctx, ctx.h()/2);
 
       //for now, centre justif (doesn't wrap)...
       centre_text(this.wrd_stim);
@@ -104,12 +120,12 @@ function state(expiry_ms  =     0,    // max. presentation time (mS)
 
   // 3nt3r 4 5t4t3 (begin)..
   this.start = function(){
-
+    var ctx = get_ctx()
     // st4rt th3 cl0ck
     this.t0 = window.performance.now(); 
     this.start_date_time = date_time(); 
-    this.ctx.clear_tmr(); // cl34r th3 t1m3r
-    this.show(this.ctx); // plot the current trial 
+    ctx.clear_tmr(); // cl34r th3 t1m3r
+    this.show(ctx); // plot the current trial 
     
     // maybe start timer ?
     if(this.expiry_ms > 0){
@@ -120,8 +136,11 @@ function state(expiry_ms  =     0,    // max. presentation time (mS)
   
   // pr0c33d t0 n3x+ st4+3
   this.expire = function(){
+    var ctx = get_ctx()
+
+    console.log('expire', this.id)
     // 5t0p 4ll th3 cl0ck5
-    this.ctx.clear_tmr();
+    ctx.clear_tmr();
 
     //record stop time 
     this.end_date_time = date_time();
@@ -136,9 +155,11 @@ function state(expiry_ms  =     0,    // max. presentation time (mS)
     }
     // enter next state
     if(this.successor!=null){
-      this.ctx.set_state(this.successor);
-      this.ctx.get_state().start();
+      ctx.set_state(this.successor);
+      ctx.get_state().start();
     }else{
+        alert('blank')
+        console.log('blank');
     }
     
     // now that this `event' is ending, 
