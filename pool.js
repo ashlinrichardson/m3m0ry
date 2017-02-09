@@ -4,7 +4,7 @@ stimulus pool - object that has words or images added to it.
 - that selection is shuffled back into the deck, for the `test phase'
 
 */
-function pool(ctx){
+function pool(){
   console.log('pool');
   this.ctx = ctx;
   this.stimuli = new Array();

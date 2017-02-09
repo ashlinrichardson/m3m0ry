@@ -9,7 +9,7 @@ var my_experiment = function(){
   instructions('please remember each word/image and press any key')
 
   // set up a stimulus pool
-  var p = pool(ctx)
+  var p = pool()
   // add images to stimulus pool  
   for(var i=0; i<10; i++){
     p.add(ctx.imgs[i])
@@ -37,4 +37,5 @@ var my_experiment = function(){
 
   // by message
   instructions('thanks you finished the test')
+
 }
