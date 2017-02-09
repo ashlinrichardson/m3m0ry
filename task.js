@@ -111,15 +111,13 @@ function response_task(){
 
 function delay_task(txt){
   // list as many countries as possible during a 3-minute period.
-
+    var y = instructions(txt);
   //response_task subsumes this...?
     var thirty_seconds = 30000; // time [mS]
     var x = new state(); 
-    x.txt2 = 'bottom text?';
-    x.txt = txt;//'top text';
     x.set_expiry(thirty_seconds);
     x.key_expiry =false;
-    x.wrd_stim = 'hiasdfkahjsfklasdf';
+    x.txt=''; 
     x.type = 'delay';
     x.trial_id = 0;
     return this;

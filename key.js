@@ -30,10 +30,18 @@ function keyboard_module(){
     var go = true; 
 
     if(now.type=='delay'){
-      if(now.wrd_stim ==null){
-        now.wrd_stim ='';
+      if(now.txt ==null){
+        now.txt ='';
       }
-      now.wrd_stim += key;
+      if(unicode ==8 ){
+        var len = now.txt.length;
+        if(now.txt[len-1]!=' '){
+          now.txt = now.txt.substring(0, len - 1);    
+        }
+      }else if(unicode == 0){ 
+      }else{
+        now.txt += key;
+      }
       update();
     }
 
