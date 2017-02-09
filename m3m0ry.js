@@ -1,4 +1,6 @@
-console.log('m3m0ry.js');  
+var canvas = document.createElement('canvas');
+document.body.appendChild(canvas);
+  
 function add_js(fn){
     var e = document.getElementsByTagName('body')[0];
     var s = document.createElement('script');
