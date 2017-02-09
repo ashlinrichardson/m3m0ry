@@ -104,8 +104,17 @@ function test_phase(my_pool){
 };
 
 /* formerly known as feedback task */
-function response_task(){ 
-
+function feedback(txt, keys){ 
+  var x = new state();
+  x.set_expiry(0);
+  x.txt=txt;
+  x.key_required = true;
+  x.clear_admissible_keys();
+  
+  for(var i in keys){
+    console.log(i, keys[i]);
+    x.add_admissible_key(keys[i]);
+  }
 
 };
 
