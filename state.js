@@ -1,11 +1,12 @@
 /* state: generic object representing a trial.. */ 
-function state(ctx,                 // meta4 graphics context
-               expiry_ms  =     0,    // max. presentation time (mS)     
+function state(expiry_ms  =     0,    // max. presentation time (mS)     
                key_expiry =  true, // expiry by key-press (true <--> on)
                intvl_ms   =     0,    // interval btwn stimuli.. (ISI) `blank slide'
                img_idx    =    -1,     //image data (if any)
                txt    =    null,      //text data (if any)
-                successor = null){
+              successor = null){
+
+  var ctx = document.getElementsByTagName("canvas")[0].getContext("2d"); 
   
   // array for storing admissible key-codes for data entry or transition to next slide
   this.admissible_keys = [77,78];

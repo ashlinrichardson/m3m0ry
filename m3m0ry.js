@@ -1,0 +1,15 @@
+console.log('m3m0ry.js');  
+function add_js(fn){
+    var e = document.getElementsByTagName('body')[0];
+    var s = document.createElement('script');
+    s.setAttribute('type','text/javascript');
+    s.setAttribute('src',fn+'.js');
+    e.appendChild(s);
+  }
+dependencies = ['text', 'key', 'util', 'task', 'pool', 'state', 'egg_timer', 'experiment'];
+for(var d in dependencies){
+  add_js(dependencies[d]);
+}
+
+add_js('main')
+

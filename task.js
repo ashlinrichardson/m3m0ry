@@ -21,8 +21,7 @@ function instructions(txt){
 /* 
 study phase, formerly known as orientation task
 
-    multiple `trials' / events occur here... 
-      based on a random selection... 
+    multiple `trials' / events occur here.. random selection of inputs... 
 
   (for the test phase, the random selection is shuffled back into the pool).. 
 

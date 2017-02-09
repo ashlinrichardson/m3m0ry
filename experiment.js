@@ -38,4 +38,7 @@ var my_experiment = function(){
   // by message
   instructions('thanks you finished the test')
 
+
+  var p = pool()
+
 }
