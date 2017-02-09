@@ -15,8 +15,12 @@ function state(expiry_ms  =     0,    // max. presentation time (mS)
                txt    =    null,      //text data (if any)
               successor = null){
 
+  this.ding = false;
   var ctx = get_ctx()
-
+  this.hold = false;
+  this.hold_on = function(){
+    this.hold = true;
+  };
   this.id = get_id()
 
   this.key_required = false;
@@ -158,7 +162,7 @@ function state(expiry_ms  =     0,    // max. presentation time (mS)
       ctx.set_state(this.successor);
       ctx.get_state().start();
     }else{
-        alert('blank')
+        //alert('blank')
         console.log('blank');
     }
     

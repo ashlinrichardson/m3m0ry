@@ -109,17 +109,22 @@ function response_task(){
 
 };
 
-function delay_task(txt){
+function delay_task(txt, delay_time){
   // list as many countries as possible during a 3-minute period.
     var y = instructions(txt);
+    y.key_expiry = true;
+    y.set_expiry(500);
+    y.hold_on();  //keypress activated with minimum time....
+
   //response_task subsumes this...?
     var thirty_seconds = 30000; // time [mS]
     var x = new state(); 
-    x.set_expiry(thirty_seconds);
+    x.set_expiry(delay_time);
     x.key_expiry =false;
     x.txt=''; 
     x.type = 'delay';
     x.trial_id = 0;
+
     return this;
 };
 

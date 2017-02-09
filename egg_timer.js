@@ -10,6 +10,7 @@ var egg_timer = {
         var id = now.id;
         console.log('ding from now(): id', id);
         //callback();
+        now.ding = true;
         if(now.key_expiry ==false){
           now.expire();
         }

@@ -18,7 +18,7 @@ function keyboard_module(){
 
     // when are we?
     var now = ctx.get_state();
-    console.log('\tdeja', now.deja, 'unicode', unicode, 'key', key, 'now.txt', now.img_stim, now.wrd_stim); 
+    console.log('\tding', now.ding, 'hold', now.hold, 'unicode', unicode, 'key', key, 'now.txt', now.img_stim, now.wrd_stim); 
 
     // record the key press if admissible
     var admissible_keys = now.get_admissible_keys();
@@ -40,7 +40,7 @@ function keyboard_module(){
         }
       }else if(unicode == 0){ 
       }else{
-        now.txt += key;
+        now.txt += key.toLowerCase();
       }
       update();
     }
@@ -63,6 +63,9 @@ function keyboard_module(){
         // block if a key was required but the one entered was not admissible
         go = false;
       }
+    }
+    if(now.ding==false && now.hold==true){
+      go = false;
     }
     if(now && now.key_expiry && go){
          // t <-- t + 1
