@@ -36,7 +36,7 @@ var my_experiment = function(){
   test_phase(p)
 
   // by message
-  instructions('thanks you finished the test')
+  instructions('thank you for finishing the test')
 
 
   var p = pool()

@@ -1,3 +1,5 @@
+  abs_path = '../../';
+
   var history = []; 
 
   // graphics ctx
@@ -20,7 +22,7 @@
   };
 
   // load corporate logo
-  ctx.symbol = load_img("logo/uvic_gray.png");
+  ctx.symbol = load_img(abs_path + "logo/uvic_gray.png");
 
   // algorithm to draw scaled corporate logo
   ctx.draw_symbol = function(){
@@ -104,7 +106,7 @@
     var imgs = new Array(); 
     // should only load the used ones..
     for(var i=1; i <= n_imgs; i++){
-      imgs.push(load_img('images/' + i + '.jpg'));
+      imgs.push(load_img(abs_path + 'images/' + i + '.jpg'));
     }
     ctx.imgs = imgs;
     return ctx.imgs;
