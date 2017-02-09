@@ -2,11 +2,6 @@
 
 var my_experiment = function(){
   //set up some instruction slides..
-  instructions('welcome to the recognition memory experiment framework')
-  instructions('this is an instructions slide')
-  instructions('this is another instructions slide') 
-  instructions('study phase coming next:')
-  instructions('please remember each word/image and press any key')
 
   // set up a stimulus pool
   var p = pool()
@@ -34,11 +29,5 @@ var my_experiment = function(){
  
   // set up `test phase' (user input recorded for whole randomized pool)
   test_phase(p)
-
-  // by message
-  instructions('thank you for finishing the test')
-
-
-  var p = pool()
 
 }
