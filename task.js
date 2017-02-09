@@ -113,7 +113,7 @@ function delay_task(txt){
   // list as many countries as possible during a 3-minute period.
 
   //response_task subsumes this...?
-    var thirty_seconds = 30000/10; // time [mS]
+    var thirty_seconds = 30000; // time [mS]
     var x = new state(); 
     x.txt2 = 'bottom text?';
     x.txt = txt;//'top text';
