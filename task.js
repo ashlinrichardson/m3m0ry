@@ -100,6 +100,8 @@ function test_phase(my_pool){
     x.type = 'test_phase';
     x.trial_id = trial_index;   
   }
+  var end = instructions('thank you for completing this section')
+  end.type ='test_end';
   return this;
 };
 

@@ -114,7 +114,7 @@
   var my_images = ctx.load_imgs(10);
   
   // set up an experiment according to user specfications/code
-  add_js('my_experiment', '');
+  add_js(experiment_code, '');
   my_experiment(ctx);
   
   ctx.last_state = ctx.last_new_state;

@@ -54,8 +54,6 @@ function keyboard_module(){
             ctx.questions_correct+=1;
           }
           // display message at end of test
-          var msg ='Your score: '+ctx.questions_correct.toString()+'/'+ctx.questions_total.toString();
-          ctx.last_state.txt2 = msg;
 
           // reminder to dump data at this point
         }
@@ -63,6 +61,11 @@ function keyboard_module(){
         // block if a key was required but the one entered was not admissible
         go = false;
       }
+    }
+
+    if(now.type=='test_end'){
+      var msg ='Your score: '+ctx.questions_correct.toString()+'/'+ctx.questions_total.toString();
+      now.txt2 = msg;
     }
     if(now.ding==false && now.hold==true){
       go = false;
