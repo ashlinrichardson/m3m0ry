@@ -15,5 +15,4 @@ var my_experiment = function(){
 
   instructions('thank you')
 
-
 }

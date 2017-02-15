@@ -31,7 +31,4 @@ var my_experiment = function(){
   // set up `test phase' (user input recorded for whole randomized pool)
   test_phase(p)
 
-
-  instructions('thank you')
-
 }
