@@ -20,15 +20,16 @@ function add_js(fn, base){
     s.onload=callback; // need to do this to make sure we wait until script loaded.
     var len = body.childNodes.length;
     body.appendChild(s);
+    return s;
   }
 
 // c4ll 4ll th3 ch1ldr3n
 dependencies = ['text', 'key', 'util', 'task', 'pool', 'state', 'egg_timer'];
 for(var d in dependencies){
-  add_js(dependencies[d], '../../');
+  var s = add_js(dependencies[d], '../../');
 }
 
-add_js(experiment_code, '');
+var s = add_js('my_experiment', '');
 
 // c4ll d4ddy
 add_js('main', '../../')
