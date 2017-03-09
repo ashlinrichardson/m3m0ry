@@ -63,10 +63,6 @@ function keyboard_module(){
       }
     }
 
-    if(now.type=='test_end'){
-      var msg ='Your score: '+ctx.questions_correct.toString()+'/'+ctx.questions_total.toString();
-      now.txt2 = msg;
-    }
     if(now.ding==false && now.hold==true){
       go = false;
     }

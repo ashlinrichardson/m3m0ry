@@ -101,7 +101,10 @@ function test_phase(my_pool){
     x.trial_id = trial_index;   
   }
   var end = instructions('thank you for completing this section')
-  end.type ='test_end';
+  end.action = function(me){
+    var msg ='Your score: '+ctx.questions_correct.toString()+'/'+ctx.questions_total.toString();
+    me.txt = msg;
+  }
   return this;
 };
 

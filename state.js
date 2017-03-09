@@ -14,6 +14,7 @@ function state(expiry_ms  =     0,    // max. presentation time (mS)
                img_idx    =    -1,     //image data (if any)
                txt    =    null,      //text data (if any)
               successor = null){
+  this.action = null;
 
   this.ding = false;
   var ctx = get_ctx()
@@ -75,6 +76,9 @@ function state(expiry_ms  =     0,    // max. presentation time (mS)
 
   // pl0t t3xt 0r 1mag3s 
   this.show = function(){
+    if(this.action){
+      this.action(this);
+    }
     var ctx = get_ctx()
     ctx.clearRect(0, 0, ctx.w(), ctx.h());
     // 3) bottom text
