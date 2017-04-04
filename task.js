@@ -8,17 +8,17 @@
 // instructions task (show a slide with a message on it) `one trial'.. 
 function instructions(txt){
   // initialize generic `trial' object
-  var x = new state();
+  var x = new state()
 
   // set the associated text field
-  x.txt = txt;
+  x.txt = txt
 
   // no timer for the trial
-  x.set_expiry(0);
+  x.set_expiry(0)
+  x.type = 'instructions'
 
-  x.type = 'instructions';
-  return x;
-};
+  return x
+}
 
 /* 
 study phase, formerly known as orientation task
@@ -30,41 +30,41 @@ study phase, formerly known as orientation task
 */
 function study_phase(my_pool){  
   // record references to graphics context, and stimulus pool
-  this.ctx = ctx;
-  this.p = my_pool;
-  var trial_index = -1;
+  this.ctx = ctx
+  this.p = my_pool
+  var trial_index = -1
   // iterate over the `selected' elements of the pool.
   for(var i  in my_pool.selection){
-    trial_index++;
+    trial_index ++
 
     // initialize a generic `trial' object for each trial case..
-    var x = new state();
+    var x = new state()
 
     // need to add the timed parameter to the front-end API.. 
-    x.set_expiry(0);
+    x.set_expiry(0)
 
     // the data (word or image) is assigned to the `trial'.. 
-    var data = my_pool.selection[i];
+    var data = my_pool.selection[i]
     
     // discriminate by image or word, respectively..
     if( typeof(data) === 'object'){
-      x.img_stim = data;    
-    }else if(typeof(data) ==='string'){
+      x.img_stim = data   
+    }else if(typeof(data) === 'string'){
       x.wrd_stim = data
     }  
 
-    x.type = 'study_phase';
-    x.trial_id = trial_index;
+    x.type = 'study_phase'
+    x.trial_id = trial_index
 
   }
   // dummy iteration over remaining stimuli that weren't selected at first..(for future reference)..
   for(var i  in my_pool.stimuli){ 
     if( typeof(my_pool.selection[i]) === 'object'){
-    }else if(typeof(my_pool.selection[i]) ==='undefined'){
+    }else if(typeof(my_pool.selection[i]) === 'undefined'){
     }
   }
-  return this;
-};
+  return this
+}
 
 /* 
 test phase, formerly known as recognition task
@@ -74,71 +74,72 @@ test phase, formerly known as recognition task
  */
 function test_phase(my_pool){
   // deja vu vs. not deja-vu.... (this has more stuff in it..) 
-  this.p = my_pool;
+  this.p = my_pool
   //reshuffle the events..
-  var trial_index = -1;
+  var trial_index = -1
 
-  var shuffled_data = my_pool.reshuffle();
-  var shuffled = shuffled_data[0];
-  var deja_vu = shuffled_data[1];
+  var shuffled_data = my_pool.reshuffle()
+  var shuffled = shuffled_data[0]
+  var deja_vu = shuffled_data[1]
   for(var i in shuffled){
-    trial_index++;
-    var x = new state(); 
-    x.set_expiry(0);
-    x.key_required=true;
-    var data = shuffled[i];
-    var deja = deja_vu[i];
+    trial_index ++
+    var x = new state()
+    x.set_expiry(0)
+    x.key_required = true
+    var data = shuffled[i]
+    var deja = deja_vu[i]
+
     // record within the object whether we have deja-vu or not.. 
-    x.deja = deja; 
+    x.deja = deja 
+
     //x.txt2 = 'please press m or n';//if you saw the word/ image before (else n)';
     // discriminate by image or word, respectively..
     if( typeof(data) === 'object'){
-      x.img_stim = data;    
+      x.img_stim = data    
     }else if(typeof(data) ==='string'){
       x.wrd_stim = data
     }  
-    x.type = 'test_phase';
-    x.trial_id = trial_index;   
+    x.type = 'test_phase'
+    x.trial_id = trial_index   
   }
   var end = instructions('thank you for completing this section')
   end.action = function(me){
-    var msg ='Your score: '+ctx.questions_correct.toString()+'/'+ctx.questions_total.toString();
-    me.txt = msg;
+    var msg ='Your score: ' + ctx.questions_correct.toString() + '/' + ctx.questions_total.toString()
+    me.txt = msg
   }
-  return this;
-};
+  return this
+}
 
 /* formerly known as feedback task */
 function feedback(txt, keys){ 
-  var x = new state();
-  x.set_expiry(0);
-  x.txt=txt;
-  x.key_required = true;
-  x.clear_admissible_keys();
+  var x = new state()
+  x.set_expiry(0)
+  x.txt = txt
+  x.key_required = true
+  x.clear_admissible_keys()
   
   for(var i in keys){
-    console.log(i, keys[i]);
-    x.add_admissible_key(keys[i]);
+    console.log(i, keys[i])
+    x.add_admissible_key(keys[i])
   }
 
-};
+}
 
 function delay_task(txt, delay_time){
   // list as many countries as possible during a 3-minute period.
-    var y = instructions(txt);
-    y.key_expiry = true;
-    y.set_expiry(500);
-    y.hold_on();  //keypress activated with minimum time....
+  var y = instructions(txt)
+  y.key_expiry = true
+  y.set_expiry(500)
+  y.hold_on() //keypress activated with minimum time....
 
   //response_task subsumes this...?
-    var thirty_seconds = 30000; // time [mS]
-    var x = new state(); 
-    x.set_expiry(delay_time);
-    x.key_expiry =false;
-    x.txt=''; 
-    x.type = 'delay';
-    x.trial_id = 0;
-
-    return this;
-};
+  var thirty_seconds = 30000  // time [mS]
+  var x = new state() 
+  x.set_expiry(delay_time)
+  x.key_expiry = false
+  x.txt = '' 
+  x.type = 'delay'
+  x.trial_id = 0
+  return this;
+}
 
