@@ -1,81 +1,43 @@
-// get date and time 
-function date_time(){
+function date_time(){  // get date and time 
   return new Date()
 }
-
-// load image data 
-function load_img(fn){
+function load_img(fn){  // load image data
   var img = new Image()
   img.src = fn 
   return img
 }
-
-// random-number generator http://indiegamr.com/generate-repeatable-random-numbers-in-js/ : initial seed
-var seed = 5
-
+var seed = 5  // random-number generator http://indiegamr.com/generate-repeatable-random-numbers-in-js/ : initial seed
 // in order to work 'Math.seed' must NOT be undefined, so in any case, you HAVE to provide a Math.seed
 function rand(max, min) {
-    max = max || 1
-    min = min || 0
-    seed = (seed * 9301 + 49297) % 233280
-    var rnd = seed / 233280
-    return min + rnd * (max - min)
+  max = max || 1
+  min = min || 0
+  seed = (seed * 9301 + 49297) % 233280
+  var rnd = seed / 233280
+  return min + rnd * (max - min)
 }
-
-// pad to length n (with 0's on the left) 
-function pad_n(x, n){
-
-  // ensure string repr of number
-  var s = parseInt(trim(x)).toString() 
-  var m = s.length   
-  var d = n - m
-  if(d > 0) 
+function pad_n(x, n){  // pad to length n (with 0's on the left)
+  var s = parseInt(trim(x)).toString(), m = s.length, d = n - m
+  if(d > 0){
     s += '0'.repeat(d)
+  }
   return s
 }
-
-// by stackoverflow.com/users/4321/jw  
-function get_keys(dictionary){
-  var keys = [] // keys are recursive
-
-  // filter for direct ancestors
-  for(var key in dictionary){
-    if(dictionary.hasOwnProperty(key))
+function get_keys(dictionary){  // via stackoverflow.com/users/4321/jw
+  var keys = []  // keys recursive
+  for(var key in dictionary){  // filter for direct ancestors
+    if(dictionary.hasOwnProperty(key)){
       keys.push(key)
+    }
   }
   return keys
 }
-
-// draw an image
-function draw_img(x, ctx){
-    var cf = 4 * ctx.font_size
-    var h = ctx.h() - cf
-    var w = ctx.w() 
-    var lw = x.width 
-    var lh = x.height
-    var sf = Math.min(w, h) / Math.max(lw, lh)
-    var a = (w - lw * sf) / 2  
-    var b = (h - lh * sf) / 2
-    var c = lw * sf 
-    var d = lh * sf
-    var df =  (-20 + cf / 2)
+function draw_img(x, ctx){  // draw an image
+    var cf = 4 * ctx.font_size, h = ctx.h() - cf, w = ctx.w(), lw = x.width, lh = x.height, sf = Math.min(w, h) / Math.max(lw, lh), a = (w - lw * sf) / 2, b = (h - lh * sf) / 2, c = lw * sf, d = lh * sf, df =  (-20 + cf / 2)
     ctx.drawImage(x, a, b + df, c, d)
 }
-
-// write the above to a standardized format
-function parse_date_time(today){
-
-  // most significant units first
-  var bits = [today.getFullYear(), 
-              today.getMonth() + 1, 
-              today.getDate(), 
-              today.getHours(), 
-              today.getMinutes(), 
-              today.getSeconds(), 
-              today.getMilliseconds()] 
-
-  // pad with zeros
-  for(var i = 0; i < bits.length; i++){
+function parse_date_time(today){  // write the above to a standardized format
+  var bits = [today.getFullYear(), today.getMonth() + 1, today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds(), today.getMilliseconds()]  // most significant units first
+  for(var i = 0; i < bits.length; i++){  // pad with zeros
     var n_pad = 2
     if(i==0) n_pad = 4
     if(i== 6) n_pad = 3
@@ -84,9 +46,6 @@ function parse_date_time(today){
   }
   return(bits.join(':'))
 }
-
-// `faster trim' by blog.stevenlevithan.com
-function trim(s){
+function trim(s){  // `faster trim' by blog.stevenlevithan.com
   return s.toString().replace(/^\s\s*/,'').replace(/\s\s*$/,'')
 }
-

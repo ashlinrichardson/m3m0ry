@@ -1,8 +1,6 @@
-/* 
-stimulus pool - object that has words or images added to it. 
+/* stimulus pool - object that has words or images added to it. 
 - selections are drawn randomly for `study phase' (by the draw() method)
-- that selection is shuffled back into the deck, for the `test phase'
-*/
+- that selection is shuffled back into the deck, for the `test phase'*/
 function pool(){
   this.ctx = ctx
   this.stimuli = new Array()
@@ -10,9 +8,7 @@ function pool(){
     this.stimuli.push(stim)
     return stim
   }
-
-  // draw a pseudorandom selection of size 'm'
-  this.draw = function(m){
+  this.draw = function(m){  // draw a pseudorandom selection of size 'm'
     if(this.selection){
       console.log('error: selection already made from this pool.')
       return null
@@ -25,17 +21,14 @@ function pool(){
     this.selection = new Array()
     var rem = this.stimuli.length
     for(var i = 0; i < n; i++){ 
-      var qx = rand() * parseFloat(rem) //this.stimuli.length);
+      var qx = rand() * parseFloat(rem), idx = parseInt(qx)
       rem -= 1
-      var idx = parseInt(qx)
       this.selection.push(this.stimuli[idx])
       delete this.stimuli[idx]
       this.stimuli = this.stimuli.filter(function(){return true})
     }
   }
-
-  // for use when initializing a test phase: mixed selection back in with other stimuli.
-  this.reshuffle = function(){
+  this.reshuffle = function(){  // when initializing a test phase: mix selection back in with other stimuli
     var to_shuffle = []
     for(var i=0; i<this.selection.length; i++){
       var dat_i = new Array()
@@ -49,13 +42,10 @@ function pool(){
       dat_i.push(false)
       to_shuffle.push(dat_i)
     } 
-    var shuffled = new Array()
-    var deja_vu = new Array()
-    var rem =to_shuffle.length
+    var shuffled = new Array(), deja_vu = new Array(), rem =to_shuffle.length
     while(rem >0){
       rem -= 1
-      var idx = parseInt(rand() * parseFloat(rem))
-      var dat_i = to_shuffle[idx]
+      var idx = parseInt(rand() * parseFloat(rem)), dat_i = to_shuffle[idx]
       shuffled.push(dat_i[0])
       deja_vu.push(dat_i[1])
       delete to_shuffle[idx]
@@ -66,4 +56,3 @@ function pool(){
   }
   return this
 }
-
