@@ -10,9 +10,7 @@ function load_img(fn){
   return img
 }
 
-// random-number generator http://indiegamr.com/generate-repeatable-random-numbers-in-js/
-
-// the initial seed
+// random-number generator http://indiegamr.com/generate-repeatable-random-numbers-in-js/ : initial seed
 var seed = 5
 
 // in order to work 'Math.seed' must NOT be undefined, so in any case, you HAVE to provide a Math.seed
@@ -26,6 +24,7 @@ function rand(max, min) {
 
 // pad to length n (with 0's on the left) 
 function pad_n(x, n){
+
   // ensure string repr of number
   var s = parseInt(trim(x)).toString() 
   var m = s.length   

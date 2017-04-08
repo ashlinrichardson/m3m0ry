@@ -1,15 +1,8 @@
 // wrap text around a window region
 function wrap_text(s, ctx, start_y=0){ 
   // based on code by ashblue
-  var myX = 10
-  var myY = 50
-  var line = '' 
-  var lines = [] 
-  var w = ctx.w()
-  var h = ctx.h()
-  var line_test = ''
-  var words = s.split(' ')
-  var font_size = ctx.font_size 
+
+  var myX = 10, myY = 50, line = '', lines = [], w = ctx.w(), h = ctx.h(), line_test = '', words = s.split(' '), font_size = ctx.font_size
   ctx.font = font_size +'px Arial'
 
   // place words one by one  
