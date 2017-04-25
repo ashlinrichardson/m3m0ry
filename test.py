@@ -6,16 +6,14 @@ import os
 import cgi
 import cgitb
 import datetime
-import surveyWebEnvironment
-
+import surveyWebEnvironment; printf = surveyWebEnvironment.printHTMLmsg
 cgitb.enable()
 form = cgi.FieldStorage()
-printf = surveyWebEnvironment.printHTMLmsg
 
 #printf("str(form)="+str(form))
-#printf("data=" + str(form.getvalue('data')))
+printf("data=" + str(form.getvalue('data')))
 date_str = str(datetime.datetime.now().isoformat())
-printf(date_str)
+#printf(date_str)
 
 pwd = os.getcwd() + '/'
 dat_f = pwd + 'data/'
@@ -24,7 +22,7 @@ if not os.path.exists(dat_f):
 
 dat_fn = dat_f + date_str + ".txt"
 
-printf(dat_fn)
+#printf(dat_fn)
 
 f = open(dat_fn, "wb")
 #f.write("str(form)="+str(form)+"\n");
