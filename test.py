@@ -25,5 +25,5 @@ except:
 
 if dat_str:
     f = open(dat_fn, "wb")
-    f.write()
+    f.write(dat_str)
     f.close()
