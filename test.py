@@ -13,10 +13,17 @@ date_str = str(datetime.datetime.now().isoformat())
 pwd = os.getcwd() + '/'
 dat_f = pwd + 'data/'
 if not os.path.exists(dat_f):
-  os.mkdir(dat_f)
+    os.mkdir(dat_f)
 
 dat_fn = dat_f + date_str + ".txt"
 
-f = open(dat_fn, "wb")
-f.write(str(form.getvalue('data'))+"\n")
-f.close()
+dat_str = None
+try:
+    dat_str = str(form.getvalue('data'))+"\n"
+except:
+    pass
+
+if dat_str:
+    f = open(dat_fn, "wb")
+    f.write()
+    f.close()
