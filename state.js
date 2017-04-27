@@ -1,4 +1,3 @@
-/* state: generic object representing trial (like a card in "hypercard") */
 var state_id = -1
 
 function get_id(){
@@ -6,15 +5,17 @@ function get_id(){
   return state_id;
 }
 
+/* reference to 2d canvas graphics context */
 function get_ctx(){
   return document.getElementsByTagName("canvas")[0].getContext("2d"); 
 }
 
-function state(expiry_ms  =     0,  // max. presentation time (mS)     
-               key_expiry =  true,  // expiry by key-press (true <--> on)
-               intvl_ms   =     0,  // interval btwn stimuli.. (ISI) `blank slide'
-               img_idx    =    -1,  //image data (if any)
-               txt    =    null,  //text data (if any)
+/* state: generic object representing trial (like a card in "hypercard") */
+function state(expiry_ms  =     0,  /* max. presentation time (mS) */  
+               key_expiry =  true,  /* expiry by key-press (true <--> on) */
+               intvl_ms   =     0,  /* interval btwn stimuli.. (ISI) `blank slide' */
+               img_idx    =    -1,  /* image data (if any) */
+               txt    =    null,  /* text data (if any) */
                successor = null){
   this.action = null
   this.ding = false
@@ -181,7 +182,9 @@ function state(expiry_ms  =     0,  // max. presentation time (mS)
         console.log('blank')
     } 
 
+    console.log(this)
     /* record data to csv-line record (global) here.. */
+    
   }
 
   /* print out the data for this object: duration in time for state: not more than one decimal place */
