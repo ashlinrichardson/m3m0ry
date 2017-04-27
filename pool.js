@@ -1,6 +1,4 @@
-/* stimulus pool - object that has words or images added to it. 
-- selections are drawn randomly for `study phase' (by the draw() method)
-- that selection is shuffled back into the deck, for the `test phase'*/
+/* stimulus pool - object that has words or images added to it. Selections drawn randomly for "study phase" by draw() method. That selection is shuffled back into the deck, for the "test phase" */
 function pool(){
   this.ctx = ctx
   this.stimuli = new Array()
@@ -8,7 +6,9 @@ function pool(){
     this.stimuli.push(stim)
     return stim
   }
-  this.draw = function(m){  // draw a pseudorandom selection of size 'm'
+
+  /* pseudorandom selection of size "m" */
+  this.draw = function(m){
     if(this.selection){
       console.log('error: selection already made from this pool.')
       return null
@@ -28,7 +28,9 @@ function pool(){
       this.stimuli = this.stimuli.filter(function(){return true})
     }
   }
-  this.reshuffle = function(){  // when initializing a test phase: mix selection back in with other stimuli
+
+  /* when initializing a test phase: mix selection back in with other stimuli */
+  this.reshuffle = function(){
     var to_shuffle = []
     for(var i=0; i<this.selection.length; i++){
       var dat_i = new Array()

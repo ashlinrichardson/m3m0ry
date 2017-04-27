@@ -1,11 +1,16 @@
-function sleep(ms){  // sl33p function
+/* sleep function */
+function sleep(ms){
   return new Promise(resolve => setTimeout(resolve, ms))
 }
-var canvas = document.createElement('canvas')  // cr34t3 a c4nv4s wh3r3 th3 m4g1c h4pp3ns
+
+/* cr34t3 a c4nv4s wh3r3 th3 m4g1c h4pp3ns */
+var canvas = document.createElement('canvas')
 document.body.appendChild(canvas)
 var js_added = 0
 deps = []
-function add_js(fn){  // j4v4scr1pt 4n4l0g 0f 1nclud3 st4t3m3nt
+
+/*  j4v4scr1pt 4n4l0g 0f 1nclud3 st4t3m3nt */
+function add_js(fn){
   var body = document.getElementsByTagName('body')[0], s = document.createElement('script')
   s.async = false
   s.src = fn + '.js'
@@ -15,11 +20,15 @@ function add_js(fn){  // j4v4scr1pt 4n4l0g 0f 1nclud3 st4t3m3nt
       add_js(deps[js_added])
     }
   }
-  s.onload=callback // need to do this to make sure we wait until script loaded.
+
+  /* wait until script is loaded before proceeding.. */
+  s.onload = callback
   var len = body.childNodes.length
   body.appendChild(s)
 }
-dependencies = ['text', 'key', 'util', 'task', 'pool', 'state', 'egg_timer']  // c4ll 4ll th3 ch1ldr3n
+
+/* c411 411 th3 ch1ldr3n */
+dependencies = ['text', 'key', 'util', 'task', 'pool', 'state', 'egg_timer']
 for(var d in dependencies){
   deps.push('../../' + dependencies[d])
 }
