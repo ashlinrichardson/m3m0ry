@@ -50,7 +50,8 @@ function keyboard_module(){
             ctx.questions_correct += 1
           }
           /* reminder to dump data at this point (use the xml_send on the global csv record) */
-          alert(window.location.hostname)
+
+          // window.location.href == http://domain/memory/examples/test_phase/memory.html
         }
       }else{ 
 
