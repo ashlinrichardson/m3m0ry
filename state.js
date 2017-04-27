@@ -141,6 +141,22 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
   this.start = function(){
     var ctx = get_ctx()
 
+    if(this == ctx.last_state){
+        console.log("sending data")
+     /* need to compile all the data to one string, here... */
+        // window.location.href == http://domain/memory/examples/test_phase/memory.html
+        var href = window.location.href
+        /* remove last three elements from the array: take the page and navigate to: ../../ */
+        var words = href.split('/') 
+        var nwords = words.length
+        var target = words.splice(0, nwords-3).join('/') + '/xml_receive.py'
+        console.log(target)
+        xml_send("did you receive message at target: "+target, target)    
+        console.log("finished data send attempt")
+    } 
+
+    var ctx = get_ctx()
+
     /* start the clock.. */
     this.t0 = window.performance.now()
     this.start_date_time = date_time()
@@ -181,23 +197,10 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
 
       /* this condition might only be good if we have the "score card"? not sure. Replace score card with thank-you card? */
       if(this.successor.successor == null){
-        /* need to compile all the data to one string, here... */
-        alert("end")
-        // window.location.href == http://domain/memory/examples/test_phase/memory.html
-        var href = window.location.href
-        /* remove last three elements from the array: take the page and navigate to: ../../ */
-        var words = href.split('/') 
-        var nwords = words.length
-        var target = words.splice(0, nwords-3).join('/') + '/xml_receive.py'
-        console.log(target)
-        xml_send("did you receive message at target: "+target, target)    
       }
-    }else{
-    
-    } 
-
+    }
     console.log(this)
-    /* record data to csv-line record (global) here.. */
+    /* record data to csv-line record (global) here..? */
     
   }
 
