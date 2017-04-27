@@ -178,8 +178,22 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
     if(this.successor!=null){
       ctx.set_state(this.successor)
       ctx.get_state().start()
+
+      /* this condition might only be good if we have the "score card"? not sure. Replace score card with thank-you card? */
+      if(this.successor.successor == null){
+        /* need to compile all the data to one string, here... */
+        alert("end")
+        // window.location.href == http://domain/memory/examples/test_phase/memory.html
+        var href = window.location.href
+        /* remove last three elements from the array: take the page and navigate to: ../../ */
+        var words = href.split('/') 
+        var nwords = words.length
+        var target = words.splice(0, nwords-3).join('/') + '/xml_receive.py'
+        console.log(target)
+        xml_send("did you receive message at target: "+target, target)    
+      }
     }else{
-        console.log('blank')
+    
     } 
 
     console.log(this)

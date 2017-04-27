@@ -49,9 +49,6 @@ function keyboard_module(){
           if((now.deja == true && unicode == 77)||(now.deja == false && unicode == 78)){
             ctx.questions_correct += 1
           }
-          /* reminder to dump data at this point (use the xml_send on the global csv record) */
-
-          // window.location.href == http://domain/memory/examples/test_phase/memory.html
         }
       }else{ 
 
