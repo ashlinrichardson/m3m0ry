@@ -142,17 +142,23 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
     var ctx = get_ctx()
 
     if(this == ctx.last_state){
-        console.log("sending data")
-     /* need to compile all the data to one string, here... */
-        // window.location.href == http://domain/memory/examples/test_phase/memory.html
+
+        /* go through all the states and record (in string format) the contents, as we'd like it to appear on the server */
+        var message = "", state_i = ctx.first_state
+        for(var state_i = ctx.first_state; state_i != ctx.last_state; state_i = state_i.successor){
+          message += state_i.toString() + "\n"
+        }
+
+        /* window.location.href == http://domain/memory/examples/test_phase/memory.html */
         var href = window.location.href
-        /* remove last three elements from the array: take the page and navigate to: ../../ */
+
+        /* remove last three elements from the array: take the page and navigate to: ../../xml_receive.py == http://domain/memory/xml_receive.py */
         var words = href.split('/') 
         var nwords = words.length
         var target = words.splice(0, nwords-3).join('/') + '/xml_receive.py'
-        console.log(target)
-        xml_send("did you receive message at target: "+target, target)    
-        console.log("finished data send attempt")
+
+        /* send the message to the server-side script at URL: target */
+        xml_send(message, target)    
     } 
 
     var ctx = get_ctx()
