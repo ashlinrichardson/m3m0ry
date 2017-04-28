@@ -1,25 +1,23 @@
 #!/usr/bin/python
-''' this server-side python-CGI script receives text format data sent
-over the internet by the client-side function util.js::xml_send()'''
+''' server-side python-CGI script to receive text data sent over 
+the internet by the client-side function util.js::xml_send()'''
 import os
 import cgi
 import datetime
 
-pwd = os.getcwd() + '/'
-
-dat_f = pwd + 'data/'
+# create /data folder if it does not yet exist
+dat_f = os.getcwd() + '/data/'
 if not os.path.exists(dat_f):
     os.mkdir(dat_f)
 
-dat_fn = dat_f + str(datetime.datetime.now().isoformat()) + ".txt"
-
 # retrieve CGI form data
-dat_str = None
+dat = None
 try:
-    dat_str = str(cgi.FieldStorage().getvalue('data')) + '\n'
+    dat = str(cgi.FieldStorage().getvalue('data'))
 except:
     pass
 
 # write the data to file in the data/ folder
 if dat_str:
-    f = open(dat_fn, 'wb').write(dat_str)
+    fn = dat_f + str(datetime.datetime.now().isoformat()) + '.txt'
+    open(fn, 'wb').write(dat)
