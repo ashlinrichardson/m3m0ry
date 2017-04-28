@@ -78,10 +78,11 @@ function test_phase(my_pool){
     x.type = 'test_phase'
     x.trial_id = trial_index   
   }
-  var end = instructions('thank you for completing this section')
+  var m = 'thank you for completing this section'
+  var end = instructions(m)
   
   end.action = function(me){
-    var msg ='Your score: ' + ctx.questions_correct.toString() + '/' + ctx.questions_total.toString()
+    var msg = m + 'Your score: ' + ctx.questions_correct.toString() + '/' + ctx.questions_total.toString() + ". Please press any key."
     me.txt = msg
   }
   return this
