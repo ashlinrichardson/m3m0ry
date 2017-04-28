@@ -1,5 +1,5 @@
 #!/usr/bin/python
-''' server-side python-CGI script to receive text data sent over 
+''' server-side python-CGI script to receive text data sent over
 the internet by the client-side function util.js::xml_send()'''
 import os
 import cgi
@@ -18,6 +18,6 @@ except:
     pass
 
 # write the data to file in the data/ folder
-if dat_str:
+if dat:
     fn = dat_f + str(datetime.datetime.now().isoformat()) + '.txt'
     open(fn, 'wb').write(dat)
