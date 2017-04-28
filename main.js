@@ -9,8 +9,7 @@
   
   /* font size */
   ctx.font_size = 30
-  
-  
+    
   /* canvas dimensions manipulation */
   var less = function(x){
     return x - ctx.pad
@@ -114,7 +113,7 @@
     ctx.imgs = imgs
     return ctx.imgs
   }
-  var my_images = ctx.load_imgs(10)
+  var my_images = ctx.load_imgs(n_imgs)
 
   /* set up an experiment according to user specs/code */
   my_experiment(ctx)
