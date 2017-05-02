@@ -115,6 +115,8 @@
   }
   var my_images = ctx.load_imgs(n_imgs)
 
+  var next_task_id = 0;
+
   /* set up an experiment according to user specs/code */
   my_experiment(ctx)
 

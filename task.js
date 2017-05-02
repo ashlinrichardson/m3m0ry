@@ -2,6 +2,7 @@
 
 /* instructions task (show a slide with a message on it) */
 function instructions(txt){
+  var my_task_id = next_task_id++
   
   /* initialize generic "trial" object */
   var x = new state()
@@ -12,11 +13,13 @@ function instructions(txt){
   /* no timer for the trial */  
   x.set_expiry(0)
   x.type = 'instructions'
+  x.task_id = my_task_id
   return x
 }
 
 /* study phase, formerly known as orientation task: multiple `trials' / events occur here.. random selection of inputs... (for the test phase, the random selection is shuffled back into the pool).. */
 function study_phase(my_pool){
+  var my_task_id = next_task_id++
   
   /* record references to graphics context, and stimulus pool */
   this.ctx = ctx
@@ -44,6 +47,7 @@ function study_phase(my_pool){
     }  
     x.type = 'study_phase'
     x.trial_id = trial_index
+    x.task_id = my_task_id
   }
   
   /* dummy iteration over remaining stimuli that weren't selected at first, for future reference */
@@ -57,6 +61,8 @@ function study_phase(my_pool){
 
 /* test phase, formerly known as recognition task - for this phase, the random selection is shuffled back into the pool -- all elements from the pool are shown (feedback is recorded).. */
 function test_phase(my_pool){
+  var my_task_id = next_task_id++
+
   this.p = my_pool
   var trial_index = -1, shuffled_data = my_pool.reshuffle(), shuffled = shuffled_data[0], deja_vu = shuffled_data[1]
   for(var i in shuffled){
@@ -76,7 +82,8 @@ function test_phase(my_pool){
       x.wrd_stim = data
     }  
     x.type = 'test_phase'
-    x.trial_id = trial_index   
+    x.trial_id = trial_index
+    x.task_id = my_task_id 
   }
   var m = 'thank you for completing this section'
   var end = instructions(m)
@@ -90,6 +97,8 @@ function test_phase(my_pool){
 
 /* previously known as feedback task */
 function feedback(txt, keys){
+  var my_task_id = next_task_id++
+
   var x = new state()
   x.set_expiry(0)
   x.txt = txt
@@ -99,10 +108,13 @@ function feedback(txt, keys){
     console.log(i, keys[i])
     x.add_admissible_key(keys[i])
   }
+  x.task_id = my_task_id
 }
 
 /* list as many countries as possible during e.g., a 3-minute period */
 function delay_task(txt, delay_time){
+  var my_task_id = next_task_id++
+
   var y = instructions(txt)
   y.key_expiry = true
   y.set_expiry(500)
@@ -117,5 +129,6 @@ function delay_task(txt, delay_time){
   x.txt = '' 
   x.type = 'delay'
   x.trial_id = 0
+  x.task_id = my_task_id
   return this;
 }

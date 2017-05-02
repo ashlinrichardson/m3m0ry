@@ -144,9 +144,14 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
     if(this == ctx.last_state){
 
         /* go through all the states and record (in string format) the contents, as we'd like it to appear on the server */
-        var message = "", state_i = ctx.first_state
+        var message = "event_id,task_id,trial_id"
+        var state_i = ctx.first_state, state_index =0
         for(var state_i = ctx.first_state; state_i != ctx.last_state; state_i = state_i.successor){
-          message += state_i.toString() + "\n"
+          /* for a given "state", record a line of data */
+          message += state_index.toString() + ","  /* global index / line number */
+          /* add a newline character */ 
+          message += "\n"
+          state_index += 1
         }
 
         /* window.location.href == http://domain/memory/examples/test_phase/memory.html */
