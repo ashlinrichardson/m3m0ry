@@ -20,5 +20,5 @@ except:
 
 # write the data to file in the data/ folder
 if dat:
-    fn = dat_f + str(datetime.datetime.now().isoformat()) + '_' + str(uuid.uuid4().hex) + '.txt'
-    open(fn, 'wb').write(dat)
+    fn = dat_f + str(datetime.datetime.now().isoformat())
+    open(fn + '_' + str(uuid.uuid4().hex) + '.txt', 'wb').write(dat)
