@@ -3,6 +3,7 @@
 the internet by the client-side function util.js::xml_send()'''
 import os
 import cgi
+import uuid
 import datetime
 
 # create /data folder if it does not yet exist
@@ -19,5 +20,5 @@ except:
 
 # write the data to file in the data/ folder
 if dat:
-    fn = dat_f + str(datetime.datetime.now().isoformat()) + '.txt'
+    fn = dat_f + str(datetime.datetime.now().isoformat()) + '_' + str(uuid.uuid4().hex) + '.txt'
     open(fn, 'wb').write(dat)
