@@ -146,16 +146,23 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
         /* go through all the states and record (in string format) the contents, as we'd like it to appear on the server */
         var state_i = ctx.first_state, state_index = 0
         var t_fields = state_i.t_fields()
-        var message = "event_id,task_id,task_type,trial_id," + t_fields + ",ISI,SET,stim_type,stim_id,stim_pool_id,response\n"
+        var message = "event_id,task_id,task_type,trial_id," + t_fields + ",isi,set,stim_type,stim_id,stim_pool_id,response\n"
         for(var state_i = ctx.first_state; state_i != ctx.last_state; state_i = state_i.successor){
-          var stim_type, my_stim  = null, null;
-          if(state_i.wrd_stim != null){
-            stim_type, my_stim = "word", state_i.wrd_stim 
+          var stim_type = null;
+          var my_stim  = null;
+          if(state_i.wrd_stim){
+            stim_type = "word"
+            my_stim = state_i.wrd_stim 
           }
-          if(state_i.img_stim != null){
-            stim_type, my_stim = "image", state_i.img_stim 
+          if(state_i.img_stim){
+            stim_type = "image"
+            my_stim = state_i.img_stim 
           }
 
+          if(stim_type){
+          }else{
+            stim_type = ""
+          }
   
           /* for a given "state", record a line of data */
           message += state_index.toString() + ","       /* event_id: global index / line number */
@@ -165,7 +172,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
           message += state_i.t_data().toString() + ","  /* t_start, t_stop, duration(mS) */
           message += ","                                /* ISI */
           message += ","                                /* SET */
-          message += stim_type + ","                                /* stim_type */
+          message += stim_type.toString() + ","                                /* stim_type */
           message += ","                                /* stim_id */
           message += ","                                /* stim_pool_id */
           message += ""                                 /* response */
