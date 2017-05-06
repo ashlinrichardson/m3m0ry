@@ -150,17 +150,17 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
           /* for a given "state", record a line of data */
           message += state_index.toString() + "," /* event_id: global index / line number */
           message += state_i.task_id + ","        /* task_id */
-          message += state_i.type + ","      /* task_type */
+          message += state_i.type + ","           /* task_type */
           message += state_i.trial_id + ","       /* trial_id */
-                                                  /* t_start(mS) */
-                                                  /* t_stop(mS) */
-                                                  /* duration(mS) */
-                                                  /* ISI */
-                                                  /* SET */
-                                                  /* stim_type */
-                                                  /* stim_id */
-                                                  /* stim_pool_id */
-                                                  /* response */
+          message += ","                          /* t_start(mS) */
+          message += ","                          /* t_stop(mS) */
+          message += ","                          /* duration(mS) */
+          message += ","                          /* ISI */
+          message += ","                          /* SET */
+          message += ","                          /* stim_type */
+          message += ","                          /* stim_id */
+          message += ","                          /* stim_pool_id */
+          message += ""                          /* response */
 
           /* add a newline character */ 
           message += "\n"
