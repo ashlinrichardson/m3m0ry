@@ -148,9 +148,10 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
         var t_fields = state_i.t_fields()
         var message = "event_id,task_id,task_type,trial_id," + t_fields + ",isi,set,stim_type,stim_id,stim_pool_id,response\n"
         for(var state_i = ctx.first_state; state_i != ctx.last_state; state_i = state_i.successor){
+          console.log('state***', state_i)
           var stim_type = null;
           var my_stim  = null;
-          var pool_id = ""
+          var my_pool_id = ""
 
           if(state_i.wrd_stim){
             stim_type = "word"
@@ -173,7 +174,8 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
           }
 
           if(state_i.pool_id){
-            pool_id = state_i.pool_id.toString()
+            my_pool_id = state_i.pool_id.toString()
+            console.log("pool id======> " + state_i.pool_id.toString())
           }
   
           /* for a given "state", record a line of data */
@@ -186,7 +188,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
           message += ","                                /* SET */
           message += stim_type.toString() + ","         /* stim_type */
           message += my_stim.toString() + ","           /* stim_id */
-          message += pool_id + ","                                /* stim_pool_id */
+          message += my_pool_id + ","                                /* stim_pool_id */
           var response = ""
           for(var k in state_i.key_strokes){
             response += String.fromCharCode(state_i.key_strokes[k])

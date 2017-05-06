@@ -89,6 +89,7 @@ function test_phase(my_pool){
     x.trial_id = trial_index
     x.task_id = my_task_id 
     x.pool_id = my_pool.pool_id
+    console.log('x.type=' + x.type + ' x.pool_id ' + x.pool_id)
   }
   var m = 'thank you for completing this section'
   var end = instructions(m)
