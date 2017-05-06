@@ -176,6 +176,8 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
           if(state_i.pool_id){
             my_pool_id = state_i.pool_id.toString()
             console.log("pool id======> " + state_i.pool_id.toString())
+          }else{
+            console.log("pool id======> undefined")
           }
   
           /* for a given "state", record a line of data */
