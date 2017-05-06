@@ -20,12 +20,13 @@ function instructions(txt){
 
 /* study phase, formerly known as orientation task: multiple `trials' / events occur here.. random selection of inputs... (for the test phase, the random selection is shuffled back into the pool).. */
 function study_phase(my_pool){
+  var trial_index = -1
   var my_task_id = next_task_id++
-  
+
   /* record references to graphics context, and stimulus pool */
   this.ctx = ctx
   this.p = my_pool
-  var trial_index = -1
+  this.pool_id = my_pool.pool_id
 
   /* iterate over selected elements of pool */
   for(var i  in my_pool.selection){
@@ -51,7 +52,6 @@ function study_phase(my_pool){
     x.task_id = my_task_id
     x.pool_id = my_pool.pool_id
   }
-  this.pool_id = my_pool.pool_id
   
   /* dummy iteration over remaining stimuli that weren't selected at first, for future reference */
   for(var i  in my_pool.stimuli){
@@ -65,6 +65,7 @@ function study_phase(my_pool){
 /* test phase, formerly known as recognition task - for this phase, the random selection is shuffled back into the pool -- all elements from the pool are shown (feedback is recorded).. */
 function test_phase(my_pool){
   var my_task_id = next_task_id++
+  this.pool_id = my_pool.pool_id
 
   this.p = my_pool
   var trial_index = -1, shuffled_data = my_pool.reshuffle(), shuffled = shuffled_data[0], deja_vu = shuffled_data[1]
@@ -87,6 +88,7 @@ function test_phase(my_pool){
     x.type = 'test_phase'
     x.trial_id = trial_index
     x.task_id = my_task_id 
+    x.pool_id = my_pool.pool_id
   }
   var m = 'thank you for completing this section'
   var end = instructions(m)
