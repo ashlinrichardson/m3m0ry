@@ -49,7 +49,9 @@ function study_phase(my_pool){
     x.type = 'study_phase'
     x.trial_id = trial_index
     x.task_id = my_task_id
+    x.pool_id = my_pool.pool_id
   }
+  this.pool_id = my_pool.pool_id
   
   /* dummy iteration over remaining stimuli that weren't selected at first, for future reference */
   for(var i  in my_pool.stimuli){

@@ -186,7 +186,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
           for(var k in state_i.key_strokes){
             response += String.fromCharCode(state_i.key_strokes[k])
           }
-          message += response + ""                                 /* response */
+          message += response + ""                      /* response */
 
           /* add a newline character */ 
           message += "\n"

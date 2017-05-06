@@ -1,5 +1,6 @@
 /* stimulus pool - object that has words or images added to it. Selections drawn randomly for "study phase" by draw() method. That selection is shuffled back into the deck, for the "test phase" */
 function pool(){
+  this.pool_id = next_pool_id++
   this.ctx = ctx
   this.stimuli = new Array()
   this.add = function(stim){
