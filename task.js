@@ -50,7 +50,7 @@ function study_phase(my_pool){
     x.type = 'study_phase'
     x.trial_id = trial_index
     x.task_id = my_task_id
-    x.pool_id = my_pool.pool_id
+    x.set_pool_id(my_pool.pool_id)
   }
   
   /* dummy iteration over remaining stimuli that weren't selected at first, for future reference */
@@ -88,8 +88,7 @@ function test_phase(my_pool){
     x.type = 'test_phase'
     x.trial_id = trial_index
     x.task_id = my_task_id 
-    x.pool_id = my_pool.pool_id
-    console.log('x.type=' + x.type + ' x.pool_id ' + x.pool_id)
+    x.set_pool_id(my_pool.pool_id)
   }
   var m = 'thank you for completing this section'
   var end = instructions(m)

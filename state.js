@@ -50,6 +50,16 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
     this.key_strokes.push(k)
   }
 
+  this.set_pool_id = function(pid){
+    this.pool_id = pid
+  }
+  this.get_pool_id = function(){  
+    if(this.pool_id)
+      return this.pool_id
+    else
+      return ""
+  }
+
   /* keep a reference to this state, if it's the first one ever.. */
   if(ctx.first_new_state == null){
     ctx.first_new_state = this
@@ -152,6 +162,10 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
           var stim_type = null;
           var my_stim  = null;
           var my_pool_id = ""
+          if(state_i.pool_id){
+            my_pool_id = state_i.pool_id.toString()
+          }
+          console.log('*** poolid', state_i.pool_id)
 
           if(state_i.wrd_stim){
             stim_type = "word"
@@ -173,13 +187,13 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
             my_stim = ""
           }
 
-          if(state_i.pool_id){
-            my_pool_id = state_i.pool_id
-            console.log("state_i.pool_id======> " + state_i.pool_id.toString())
+          /*if(state_i.get_pool_id()){
+            my_pool_id = state_i.get_pool_id()
+            console.log("state_i.pool_id======> " + state_i.get_pool_id().toString())
           }else{
             console.log("state_i.pool_id ======> undefined")
-          }
-  
+          }*/
+
           /* for a given "state", record a line of data */
           message += state_index.toString() + ","       /* event_id: global index / line number */
           message += state_i.task_id + ","              /* task_id */
@@ -190,7 +204,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
           message += ","                                /* SET */
           message += stim_type.toString() + ","         /* stim_type */
           message += my_stim.toString() + ","           /* stim_id */
-          message += my_pool_id + ","                                /* stim_pool_id */
+          message += my_pool_id.toString() + ","                                /* stim_pool_id */
           var response = ""
           for(var k in state_i.key_strokes){
             response += String.fromCharCode(state_i.key_strokes[k])
