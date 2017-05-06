@@ -148,9 +148,20 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
         var state_i = ctx.first_state, state_index =0
         for(var state_i = ctx.first_state; state_i != ctx.last_state; state_i = state_i.successor){
           /* for a given "state", record a line of data */
-          message += state_index.toString() + ","  /* global index / line number */
-          message += state_i.task_id + ","
-          message += state_i.task_type + ","
+          message += state_index.toString() + "," /* event_id: global index / line number */
+          message += state_i.task_id + ","        /* task_id */
+          message += state_i.task_type + ","      /* task_type */
+                                                  /* trial_id */
+                                                  /* t_start(mS) */
+                                                  /* t_stop(mS) */
+                                                  /* duration(mS) */
+                                                  /* ISI */
+                                                  /* SET */
+                                                  /* stim_type */
+                                                  /* stim_id */
+                                                  /* stim_pool_id */
+                                                  /* response */
+
           /* add a newline character */ 
           message += "\n"
           state_index += 1
