@@ -148,17 +148,17 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
         var state_i = ctx.first_state, state_index =0
         for(var state_i = ctx.first_state; state_i != ctx.last_state; state_i = state_i.successor){
           /* for a given "state", record a line of data */
-          message += state_index.toString() + ","     /* event_id: global index / line number */
-          message += state_i.task_id + ","            /* task_id */
-          message += state_i.type + ","               /* task_type */
-          message += state_i.trial_id + ","           /* trial_id */
-          message += state_i.data().toString() + ","  /* t_start, t_stop, duration(mS) */
-          message += ","                              /* ISI */
-          message += ","                              /* SET */
-          message += ","                              /* stim_type */
-          message += ","                              /* stim_id */
-          message += ","                              /* stim_pool_id */
-          message += ""                               /* response */
+          message += state_index.toString() + ","       /* event_id: global index / line number */
+          message += state_i.task_id + ","              /* task_id */
+          message += state_i.type + ","                 /* task_type */
+          message += state_i.trial_id + ","             /* trial_id */
+          message += state_i.t_data().toString() + ","  /* t_start, t_stop, duration(mS) */
+          message += ","                                /* ISI */
+          message += ","                                /* SET */
+          message += ","                                /* stim_type */
+          message += ","                                /* stim_id */
+          message += ","                                /* stim_pool_id */
+          message += ""                                 /* response */
 
           /* add a newline character */ 
           message += "\n"
@@ -227,7 +227,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
   }
 
   /* print out the data for this object: duration in time for state: not more than one decimal place */
-  this.data = function(){
+  this.t_data = function(){
     var dt = Math.round(10. * (this.t1 - this.t0)) / 10., dt_0 = parse_date_time(this.start_date_time), dt_1 = parse_date_time(this.end_date_time) 
     /* csv record */
     p = function(s){
