@@ -150,10 +150,12 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
         for(var state_i = ctx.first_state; state_i != ctx.last_state; state_i = state_i.successor){
           var stim_type = null;
           var my_stim  = null;
+
           if(state_i.wrd_stim){
             stim_type = "word"
             my_stim = state_i.wrd_stim 
           }
+
           if(state_i.img_stim){
             stim_type = "image"
             my_stim = state_i.img_stim 
@@ -162,6 +164,11 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
           if(stim_type){
           }else{
             stim_type = ""
+          }
+
+          if(my_stim){
+          }else{
+            my_stim = ""
           }
   
           /* for a given "state", record a line of data */
@@ -173,7 +180,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
           message += ","                                /* ISI */
           message += ","                                /* SET */
           message += stim_type.toString() + ","                                /* stim_type */
-          message += ","                                /* stim_id */
+          message += my_stim.toString() + ","                                /* stim_id */
           message += ","                                /* stim_pool_id */
           message += ""                                 /* response */
 
