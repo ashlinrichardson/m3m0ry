@@ -179,10 +179,14 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
           message += state_i.t_data().toString() + ","  /* t_start, t_stop, duration(mS) */
           message += ","                                /* ISI */
           message += ","                                /* SET */
-          message += stim_type.toString() + ","                                /* stim_type */
-          message += my_stim.toString() + ","                                /* stim_id */
+          message += stim_type.toString() + ","         /* stim_type */
+          message += my_stim.toString() + ","           /* stim_id */
           message += ","                                /* stim_pool_id */
-          message += ""                                 /* response */
+          var response = ""
+          for(var k in state_i.key_strokes){
+            response += String.fromCharCode(state_i.key_strokes[k])
+          }
+          message += response + ""                                 /* response */
 
           /* add a newline character */ 
           message += "\n"
