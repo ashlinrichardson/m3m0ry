@@ -14,6 +14,7 @@ function instructions(txt){
   x.set_expiry(0)
   x.type = 'instructions'
   x.task_id = my_task_id
+  x.trial_id = 0 
   return x
 }
 
