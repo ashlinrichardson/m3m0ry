@@ -151,7 +151,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
           message += state_index.toString() + "," /* event_id: global index / line number */
           message += state_i.task_id + ","        /* task_id */
           message += state_i.task_type + ","      /* task_type */
-                                                  /* trial_id */
+          message += state_i.trial_id + ","       /* trial_id */
                                                   /* t_start(mS) */
                                                   /* t_stop(mS) */
                                                   /* duration(mS) */
