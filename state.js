@@ -144,8 +144,9 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
     if(this == ctx.last_state){
 
         /* go through all the states and record (in string format) the contents, as we'd like it to appear on the server */
-        var message = "event_id,task_id,task_type,trial_id,duration(mS),t_start(mS),t_stop(mS),ISI,SET,stim_type,stim_id,stim_pool_id,response\n"
-        var state_i = ctx.first_state, state_index =0
+        var state_i = ctx.first_state, state_index = 0
+        var t_fields = state_i.t_fields()
+        var message = "event_id,task_id,task_type,trial_id," + t_fields + ",ISI,SET,stim_type,stim_id,stim_pool_id,response\n"
         for(var state_i = ctx.first_state; state_i != ctx.last_state; state_i = state_i.successor){
           /* for a given "state", record a line of data */
           message += state_index.toString() + ","       /* event_id: global index / line number */
@@ -238,8 +239,8 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
   }
 
   /* descriptive csv header (mls: milliseconds-- three digits) */
-  this.fields = function(){
-    return 't(mS),start(yyyy:mm:dd:hh:mn:ss:mls),end(yyyy:mm:dd:hh:mn:ss:mls)';
+  this.t_fields = function(){
+    return 'duration(mS),start(yyyy:mm:dd:hh:mn:ss:mls),end(yyyy:mm:dd:hh:mn:ss:mls)';
   }
   return this
 }
