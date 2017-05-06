@@ -148,7 +148,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
         var t_fields = state_i.t_fields()
         var message = "event_id,task_id,task_type,trial_id," + t_fields + ",isi,set,stim_type,stim_id,stim_pool_id,response\n"
         for(var state_i = ctx.first_state; state_i != ctx.last_state; state_i = state_i.successor){
-          console.log('state***', state_i)
+          console.log('*** statei', state_i)
           var stim_type = null;
           var my_stim  = null;
           var my_pool_id = ""
@@ -174,10 +174,10 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
           }
 
           if(state_i.pool_id){
-            my_pool_id = state_i.pool_id.toString()
-            console.log("pool id======> " + state_i.pool_id.toString())
+            my_pool_id = state_i.pool_id
+            console.log("state_i.pool_id======> " + state_i.pool_id.toString())
           }else{
-            console.log("pool id======> undefined")
+            console.log("state_i.pool_id ======> undefined")
           }
   
           /* for a given "state", record a line of data */
