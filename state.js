@@ -144,7 +144,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
     if(this == ctx.last_state){
 
         /* go through all the states and record (in string format) the contents, as we'd like it to appear on the server */
-        var message = "event_id,task_index,task_type,trial_index\n"
+        var message = "event_id,task_id,task_type,trial_id,t_start(mS),t_stop(mS),duration(mS),ISI,SET,stim_type,stim_id,stim_pool_id,response\n"
         var state_i = ctx.first_state, state_index =0
         for(var state_i = ctx.first_state; state_i != ctx.last_state; state_i = state_i.successor){
           /* for a given "state", record a line of data */
