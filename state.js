@@ -204,7 +204,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
           message += ","                                /* SET */
           message += stim_type.toString() + ","         /* stim_type */
           message += my_stim.toString() + ","           /* stim_id */
-          message += my_pool_id.toString() + ","                                /* stim_pool_id */
+          message += my_pool_id + ","                                /* stim_pool_id */
           var response = ""
           for(var k in state_i.key_strokes){
             response += String.fromCharCode(state_i.key_strokes[k])
