@@ -144,23 +144,21 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
     if(this == ctx.last_state){
 
         /* go through all the states and record (in string format) the contents, as we'd like it to appear on the server */
-        var message = "event_id,task_id,task_type,trial_id,t_start(mS),t_stop(mS),duration(mS),ISI,SET,stim_type,stim_id,stim_pool_id,response\n"
+        var message = "event_id,task_id,task_type,trial_id,duration(mS),t_start(mS),t_stop(mS),ISI,SET,stim_type,stim_id,stim_pool_id,response\n"
         var state_i = ctx.first_state, state_index =0
         for(var state_i = ctx.first_state; state_i != ctx.last_state; state_i = state_i.successor){
           /* for a given "state", record a line of data */
-          message += state_index.toString() + "," /* event_id: global index / line number */
-          message += state_i.task_id + ","        /* task_id */
-          message += state_i.type + ","           /* task_type */
-          message += state_i.trial_id + ","       /* trial_id */
-          message += ","                          /* t_start(mS) */
-          message += ","                          /* t_stop(mS) */
-          message += ","                          /* duration(mS) */
-          message += ","                          /* ISI */
-          message += ","                          /* SET */
-          message += ","                          /* stim_type */
-          message += ","                          /* stim_id */
-          message += ","                          /* stim_pool_id */
-          message += ""                          /* response */
+          message += state_index.toString() + ","     /* event_id: global index / line number */
+          message += state_i.task_id + ","            /* task_id */
+          message += state_i.type + ","               /* task_type */
+          message += state_i.trial_id + ","           /* trial_id */
+          message += state_i.data().toString() + ","  /* t_start, t_stop, duration(mS) */
+          message += ","                              /* ISI */
+          message += ","                              /* SET */
+          message += ","                              /* stim_type */
+          message += ","                              /* stim_id */
+          message += ","                              /* stim_pool_id */
+          message += ""                               /* response */
 
           /* add a newline character */ 
           message += "\n"
