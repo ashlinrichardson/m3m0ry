@@ -157,15 +157,18 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
         var state_i = ctx.first_state, state_index = 0
         var t_fields = state_i.t_fields()
         var message = "event_id,task_id,task_type,trial_id," + t_fields + ",isi,set,stim_type,stim_id,stim_pool_id,response\n"
+        var pi;
         for(var state_i = ctx.first_state; state_i != ctx.last_state; state_i = state_i.successor){
           console.log('*** statei', state_i)
           var stim_type = null;
           var my_stim  = null;
-          var my_pool_id = ""
-          if(state_i.pool_id){
-            my_pool_id = state_i.pool_id.toString()
+          if (typeof state_i.pool_id !== 'undefined') {
+            // the variable is defined
+            console.log('*** poolid', state_i.pool_id)
+            pi = JSON.parse(JSON.stringify(state_i.pool_id))
+          }else{
+            pi = ""
           }
-          console.log('*** poolid', state_i.pool_id)
 
           if(state_i.wrd_stim){
             stim_type = "word"
@@ -204,7 +207,15 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
           message += ","                                /* SET */
           message += stim_type.toString() + ","         /* stim_type */
           message += my_stim.toString() + ","           /* stim_id */
-          message += my_pool_id + ","                                /* stim_pool_id */
+          //message += my_pool_id + ","                                /* stim_pool_id */
+           
+          if(state_i.pool_id){
+            message += state_i.pool_id.toString() 
+          }else{
+            message += pi.toString()
+          }
+          message += ","
+          
           var response = ""
           for(var k in state_i.key_strokes){
             response += String.fromCharCode(state_i.key_strokes[k])
