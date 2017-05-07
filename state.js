@@ -291,10 +291,3 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
   }
   return this
 }
-
-/* 
-- collect any key presses. 
-- record data to global record..
-- reset keymap... 
-- random selection: extra feedback on subsample of trials?  
-*/
