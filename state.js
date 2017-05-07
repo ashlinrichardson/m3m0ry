@@ -155,8 +155,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
 
         /* go through all the states and record (in string format) the contents, as we'd like it to appear on the server */
         var state_i = ctx.first_state, state_index = 0
-        var t_fields = state_i.t_fields()
-        var message = "event_id,task_id,task_type,trial_id," + t_fields + ",isi,set,stim_type,stim_id,stim_pool_id,response\n"
+        var message = "event_id,task_id,task_type,trial_id,duration(mS),start(yyyy:mm:dd:hh:mn:ss:mls),end(yyyy:mm:dd:hh:mn:ss:mls),isi,set,stim_type,stim_id,stim_pool_id,response\n"
         var pi;
         for(var state_i = ctx.first_state; state_i != ctx.last_state; state_i = state_i.successor){
           console.log('*** statei', state_i)
@@ -178,7 +177,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
 
           if(state_i.img_stim){
             stim_type = "image"
-            my_stim = state_i.img_stim 
+            my_stim = state_i.img_stim.fn 
           }
 
           if(stim_type){
@@ -196,7 +195,9 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
           message += state_i.task_id + ","              /* task_id */
           message += state_i.type + ","                 /* task_type */
           message += state_i.trial_id + ","             /* trial_id */
-          message += state_i.t_data().toString() + ","  /* t_start, t_stop, duration(mS) */
+          message +=  Math.round(10. * (state_i.t1 -  state_i.t0)) / 10. + "," 
+          message += parse_date_time(state_i.start_date_time).toString() + ","
+          message += parse_date_time(state_i.end_date_time).toString() + ","
           message += ","                                /* ISI */
           message += ","                                /* SET */
           message += stim_type.toString() + ","         /* stim_type */
@@ -272,22 +273,6 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
     console.log(this)
     /* record data to csv-line record (global) here..? */
     
-  }
-
-  /* print out the data for this object: duration in time for state: not more than one decimal place */
-  this.t_data = function(){
-    var dt = Math.round(10. * (this.t1 - this.t0)) / 10., dt_0 = parse_date_time(this.start_date_time), dt_1 = parse_date_time(this.end_date_time) 
-    /* csv record */
-    p = function(s){
-      return s.toString() + ','
-    }
-    s = trim(p(dt) + p(dt_0) + dt_1.toString())
-    return(s) 
-  }
-
-  /* descriptive csv header (mls: milliseconds-- three digits) */
-  this.t_fields = function(){
-    return 'duration(mS),start(yyyy:mm:dd:hh:mn:ss:mls),end(yyyy:mm:dd:hh:mn:ss:mls)';
   }
   return this
 }

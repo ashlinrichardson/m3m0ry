@@ -107,8 +107,10 @@
     /* ideally would only load the ones used */
     var imgs = new Array()
     for(var i=1; i <= n_imgs; i++){
-      console.log('load img', i)
-      imgs.push(load_img(abs_path + 'images/' + i + '.jpg'))
+      var img_fn = abs_path + 'images/' + i + '.jpg'
+      var my_img = load_img(img_fn)
+      my_img.fn = 'images/' + i + '.jpg'
+      imgs.push(my_img)
     }
     ctx.imgs = imgs
     return ctx.imgs
