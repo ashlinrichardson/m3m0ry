@@ -162,8 +162,9 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
           console.log('*** statei', state_i)
           var stim_type = null;
           var my_stim  = null;
-          if (typeof state_i.pool_id !== 'undefined') {
-            // the variable is defined
+    
+          /* the right way to check if a variable is undefined or not */
+          if(typeof state_i.pool_id !== 'undefined'){
             console.log('*** poolid', state_i.pool_id)
             pi = JSON.parse(JSON.stringify(state_i.pool_id))
           }else{
@@ -190,13 +191,6 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
             my_stim = ""
           }
 
-          /*if(state_i.get_pool_id()){
-            my_pool_id = state_i.get_pool_id()
-            console.log("state_i.pool_id======> " + state_i.get_pool_id().toString())
-          }else{
-            console.log("state_i.pool_id ======> undefined")
-          }*/
-
           /* for a given "state", record a line of data */
           message += state_index.toString() + ","       /* event_id: global index / line number */
           message += state_i.task_id + ","              /* task_id */
@@ -207,15 +201,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
           message += ","                                /* SET */
           message += stim_type.toString() + ","         /* stim_type */
           message += my_stim.toString() + ","           /* stim_id */
-          //message += my_pool_id + ","                                /* stim_pool_id */
-           
-          if(state_i.pool_id){
-            message += state_i.pool_id.toString() 
-          }else{
-            message += pi.toString()
-          }
-          message += ","
-          
+          message += pi.toString() + ","                /* stimulus-pool id */
           var response = ""
           for(var k in state_i.key_strokes){
             response += String.fromCharCode(state_i.key_strokes[k])
