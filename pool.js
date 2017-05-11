@@ -81,25 +81,27 @@ function pool(){
     }
   }
   
-  /* when initializing a test phase: mix selection back in with other stimuli 
-***********
-      NEXT: need to modify this to shuffle together the n-selection, and m-selection..
-**********
-  */
+  /* for initializing a test phase: mix "N"-selection and "M"-selection together */
   this.reshuffle = function(){
-    var to_shuffle = []
-    for(var i=0; i<this.selection.length; i++){
+    var to_shuffle = [], i = 0
+    
+    /* add the "N"-selection */
+    for(i = 0; i < this.selection_n.length; i++){
       var dat_i = new Array()
-      dat_i.push(this.selection[i])
+      dat_i.push(this.selection_n[i])
       dat_i.push(true)
       to_shuffle.push(dat_i)
     }      
-    for(var i=0; i<this.stimuli.length; i++){  
+
+    /* add the "M"-selection */
+    for(i = 0; i < this.selection_m.length; i++){  
       var dat_i = new Array()
-      dat_i.push(this.stimuli[i])
+      dat_i.push(this.selection_m[i])
       dat_i.push(false)
       to_shuffle.push(dat_i)
-    } 
+    }
+
+    /* "shuffle"-- randomize the ordering of the combined array */
     var shuffled = new Array(), deja_vu = new Array(), rem = to_shuffle.length
     while(rem >0){
       rem -= 1
