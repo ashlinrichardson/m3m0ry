@@ -19,7 +19,7 @@ function instructions(txt){
 }
 
 /* study phase, formerly known as orientation task: multiple `trials' / events occur here.. random selection of inputs... (for the test phase, the random selection is shuffled back into the pool).. */
-function study_phase(my_pool){
+function study_phase(my_pool, isi=0){
 
 /* this section isn't right yet.. need an M,N parameter, and an array of pools! (multiple pools..) 
 
@@ -36,6 +36,18 @@ function study_phase(my_pool){
   /* iterate over selected elements of pool */
   for(var i  in my_pool.selection){
     trial_index ++
+
+    if(isi > 0){
+      var x = new state()
+      x.set_expiry(isi)
+      x.type = 'isi'
+      x.wrd_stim = ""
+      x.trial_id = trial_index
+      x.task_id = my_task_id
+      x.set_pool_id(my_pool.pool_id)
+      x.clear_admissible_keys()
+      x.key_expiry = false
+    }
 
     /* initialize generic "trial" object for each case */
     var x = new state()
@@ -56,6 +68,7 @@ function study_phase(my_pool){
     x.trial_id = trial_index
     x.task_id = my_task_id
     x.set_pool_id(my_pool.pool_id)
+
   }
   
   /* dummy iteration over remaining stimuli that weren't selected at first, for future reference */
@@ -68,7 +81,7 @@ function study_phase(my_pool){
 }
 
 /* test phase, formerly known as recognition task - for this phase, the random selection is shuffled back into the pool -- all elements from the pool are shown (feedback is recorded).. */
-function test_phase(my_pool){
+function test_phase(my_pool, isi=false){
   var my_task_id = next_task_id++
   this.pool_id = my_pool.pool_id
 
@@ -76,6 +89,19 @@ function test_phase(my_pool){
   var trial_index = -1, shuffled_data = my_pool.reshuffle(), shuffled = shuffled_data[0], deja_vu = shuffled_data[1]
   for(var i in shuffled){
     trial_index ++
+
+    if(isi > 0){
+      var x = new state()
+      x.set_expiry(isi)
+      x.type = 'isi'
+      x.wrd_stim = ""
+      x.trial_id = trial_index
+      x.task_id = my_task_id
+      x.set_pool_id(my_pool.pool_id)
+      x.clear_admissible_keys()
+      x.key_expiry = false
+    }
+
     var x = new state()
     x.set_expiry(0)
     x.key_required = true
