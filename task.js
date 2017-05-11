@@ -20,6 +20,11 @@ function instructions(txt){
 
 /* study phase, formerly known as orientation task: multiple `trials' / events occur here.. random selection of inputs... (for the test phase, the random selection is shuffled back into the pool).. */
 function study_phase(my_pool){
+
+/* this section isn't right yet.. need an M,N parameter, and an array of pools! (multiple pools..) 
+
+    SAME FOR TEST PHASE SECTION...
+  */
   var trial_index = -1
   var my_task_id = next_task_id++
 
