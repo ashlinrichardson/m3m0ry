@@ -122,7 +122,7 @@ function pool(){
   this.draw = function(){
     this.draw_n()
     this.draw_m()
-    this.reshufle()
+    this.reshuffle()
   }
 
   /* end of "pool::pool()" */
