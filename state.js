@@ -198,6 +198,9 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
           message +=  Math.round(10. * (state_i.t1 -  state_i.t0)) / 10. + "," 
           message += parse_date_time(state_i.start_date_time).toString() + ","
           message += parse_date_time(state_i.end_date_time).toString() + ","
+          if(state_i.type == 'isi'){
+            message += state_i.expiry_ms.toString()
+          }
           message += ","                                /* ISI */
           message += ","                                /* SET */
           message += stim_type.toString() + ","         /* stim_type */
