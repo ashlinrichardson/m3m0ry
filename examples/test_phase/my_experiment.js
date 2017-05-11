@@ -1,40 +1,38 @@
-/* recognition memory experiment set-up. 
-
-NOTE: need to revisit the examples/study_phase code, in light of the new m/n syntax.
-
-*/
+/* recognition memory experiment set-up */
 
 var my_experiment = function(){
-  //set up some instruction slides..
 
+  /* set up some instruction slides */
   instructions('study phase: please remember images and press any key')
-  // set up a stimulus pool
+
+  /* set up a stimulus pool */
   var p = pool()
-  // add images to stimulus pool  
-  for(var i=0; i<10; i++){
+
+  /* add images to stimulus pool */
+  for(var i = 0; i < 10; i++){
     p.add(ctx.imgs[i])
   }
 
-  // add words to stimulus pool 
+  /* add words to stimulus pool */ 
   p.add('floccinaucinihilipilification')
   p.add('supercalifragilisticexpialidocious')
   p.add('umdiddlediddlediddleumdiddlei')
 
-  // select portion of items from stimulus pool
+  /* select portion of items from stimulus pool */
   p.set_n(3)
   p.set_m(3)
   p.draw()  
 
-  // set up `study phase': show selected portions of pool
-  study_phase(p, 444)
+  /* set up `study phase': show selected portions of pool */
+  study_phase(p, 333)
 
-  // some instructions before `test phase'
+  /* some instructions before `test phase' */
   instructions('test phase coming up')
   instructions('when you see an image/word, please press m or n')
   instructions('please press m if you saw an image/word before')
   instructions('please press n if you did not see the image/word before')
  
-  // set up `test phase' (user input recorded for whole randomized pool)
+  /* set up `test phase' (user input recorded for whole randomized pool) */
   test_phase(p, 444)
 
 }
