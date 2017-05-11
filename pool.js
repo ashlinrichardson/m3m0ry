@@ -80,10 +80,11 @@ function pool(){
       this.remove_blanks()
     }
   }
-
+  
   /* when initializing a test phase: mix selection back in with other stimuli 
-
-      NEXT: modify this to shuffle together the n-selection, and m-selection..
+***********
+      NEXT: need to modify this to shuffle together the n-selection, and m-selection..
+**********
   */
   this.reshuffle = function(){
     var to_shuffle = []
@@ -111,5 +112,16 @@ function pool(){
     var ret = [shuffled, deja_vu]
     return ret
   }
+
+  /* draw the n-sized selection without replacement, draw the m-sized selection without replacement, and reshuffle those two together to form the "test" set. */
+  this.draw() = function(){
+
+    /* note: the n-sized selection, represented by array selection_n, is the "study" set (shown before the test set). */
+    this.draw_n()
+    this.draw_m()
+    this.reshufle()
+  }
+
+  /* end of "pool::pool()" */
   return this
 }

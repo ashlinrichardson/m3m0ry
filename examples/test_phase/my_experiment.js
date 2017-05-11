@@ -1,4 +1,8 @@
-/* recognition memory experiment set-up. */
+/* recognition memory experiment set-up. 
+
+NOTE: need to revisit the examples/study_phase code, in light of the new m/n syntax.
+
+*/
 
 var my_experiment = function(){
   //set up some instruction slides..
@@ -17,7 +21,9 @@ var my_experiment = function(){
   p.add('umdiddlediddlediddleumdiddlei')
 
   // select portion of items from stimulus pool
-  p.draw(5)  
+  p.set_n(3)
+  p.set_m(3)
+  p.draw()  
 
   // set up `study phase': show selected portions of pool
   study_phase(p, 444)
