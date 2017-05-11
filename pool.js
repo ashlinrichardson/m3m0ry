@@ -115,10 +115,7 @@ function pool(){
     return ret
   }
 
-  /* draw the n-sized selection without replacement, draw the m-sized selection without replacement, and reshuffle those two together to form the "test" set. */
-  this.draw() = function(){
-
-    /* note: the n-sized selection, represented by array selection_n, is the "study" set (shown before the test set). */
+  this.draw = function(){
     this.draw_n()
     this.draw_m()
     this.reshufle()

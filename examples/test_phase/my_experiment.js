@@ -21,6 +21,7 @@ var my_experiment = function(){
   /* select portion of items from stimulus pool */
   p.set_n(3)
   p.set_m(3)
+  console.log(p)
   p.draw()  
 
   /* set up `study phase': show selected portions of pool */
