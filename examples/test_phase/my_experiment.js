@@ -22,7 +22,7 @@ var my_experiment = function(){
   p.set_n(3)
   p.set_m(3)
   console.log(p)
-  p.draw()  
+  p.draw()
 
   /* set up `study phase': show selected portions of pool */
   study_phase(p, 333)

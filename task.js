@@ -34,7 +34,7 @@ function study_phase(my_pool, isi=0){
   this.pool_id = my_pool.pool_id
 
   /* iterate over selected elements of pool */
-  for(var i  in my_pool.selection){
+  for(var i  in my_pool.selection_n){
     trial_index ++
 
     if(isi > 0){
@@ -56,7 +56,7 @@ function study_phase(my_pool, isi=0){
     x.set_expiry(0)
 
     /* data (word or image) assigned to "trial" */
-    var data = my_pool.selection[i]
+    var data = my_pool.selection_n[i]
     
     /* discern by image or word, respectively */
     if( typeof(data) === 'object'){
