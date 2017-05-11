@@ -53,8 +53,10 @@ function pool(){
       return null
     }
     this.selection_n = new Array()
+    var rem = this.stimuli.length
     for(var i = 0; i < n; i++){ 
       var qx = rand() * parseFloat(rem), idx = parseInt(qx)
+      rem -= 1
       this.selection_n.push(this.stimuli[idx])
       delete this.stimuli[idx]
       this.remove_blanks()
@@ -69,12 +71,14 @@ function pool(){
     }
     var m = parseInt(get_m())
     if(m > this.stimuli.length){
-      console.log('error: n > this.stimuli.length')
+      console.log('error: m > this.stimuli.length')
       return null
     }
     this.selection_m = new Array()
-    for(var i = 0; i < n; i++){ 
+    var rem = this.stimuli.length
+    for(var i = 0; i < m; i++){ 
       var qx = rand() * parseFloat(rem), idx = parseInt(qx)
+      rem -= 1
       this.selection_m.push(this.stimuli[idx])
       delete this.stimuli[idx]
       this.remove_blanks()
