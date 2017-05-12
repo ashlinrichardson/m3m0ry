@@ -123,7 +123,7 @@ function test_phase(my_pool, isi=false){
     x.task_id = my_task_id 
     x.set_pool_id(my_pool.pool_id)
   }
-  var m = 'thank you for completing this section'
+  var m = 'Thank you for completing this section. '
   var end = instructions(m)
   
   end.action = function(me){
