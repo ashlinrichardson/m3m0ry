@@ -610,7 +610,32 @@ status open
 \end_layout
 
 \begin_layout Itemize
-To create your own experiment, we recommend editing the file 
+Then, supposing the project is uploaded to the main HTTP directory of a
+ web server with URL 
+\series bold
+http://my-web-server.com
+\series default
+, the survey in the folder experiments/my-experiment/ represented by 
+\series bold
+experiments/my-experiment/my-experiment.js
+\series default
+ will be accessed by navigating to the following address, in a web browser:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+http://my-web-server.com/experiments/my-experiment/memory.html
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+To create your own experiment,
+\series default
+ we recommend editing the file 
 \series bold
 my-experiment.js
 \series default
@@ -621,6 +646,16 @@ my-experiment/
  folder
 \end_layout
 
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+To deploy your experiment on the web,
+\series default
+ don't forget to upload your revised my-experiment.js to the server.
+\end_layout
+
+\end_deeper
 \end_deeper
 \begin_layout Section
 
