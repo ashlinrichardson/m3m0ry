@@ -5,7 +5,7 @@ var my_experiment = function(){
   instructions('study phase: please remember images and press any key')
 
   /* set up a stimulus pool */
-  var p = pool()
+  var p = stimulus_pool()
 
   /* add images to stimulus pool */
   for(var i = 0; i < 10; i++){

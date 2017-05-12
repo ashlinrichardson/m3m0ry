@@ -4,6 +4,7 @@ function pool(){
   this.is_pool = true
   this.pool_id = next_pool_id
   next_pool_id += 1
+  console.log('pool, id=', this.pool_id)
   this.ctx = ctx
   this.stimuli = new Array()
 
@@ -43,6 +44,8 @@ function pool(){
 
   /* pseudorandom selection of size "n" */
   this.draw_n = function(){
+    console.log('\tpool, id=', this.pool_id)
+
     if(this.selection_n){
       console.log('error: n-selection already made from this pool.')
       return null
@@ -65,6 +68,8 @@ function pool(){
 
   /* pseudorandom selection of size "m" */
   this.draw_m = function(){
+    console.log('\tpool, id=', this.pool_id)
+
     if(this.selection_m){
       console.log('error: m-selection already made from this pool.')
       return null
@@ -120,13 +125,17 @@ function pool(){
   }
 
   this.draw = function(){
+    console.log('draw_n()')
     this.draw_n()
+    console.log('draw_m()')
     this.draw_m()
+    console.log('reshuffle()')
     this.reshuffle()
   }
 
   /* set N, M parameters and make a selection */
   this.select = function(n,m){
+    console.log('select(n,m)')
     this.set_n(n)
     this.set_m(m)
     this.draw()
@@ -134,4 +143,8 @@ function pool(){
 
   /* end of "pool::pool()" */
   return this
+}
+
+function stimulus_pool(){
+  return new pool()
 }

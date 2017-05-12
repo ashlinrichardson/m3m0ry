@@ -690,8 +690,6 @@ status open
 
 
 \backslash
-pagebreak 
-\backslash
 subsection{experiments/instructions}
 \backslash
  
@@ -719,8 +717,6 @@ status open
 \begin_layout Plain Layout
 
 
-\backslash
-pagebreak 
 \backslash
 subsection{experiments/delay}
 \backslash
@@ -750,8 +746,6 @@ status open
 
 
 \backslash
-pagebreak 
-\backslash
 subsection{experiments/feedback}
 \backslash
  
@@ -780,8 +774,6 @@ status open
 
 
 \backslash
-pagebreak 
-\backslash
 subsection{experiments/study-phase}
 \backslash
  
@@ -809,8 +801,6 @@ status open
 \begin_layout Plain Layout
 
 
-\backslash
-pagebreak 
 \backslash
 subsection{experiments/test-phase}
 \backslash
@@ -852,8 +842,6 @@ status open
 
 
 \backslash
-pagebreak 
-\backslash
 subsection{egg-timer.js}
 \backslash
  
@@ -881,8 +869,6 @@ status open
 \begin_layout Plain Layout
 
 
-\backslash
-pagebreak 
 \backslash
 subsection{key.js}
 \backslash
@@ -912,8 +898,6 @@ status open
 
 
 \backslash
-pagebreak 
-\backslash
 subsection{main.js}
 \backslash
  
@@ -941,8 +925,6 @@ status open
 \begin_layout Plain Layout
 
 
-\backslash
-pagebreak 
 \backslash
 subsection{memory.js}
 \backslash
@@ -972,8 +954,6 @@ status open
 
 
 \backslash
-pagebreak 
-\backslash
 subsection{pool.js}
 \backslash
  
@@ -1001,8 +981,6 @@ status open
 \begin_layout Plain Layout
 
 
-\backslash
-pagebreak 
 \backslash
 subsection{state.js}
 \backslash
@@ -1032,8 +1010,6 @@ status open
 
 
 \backslash
-pagebreak 
-\backslash
 subsection{task.js}
 \backslash
  
@@ -1061,8 +1037,6 @@ status open
 \begin_layout Plain Layout
 
 
-\backslash
-pagebreak 
 \backslash
 subsection{text.js}
 \backslash
@@ -1092,8 +1066,6 @@ status open
 
 
 \backslash
-pagebreak 
-\backslash
 subsection{util.js}
 \backslash
  
@@ -1121,14 +1093,17 @@ Source Code: Server Side
 \end_layout
 
 \begin_layout Standard
+The folder data/ in the directory structure: if it doesn't yet exist, the
+ server-side python code will create it.
+\end_layout
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
 \begin_layout Plain Layout
 
 
-\backslash
-pagebreak 
 \backslash
 subsection{xml-receive.py}
 \backslash
@@ -1153,13 +1128,27 @@ lstinputlisting{../xml-receive.py}
 \begin_layout Section
 
 \series bold
-Recommendations For Further Work
+Recommendations For Further Improvements
 \end_layout
 
 \begin_layout Standard
 Here's a short point-form list of possible improvements to the software:
 \end_layout
 
+\begin_layout Itemize
+Finish drag-and drop implementation, that
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+does not allow invalid experiments to be constructed
+\end_layout
+
+\begin_layout Itemize
+removes any technicality from the process of coding an experiment
+\end_layout
+
+\end_deeper
 \begin_layout Itemize
 Smarter image loading
 \end_layout

@@ -6,7 +6,7 @@ var my_experiment = function(){
   instructions('please remember each word/image and press any key')
 
   /* set up a stimulus pool */
-  var p = pool()
+  var p = stimulus_pool()
   
   /* add images to stimulus pool */  
   for(var i = 0; i < 10; i++){
