@@ -8,7 +8,7 @@ function date_time(){
 }
 
 /* seed for rand() below */
-var seed = 5
+var seed = 777
 
 /*random-number generator http://indiegamr.com/generate-repeatable-random-numbers-in-js/ : initial seed.. in order to work 'Math.seed' must NOT be undefined, so in any case, you HAVE to provide a Math.seed */
 function rand(max, min) {
@@ -87,7 +87,9 @@ function xml_send(s, xml_receive_script_url){
 function shuffle(a) {
   var j, x, i
   for(i = a.length; i; i--){
-    j = Math.floor(Math.random() * i)  // j = rand(0, i)
+
+    /* use our seeded random number generator, so we get the same results every time */
+    j = Math.floor(rand() * (1. * i))  /* j = Math.floor(Math.random() * i) */
     x = a[i - 1]
     a[i - 1] = a[j]
     a[j] = x

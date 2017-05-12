@@ -2,13 +2,13 @@
 var my_experiment = function(){
 
   /* set up some instruction slides */
-  instructions('study phase: please remember images and press any key')
+  instructions('study phase: please remember words/images and press any key')
 
   /* set up a stimulus pool */
   var p1 = stimulus_pool()
 
   /* add images to stimulus pool */
-  for(var i = 0; i < 10; i++){
+  for(var i = 40; i < 45; i++){
     p1.add(ctx.imgs[i])
   }
 
@@ -16,7 +16,7 @@ var my_experiment = function(){
   var p2 = stimulus_pool()
 
   /* add images to stimulus pool */
-  for(var i = 10; i < 20; i++){
+  for(var i = 60; i < 65; i++){
     p2.add(ctx.imgs[i])
   }
 
@@ -32,9 +32,9 @@ var my_experiment = function(){
 
   /* selection from stimulus pool (parameters are N, M) */
   console.log('p1.select()')
-  p1.select(3, 3)
+  p1.select(2, 3)
   console.log('p2.select()')
-  p2.select(3, 3)
+  p2.select(2, 3)
   console.log('two pools')
 
   /* need to bundle the two pools together, into an array */
