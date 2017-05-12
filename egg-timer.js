@@ -3,14 +3,17 @@ var egg_timer = {
 
   /* callback */
   setup: function(t_ms){
+
+    /* assert parameter is a number */
     if(typeof this.timeoutID === "number"){
       this.cancel()
     }
+
+    /* what to do when the timer expires */
     this.timeoutID = window.setTimeout(function(){ 
-        console.log('timeout')
         var now = ctx.get_state()
-        var id = now.id;
-        console.log('ding from now(): id', id);
+        var id = now.id
+        /* console.log('ding from now(): id', id) */
         now.ding = true
         if(now.key_expiry ==false){
           now.expire()
