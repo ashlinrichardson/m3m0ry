@@ -1,6 +1,7 @@
 /* stimulus pool - object that has words or images added to it. Selections drawn randomly for "study phase" by draw() method. That selection is shuffled back into the deck, for the "test phase" */
 var next_pool_id = 0
 function pool(){
+  this.is_pool = true
   this.pool_id = next_pool_id
   next_pool_id += 1
   console.log("pool id" + this.pool_id.toString())
@@ -123,6 +124,13 @@ function pool(){
     this.draw_n()
     this.draw_m()
     this.reshuffle()
+  }
+
+  /* set N, M parameters and make a selection */
+  this.select = function(n,m){
+    this.set_n(n)
+    this.set_m(m)
+    this.draw()
   }
 
   /* end of "pool::pool()" */

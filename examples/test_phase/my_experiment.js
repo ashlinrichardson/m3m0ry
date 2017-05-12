@@ -18,11 +18,8 @@ var my_experiment = function(){
   p.add('supercalifragilisticexpialidocious')
   p.add('umdiddlediddlediddleumdiddlei')
 
-  /* select portion of items from stimulus pool */
-  p.set_n(3)
-  p.set_m(3)
-  console.log(p)
-  p.draw()
+  /* selection from stimulus pool (parameters are N, M) */
+  p.select(3, 3)
 
   /* set up `study phase': show selected portions of pool */
   study_phase(p, 333)
@@ -35,5 +32,4 @@ var my_experiment = function(){
  
   /* set up `test phase' (user input recorded for whole randomized pool) */
   test_phase(p, 444)
-
 }

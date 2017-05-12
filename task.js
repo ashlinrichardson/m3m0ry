@@ -20,105 +20,124 @@ function instructions(txt){
 
 /* study phase, formerly known as orientation task: multiple `trials' / events occur here.. random selection of inputs... (for the test phase, the random selection is shuffled back into the pool).. */
 function study_phase(my_pool, isi=0){
+  var my_pools = []
+  if(my_pool.is_pool){
+    my_pools.push(my_pool)
+  }else{
+    my_pools = my_pool
+  }
 
-/* need ARRAY OF POOLS.... also need to specify parameters N,M */
+/* need ARRAY OF POOLS.... also need to specify parameters N,M 
+study_phase, test_phase constructor needs to take a single pool, or an array of pools…
+*/
   var trial_index = -1
   var my_task_id = next_task_id++
 
   /* record references to graphics context, and stimulus pool */
   this.ctx = ctx
-  this.p = my_pool
-  this.pool_id = my_pool.pool_id
+  this.p = my_pools
+  this.pool_id = new Array()
 
-  /* iterate over selected elements of pool */
-  for(var i  in my_pool.selection_n){
-    trial_index ++
-
-    if(isi > 0){
+  for(var a_pool in my_pools){
+    var my_pool = my_pools[a_pool]
+    this.pool_id.push(my_pool.pool_id)
+  
+    /* iterate over selected elements of pool */
+    for(var i  in my_pool.selection_n){
+      trial_index ++
+  
+      if(isi > 0){
+        var x = new state()
+        x.set_expiry(isi)
+        x.type = 'isi'
+        x.wrd_stim = ""
+        x.trial_id = trial_index
+        x.task_id = my_task_id
+        x.set_pool_id(my_pool.pool_id)
+        x.clear_admissible_keys()
+        x.key_expiry = false
+      }
+  
+      /* initialize generic "trial" object for each case */
       var x = new state()
-      x.set_expiry(isi)
-      x.type = 'isi'
-      x.wrd_stim = ""
+      
+      /* need to add timed parameter to front-end API */
+      x.set_expiry(0)
+  
+      /* data (word or image) assigned to "trial" */
+      var data = my_pool.selection_n[i]
+      
+      /* discern by image or word, respectively */
+      if( typeof(data) === 'object'){
+        x.img_stim = data   
+      }else if(typeof(data) === 'string'){
+        x.wrd_stim = data
+      }  
+      x.type = 'study_phase'
       x.trial_id = trial_index
       x.task_id = my_task_id
       x.set_pool_id(my_pool.pool_id)
-      x.clear_admissible_keys()
-      x.key_expiry = false
-    }
-
-    /* initialize generic "trial" object for each case */
-    var x = new state()
-    
-    /* need to add timed parameter to front-end API */
-    x.set_expiry(0)
-
-    /* data (word or image) assigned to "trial" */
-    var data = my_pool.selection_n[i]
-    
-    /* discern by image or word, respectively */
-    if( typeof(data) === 'object'){
-      x.img_stim = data   
-    }else if(typeof(data) === 'string'){
-      x.wrd_stim = data
-    }  
-    x.type = 'study_phase'
-    x.trial_id = trial_index
-    x.task_id = my_task_id
-    x.set_pool_id(my_pool.pool_id)
-
-  }
+    } /* for var i  in my_pool.selection_n */
+  } /* for var a_pool in my_pools */
   
-  /* dummy iteration over remaining stimuli that weren't selected at first, for future reference */
-  /* 
-  for(var i  in my_pool.stimuli){
-    if( typeof(my_pool.selection[i]) === 'object'){
-    }else if(typeof(my_pool.selection[i]) === 'undefined'){
-    }
-  }
-  */
   return this
 }
 
 /* test phase, formerly known as recognition task - for this phase, the random selection is shuffled back into the pool -- all elements from the pool are shown (feedback is recorded).. */
 function test_phase(my_pool, isi=false){
+  var my_pools = []
+  if(my_pool.is_pool){
+    my_pools.push(my_pool)
+  }else{
+    my_pools = my_pool
+  }
+
+  var trial_index = -1
   var my_task_id = next_task_id++
-  this.pool_id = my_pool.pool_id
 
-  this.p = my_pool
-  var trial_index = -1, shuffled_data = my_pool.reshuffle(), shuffled = shuffled_data[0], deja_vu = shuffled_data[1]
-  for(var i in shuffled){
-    trial_index ++
+  this.ctx = ctx
+  this.p = my_pools
+  this.pool_id = new Array()
+  
+  for(var a_pool in my_pools){
+    var my_pool = my_pools[a_pool]
+    this.pool_id.push(my_pool.pool_id)
 
-    if(isi > 0){
+    var trial_index = -1, shuffled_data = my_pool.reshuffle(), shuffled = shuffled_data[0], deja_vu = shuffled_data[1]
+    for(var i in shuffled){
+      trial_index ++
+  
+      if(isi > 0){
+        var x = new state()
+        x.set_expiry(isi)
+        x.type = 'isi'
+        x.wrd_stim = ""
+        x.trial_id = trial_index
+        x.task_id = my_task_id
+        x.set_pool_id(my_pool.pool_id)
+        x.clear_admissible_keys()
+        x.key_expiry = false
+      }
+
       var x = new state()
-      x.set_expiry(isi)
-      x.type = 'isi'
-      x.wrd_stim = ""
-      x.trial_id = trial_index
-      x.task_id = my_task_id
-      x.set_pool_id(my_pool.pool_id)
-      x.clear_admissible_keys()
-      x.key_expiry = false
-    }
+      x.set_expiry(0)
+      x.key_required = true
+      var data = shuffled[i], deja = deja_vu[i]
 
-    var x = new state()
-    x.set_expiry(0)
-    x.key_required = true
-    var data = shuffled[i], deja = deja_vu[i]
-
-    /* record within the object: do we have deja-vu? */    
-    x.deja = deja
+      /* record within the object: do we have deja-vu? */    
+      x.deja = deja
     
-    /* word or image? */
-    if( typeof(data) === 'object'){
-      x.img_stim = data    
-    }else if(typeof(data) ==='string'){
-      x.wrd_stim = data
-    }  
-    x.type = 'test_phase'
-    x.trial_id = trial_index
-    x.task_id = my_task_id 
-    x.set_pool_id(my_pool.pool_id)
+      /* word or image? */
+      if( typeof(data) === 'object'){
+        x.img_stim = data    
+      }else if(typeof(data) ==='string'){
+        x.wrd_stim = data
+      }  
+      x.type = 'test_phase'
+      x.trial_id = trial_index
+      x.task_id = my_task_id 
+      x.set_pool_id(my_pool.pool_id)
+    }
   }
   var m = 'Thank you for completing this section. '
   var end = instructions(m)
