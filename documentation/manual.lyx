@@ -285,10 +285,7 @@ Overview
 \begin_layout Standard
 An online framework for parametric generation of Recognition Memory experiments
  to support researchers at the University of Victoria.
-\end_layout
-
-\begin_layout Standard
-The software is web based, self contained yet comprehensive, and reasonably
+ The software is web based, self contained yet comprehensive, and reasonably
  flexible.
 \end_layout
 
@@ -350,6 +347,11 @@ An FTP program is required for uploading experiment scripts (and downloading
 
 \begin_layout Itemize
 A text editor is required to edit experiment script files.
+\end_layout
+
+\begin_layout Itemize
+Limited technical knowledge about JavaScript is required to edit or modify
+ experiments.
 \end_layout
 
 \end_deeper
@@ -422,9 +424,33 @@ has the following directory structure:
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
 \begin_inset Graphics
 	filename fig00.png
 	width 3cm
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
 
 \end_inset
 
@@ -437,10 +463,165 @@ where this document lives in the documentation/ folder.
 \end_layout
 
 \begin_layout Itemize
-data/ contains image data used in experiments.
- To change the image data used in experiments, 
+
+\series bold
+data/
+\series default
+ will contain CSV data files representing the user experience.
 \end_layout
 
+\begin_deeper
+\begin_layout Itemize
+If all goes well, a data file should automagically appear in the 
+\series bold
+data/
+\series default
+ folder, each time a survey/experiment is completed.
+\end_layout
+
+\begin_layout Itemize
+Upon completion of a survey/experiment, the client-side JavaScript code
+ submits (via util.js::xml_send()) a CSV data file to the web server, which
+ receives the data using CGI/Python (via xml-receive.py).
+\end_layout
+
+\begin_layout Itemize
+The CSV file is saved with a name reflecting the date/time when the file
+ was recorded, and a randomly-generated string to prevent 
+\begin_inset Quotes eld
+\end_inset
+
+collisions
+\begin_inset Quotes erd
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+images/
+\series default
+ contains image data used in experiments.
+ To change the image data used in experiments, the administrator should:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+upload new image data into the 
+\series bold
+images/
+\series default
+ folder, and
+\end_layout
+
+\begin_layout Itemize
+modify (an) experiment script(s) to reflect the filenames corresponding
+ to the new image files added.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+experiments/
+\series default
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+contains a number of sub-folders, one for each of the included examples:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+delay/
+\end_layout
+
+\begin_layout Itemize
+feedback/
+\end_layout
+
+\begin_layout Itemize
+instructions/
+\end_layout
+
+\begin_layout Itemize
+study-phase/
+\end_layout
+
+\begin_layout Itemize
+test-phase/
+\end_layout
+
+\begin_layout Itemize
+my-experiment/
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Each subfolder contains a file 
+\series bold
+memory.html
+\series default
+, which always has the contents:
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename fig01.png
+	width 8cm
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+To create your own experiment, we recommend editing the file 
+\series bold
+my-experiment.js
+\series default
+ within the 
+\series bold
+my-experiment/
+\series default
+ folder
+\end_layout
+
+\end_deeper
 \begin_layout Section
 
 \series bold
@@ -606,7 +787,7 @@ Sample Response Data
 \begin_layout Section
 
 \series bold
-Source Code
+Source Code: Client Side
 \end_layout
 
 \begin_layout Standard
@@ -872,6 +1053,42 @@ lstset{linewidth=
 textwidth}
 \backslash
 lstinputlisting{../util.js}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+
+\series bold
+Source Code: Server Side
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagebreak 
+\backslash
+subsection{xml-receive.py}
+\backslash
+ 
+\backslash
+ 
+\backslash
+lstset{language=Python} 
+\backslash
+lstset{linewidth=
+\backslash
+textwidth}
+\backslash
+lstinputlisting{../xml-receive.py}
 \end_layout
 
 \end_inset
