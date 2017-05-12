@@ -1,0 +1,883 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass amsart
+\begin_preamble
+\setlength{\parskip}{\medskipamount}
+\setlength{\parindent}{0pt}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{xcolor}
+\definecolor{darkgreen}{rgb}{0,0.3,0}
+\usepackage{listings}
+\usepackage{babel}
+%\usepackage{tocloft}
+\usepackage{hyperref}
+\usepackage{pdfpages}
+
+\def\us{\char`\_}
+ 
+
+\lstset{tabsize=2,frame=lines,keywordstyle=\color{blue},commentstyle=\color{darkgreen},stringstyle=\color{red},numbers=left,numberstyle=\tiny,numbersep=5pt,breaklines=false,showstringspaces=false,basicstyle=\footnotesize}
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\definecolor{listinggray}{gray}{0.9}
+\end_preamble
+\use_default_options false
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 1
+\use_package mhchem 0
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2.5cm
+\rightmargin 2.5cm
+\bottommargin 2.5cm
+\secnumdepth 2
+\tocdepth 5
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Recognition Memory Experiment Framework
+\end_layout
+
+\begin_layout Author
+
+\series bold
+Designers:
+\begin_inset Newline newline
+\end_inset
+
+M.
+ Rabe
+\series default
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+href{mailto:mmrabe@uvic.ca}{
+\end_layout
+
+\end_inset
+
+mmrabe@uvic.ca
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\series bold
+
+\begin_inset Newline newline
+\end_inset
+
+Dr.
+ S.
+ Lindsay 
+\series default
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+href{slindsay@uvic.ca}{
+\end_layout
+
+\end_inset
+
+slindsay@uvic.ca
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\series bold
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Developer:
+\begin_inset Newline newline
+\end_inset
+
+A.
+ Richardson
+\begin_inset Newline newline
+\end_inset
+
+
+\series default
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+href{mailto:richardson.ashlin@gmail.com}{
+\end_layout
+
+\end_inset
+
+richardson.ashlin@gmail.com
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset space \space{}
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Institution:
+\begin_inset Newline newline
+\end_inset
+
+
+\series default
+University of Victoria
+\end_layout
+
+\begin_layout Date
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+today
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+
+\series bold
+Overview
+\end_layout
+
+\begin_layout Standard
+An online framework for parametric generation of Recognition Memory experiments
+ to support researchers at the University of Victoria.
+\end_layout
+
+\begin_layout Standard
+The software is web based, self contained yet comprehensive, and reasonably
+ flexible.
+\end_layout
+
+\begin_layout Subsection
+Requirements
+\end_layout
+
+\begin_layout Subsubsection
+Server-side
+\end_layout
+
+\begin_layout Itemize
+Host:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+An ordinary web server with Python/CGI enabled, is required.
+\end_layout
+
+\begin_layout Itemize
+Note: the system was tested with server: Apache/2.2.23 (Unix).
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection
+Client-side
+\end_layout
+
+\begin_layout Itemize
+For experiment participants:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+A modern web browser (Firefox, Google Chrome, or Safari) on a desktop computer
+ is required.
+\end_layout
+
+\begin_layout Itemize
+Note: the system was tested with Chrome v.
+ 57.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+For administrators:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+An FTP program is required for uploading experiment scripts (and downloading
+ response data).
+\end_layout
+
+\begin_layout Itemize
+A text editor is required to edit experiment script files.
+\end_layout
+
+\end_deeper
+\begin_layout Section
+
+\series bold
+The System
+\end_layout
+
+\begin_layout Standard
+The system, which may be downloaded from
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://github.com/ashlinrichardson/m3m0ry/archive/master.zip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+has the following directory structure:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename fig00.png
+	width 3cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where this document lives in the documentation/ folder.
+ Additionally,
+\end_layout
+
+\begin_layout Itemize
+data/ contains image data used in experiments.
+ To change the image data used in experiments, 
+\end_layout
+
+\begin_layout Section
+
+\series bold
+The Examples
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagebreak 
+\backslash
+subsection{experiments/instructions}
+\backslash
+ 
+\backslash
+ 
+\backslash
+lstset{language=C} 
+\backslash
+lstset{linewidth=
+\backslash
+textwidth}
+\backslash
+lstinputlisting{../experiments/instructions/my-experiment.js}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagebreak 
+\backslash
+subsection{experiments/delay}
+\backslash
+ 
+\backslash
+ 
+\backslash
+lstset{language=C} 
+\backslash
+lstset{linewidth=
+\backslash
+textwidth}
+\backslash
+lstinputlisting{../experiments/delay/my-experiment.js}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagebreak 
+\backslash
+subsection{experiments/feedback}
+\backslash
+ 
+\backslash
+ 
+\backslash
+lstset{language=C} 
+\backslash
+lstset{linewidth=
+\backslash
+textwidth}
+\backslash
+lstinputlisting{../experiments/feedback/my-experiment.js}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagebreak 
+\backslash
+subsection{experiments/study-phase}
+\backslash
+ 
+\backslash
+ 
+\backslash
+lstset{language=C} 
+\backslash
+lstset{linewidth=
+\backslash
+textwidth}
+\backslash
+lstinputlisting{../experiments/study-phase/my-experiment.js}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagebreak 
+\backslash
+subsection{experiments/test-phase}
+\backslash
+ 
+\backslash
+ 
+\backslash
+lstset{language=C} 
+\backslash
+lstset{linewidth=
+\backslash
+textwidth}
+\backslash
+lstinputlisting{../experiments/test-phase/my-experiment.js}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+
+\series bold
+Sample Response Data
+\end_layout
+
+\begin_layout Section
+
+\series bold
+Source Code
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagebreak 
+\backslash
+subsection{egg-timer.js}
+\backslash
+ 
+\backslash
+ 
+\backslash
+lstset{language=C} 
+\backslash
+lstset{linewidth=
+\backslash
+textwidth}
+\backslash
+lstinputlisting{../egg-timer.js}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagebreak 
+\backslash
+subsection{key.js}
+\backslash
+ 
+\backslash
+ 
+\backslash
+lstset{language=C} 
+\backslash
+lstset{linewidth=
+\backslash
+textwidth}
+\backslash
+lstinputlisting{../key.js}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagebreak 
+\backslash
+subsection{main.js}
+\backslash
+ 
+\backslash
+ 
+\backslash
+lstset{language=C} 
+\backslash
+lstset{linewidth=
+\backslash
+textwidth}
+\backslash
+lstinputlisting{../main.js}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagebreak 
+\backslash
+subsection{memory.js}
+\backslash
+ 
+\backslash
+ 
+\backslash
+lstset{language=C} 
+\backslash
+lstset{linewidth=
+\backslash
+textwidth}
+\backslash
+lstinputlisting{../memory.js}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagebreak 
+\backslash
+subsection{pool.js}
+\backslash
+ 
+\backslash
+ 
+\backslash
+lstset{language=C} 
+\backslash
+lstset{linewidth=
+\backslash
+textwidth}
+\backslash
+lstinputlisting{../pool.js}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagebreak 
+\backslash
+subsection{state.js}
+\backslash
+ 
+\backslash
+ 
+\backslash
+lstset{language=C} 
+\backslash
+lstset{linewidth=
+\backslash
+textwidth}
+\backslash
+lstinputlisting{../state.js}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagebreak 
+\backslash
+subsection{task.js}
+\backslash
+ 
+\backslash
+ 
+\backslash
+lstset{language=C} 
+\backslash
+lstset{linewidth=
+\backslash
+textwidth}
+\backslash
+lstinputlisting{../task.js}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagebreak 
+\backslash
+subsection{text.js}
+\backslash
+ 
+\backslash
+ 
+\backslash
+lstset{language=C} 
+\backslash
+lstset{linewidth=
+\backslash
+textwidth}
+\backslash
+lstinputlisting{../text.js}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagebreak 
+\backslash
+subsection{util.js}
+\backslash
+ 
+\backslash
+ 
+\backslash
+lstset{language=C} 
+\backslash
+lstset{linewidth=
+\backslash
+textwidth}
+\backslash
+lstinputlisting{../util.js}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
