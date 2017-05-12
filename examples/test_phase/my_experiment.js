@@ -22,7 +22,7 @@ var my_experiment = function(){
   p.select(3, 3)
 
   /* set up `study phase': show selected portions of pool */
-  study_phase(p, 333)
+  study_phase(p, 111)
 
   /* some instructions before `test phase' */
   instructions('test phase coming up')
@@ -31,5 +31,5 @@ var my_experiment = function(){
   instructions('please press n if you did not see the image/word before')
  
   /* set up `test phase' (user input recorded for whole randomized pool) */
-  test_phase(p, 444)
+  test_phase(p, 333)
 }

@@ -1,26 +1,27 @@
-/* recognition memory experiment set-up. */
+/* recognition memory experiment set-up */
 
 var my_experiment = function(){
-  //set up some instruction slides..
+  
+  /*set up some instruction slides */
   instructions('study phase coming next:')
   instructions('please remember each word/image and press any key')
 
-  // set up a stimulus pool
+  /* set up a stimulus pool */
   var p = pool()
-  // add images to stimulus pool  
+  
+  /* add images to stimulus pool */  
   for(var i=0; i<10; i++){
     p.add(ctx.imgs[i])
   }
 
-  // add words to stimulus pool 
+  /* add words to stimulus pool */ 
   p.add('floccinaucinihilipilification')
   p.add('supercalifragilisticexpialidocious')
   p.add('umdiddlediddlediddleumdiddlei')
 
-  // select portion of items from stimulus pool
-  p.draw(5)  
+  /* select portion of items from stimulus pool */
+  p.select(3, 3)
 
-  // set up `study phase': show selected portions of pool
-  study_phase(p)
-
+  /* set up `study phase': show selected portions of pool */
+  study_phase(p, 111)
 }

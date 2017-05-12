@@ -1,3 +1,4 @@
+/* global counter for states/ AKA frames/ AKA slides */
 var state_id = -1
 
 function get_id(){
