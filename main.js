@@ -104,7 +104,9 @@ ctx.questions_correct = 0
 ctx.questions_total = 0
 
 /* load some image files: need to change if the image database changes */
-var n_imgs = 200;
+var n_imgs = 200
+
+/* load all of the image data */
 ctx.load_imgs = function (n_imgs){
 
   /* ideally would only load the ones used */
@@ -118,6 +120,8 @@ ctx.load_imgs = function (n_imgs){
   ctx.imgs = imgs
   return ctx.imgs
 }
+
+var n_imgs_loaded = 0
 var my_images = ctx.load_imgs(n_imgs)
 
 var next_task_id = 0;

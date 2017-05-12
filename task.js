@@ -75,6 +75,10 @@ function study_phase(my_pool, isi=0){
       x.trial_id = trial_index
       x.task_id = my_task_id
       x.set_pool_id(my_pool.pool_id)
+
+      /* the ASPECT about set_expiry/ key_expiry needs to go here.. */
+      /* ... */
+
     } /* for var i  in my_pool.selection_n */
   } /* for var a_pool in my_pools */
   
@@ -82,7 +86,7 @@ function study_phase(my_pool, isi=0){
 }
 
 /* test phase, formerly known as recognition task - for this phase, the random selection is shuffled back into the pool -- all elements from the pool are shown (feedback is recorded).. */
-function test_phase(my_pool, isi=false){
+function test_phase(my_pool, isi=0){
   var my_pools = []
   if(my_pool.is_pool){
     my_pools.push(my_pool)
