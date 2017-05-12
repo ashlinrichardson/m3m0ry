@@ -27,20 +27,17 @@ function study_phase(my_pool, isi=0){
     my_pools = my_pool
   }
 
-/* need ARRAY OF POOLS.... also need to specify parameters N,M 
-study_phase, test_phase constructor needs to take a single pool, or an array of pools…
-*/
   var trial_index = -1
   var my_task_id = next_task_id++
 
   /* record references to graphics context, and stimulus pool */
   this.ctx = ctx
   this.p = my_pools
-  this.pool_id = new Array()
+  this.pool_ids = new Array()
 
   for(var a_pool in my_pools){
     var my_pool = my_pools[a_pool]
-    this.pool_id.push(my_pool.pool_id)
+    this.pool_ids.push(my_pool.pool_id)
   
     /* iterate over selected elements of pool */
     for(var i  in my_pool.selection_n){
@@ -97,11 +94,11 @@ function test_phase(my_pool, isi=false){
 
   this.ctx = ctx
   this.p = my_pools
-  this.pool_id = new Array()
+  this.pool_ids = new Array()
   
   for(var a_pool in my_pools){
     var my_pool = my_pools[a_pool]
-    this.pool_id.push(my_pool.pool_id)
+    this.pool_ids.push(my_pool.pool_id)
 
     var trial_index = -1, shuffled_data = my_pool.reshuffle(), shuffled = shuffled_data[0], deja_vu = shuffled_data[1]
     for(var i in shuffled){
@@ -162,11 +159,13 @@ function feedback(txt, keys){
     console.log(i, keys[i])
     x.add_admissible_key(keys[i])
   }
+  x.type = 'feedback'
+  x.trial_id = 0
   x.task_id = my_task_id
 }
 
-/* list as many countries as possible during e.g., a 3-minute period */
-function delay_task(txt, delay_time){
+/* list as many countries as possible during e.g., a 3-minute period (default, 30s) */
+function delay_task(txt, delay_time=30000){
   var my_task_id = next_task_id++
 
   var y = instructions(txt)

@@ -207,7 +207,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
           message += my_stim.toString() + ","           /* stim_id */
           message += pi.toString() + ","                /* stimulus-pool id */
           if(state_i.deja){
-            message += state_i.deja.toString()
+            // message += state_i.deja.toString()
           }
           message += ","
           var response = ""
