@@ -1,5 +1,8 @@
+//alert("Loading images.. Please wait")
+
 abs_path = '../../'
-var history = [], canvas = document.getElementsByTagName("canvas")[0], ctx = canvas.getContext("2d")
+var history = []  // canvas = document.getElementsByTagName("canvas")[0]
+var ctx = canvas.getContext("2d")
 
 /* background color */
 document.bgColor = "#FFFFFF"
@@ -108,6 +111,8 @@ ctx.questions_total = 0
 /* this function sets up the experiment (according to the user function my_experiment)
 and we trigger this function after all the images have loaded. */
 function run_after_loading_images(){
+  console.log('run after loading images()')
+  //document.body.innerHTML = ""
 
   /* set up an experiment according to user specs/code */
   my_experiment(ctx)
@@ -140,7 +145,7 @@ var n_imgs_loaded = 0
 function load_img(fn){
   var img = new Image()
   img.onload = function(){
-    /* console.log('loaded image: ', fn) */
+    console.log('loaded image: ', fn)
     n_imgs_loaded += 1
     if(n_imgs_loaded == n_imgs){
 
@@ -155,7 +160,6 @@ function load_img(fn){
 
 /* load all of the image data */
 ctx.load_imgs = function(n_imgs){
-
   /* ideally would only load the ones used */
   var imgs = new Array()
   for(var i=1; i <= n_imgs; i++){

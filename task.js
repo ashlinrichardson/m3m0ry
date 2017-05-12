@@ -34,13 +34,25 @@ function study_phase(my_pool, isi=0){
   this.ctx = ctx
   this.p = my_pools
   this.pool_ids = new Array()
-
+  
+  var my_selection = new Array()
   for(var a_pool in my_pools){
     var my_pool = my_pools[a_pool]
     this.pool_ids.push(my_pool.pool_id)
-  
-    /* iterate over selected elements of pool */
     for(var i  in my_pool.selection_n){
+      my_selection.push([my_pool.selection_n[i], my_pool.pool_id])
+    }
+  }
+  shuffle(my_selection)
+  for(var selection_ind in my_selection){
+    var a_selection = my_selection[selection_ind]
+    
+    /* data (word or image) assigned to "trial" */
+    var data = a_selection[0] //my_pool.selection_n[i]
+    var p_id = a_selection[1]
+
+    /* iterate over selected elements of pool */
+    //for(var i  in my_pool.selection_n){
       trial_index ++
   
       /* if ISI was set, prefix with a "blank" slide */
@@ -62,9 +74,7 @@ function study_phase(my_pool, isi=0){
       /* need to add timed parameter to front-end API */
       x.set_expiry(0)
   
-      /* data (word or image) assigned to "trial" */
-      var data = my_pool.selection_n[i]
-      
+
       /* discern by image or word, respectively */
       if( typeof(data) === 'object'){
         x.img_stim = data   
@@ -74,13 +84,13 @@ function study_phase(my_pool, isi=0){
       x.type = 'study_phase'
       x.trial_id = trial_index
       x.task_id = my_task_id
-      x.set_pool_id(my_pool.pool_id)
+      x.set_pool_id(p_id)
 
       /* the ASPECT about set_expiry/ key_expiry needs to go here.. */
       /* ... */
 
     } /* for var i  in my_pool.selection_n */
-  } /* for var a_pool in my_pools */
+  //} /* for var a_pool in my_pools */
   
   return this
 }
@@ -100,13 +110,33 @@ function test_phase(my_pool, isi=0){
   this.ctx = ctx
   this.p = my_pools
   this.pool_ids = new Array()
-  
+
+  var my_selection = new Array()
+  for(var a_pool in my_pools){
+    var my_pool = my_pools[a_pool]
+    this.pool_ids.push(my_pool.pool_id)
+    var trial_index = -1, shuffled_data = my_pool.reshuffle(), shuffled = shuffled_data[0], deja_vu = shuffled_data[1]
+    for(var i  in my_pool.selection_n){
+      my_selection.push([shuffled[i], my_pool.pool_id, deja_vu[i]])
+    }
+  }
+  shuffle(my_selection)
+
+for(var selection_ind in my_selection){
+    var a_selection = my_selection[selection_ind]
+
+    var data = a_selection[0] //my_pool.selection_n[i]
+    var p_id = a_selection[1]
+    var deja = a_selection[2]
+
+/*  
   for(var a_pool in my_pools){
     var my_pool = my_pools[a_pool]
     this.pool_ids.push(my_pool.pool_id)
 
     var trial_index = -1, shuffled_data = my_pool.reshuffle(), shuffled = shuffled_data[0], deja_vu = shuffled_data[1]
     for(var i in shuffled){
+*/
       trial_index ++
   
       /* if ISI was set, prefix with a "blank" slide */
@@ -117,7 +147,7 @@ function test_phase(my_pool, isi=0){
         x.wrd_stim = ""
         x.trial_id = trial_index
         x.task_id = my_task_id
-        x.set_pool_id(my_pool.pool_id)
+        x.set_pool_id(p_id)
         x.clear_admissible_keys()
         x.key_expiry = false
       }
@@ -125,7 +155,7 @@ function test_phase(my_pool, isi=0){
       var x = new state()
       x.set_expiry(0)
       x.key_required = true
-      var data = shuffled[i], deja = deja_vu[i]
+// var data = shuffled[i], deja = deja_vu[i]
 
       /* record within the object: do we have deja-vu? */    
       x.deja = deja
@@ -139,9 +169,9 @@ function test_phase(my_pool, isi=0){
       x.type = 'test_phase'
       x.trial_id = trial_index
       x.task_id = my_task_id 
-      x.set_pool_id(my_pool.pool_id)
+      x.set_pool_id(p_id)
     }
-  }
+  //}
   var m = 'Thank you for completing this section. '
   var end = instructions(m)
   

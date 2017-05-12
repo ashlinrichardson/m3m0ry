@@ -8,7 +8,7 @@ function get_id(){
 
 /* reference to 2d canvas graphics context */
 function get_ctx(){
-  return document.getElementsByTagName("canvas")[0].getContext("2d"); 
+  return canvas.getContext("2d") //document.getElementsByTagName("canvas")[0].getContext("2d"); 
 }
 
 /* state: generic object representing trial (like a card in "hypercard") */

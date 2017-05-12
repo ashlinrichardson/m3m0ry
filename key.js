@@ -14,7 +14,7 @@ function keyboard_module(){
     var unicode = unicode_from_key_event(e), key =  String.fromCharCode(unicode)
     key_unicode[unicode] = true
   
-    console.log("unicode", unicode)
+    // console.log("unicode", unicode)
     
     /* ignore caps-lock key */
     if(unicode == 20){

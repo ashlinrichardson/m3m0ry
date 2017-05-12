@@ -3,9 +3,6 @@ function sleep(ms){
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 
-/* cr34t3 a c4nv4s wh3r3 th3 m4g1c h4pp3ns */
-var canvas = document.createElement('canvas')
-document.body.appendChild(canvas)
 var js_added = 0
 deps = []
 
