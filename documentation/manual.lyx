@@ -524,12 +524,15 @@ images/
 \begin_layout Itemize
 modify (an) experiment script(s) to reflect the filenames corresponding
  to the new image files added.
-\begin_inset Newline newline
-\end_inset
-
-
 \end_layout
 
+\begin_deeper
+\begin_layout Itemize
+This is slightly technical, unless the image data obeys the usual numbered
+ file-name convention.
+\end_layout
+
+\end_deeper
 \end_deeper
 \begin_layout Itemize
 
@@ -1147,5 +1150,29 @@ lstinputlisting{../xml-receive.py}
 
 \end_layout
 
+\begin_layout Section
+
+\series bold
+Recommendations For Further Work
+\end_layout
+
+\begin_layout Standard
+Here's a short point-form list of possible improvements to the software:
+\end_layout
+
+\begin_layout Itemize
+Smarter image loading
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Only load the images that are actually used in the experiment
+\end_layout
+
+\begin_layout Itemize
+Automagically detect available images from folder
+\end_layout
+
+\end_deeper
 \end_body
 \end_document
