@@ -154,7 +154,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
 
         /* go through all the states and record (in string format) the contents, as we'd like it to appear on the server */
         var state_i = ctx.first_state, state_index = 0
-        var message = "event_id,task_id,task_type,trial_id,duration(mS),start(yyyy:mm:dd:hh:mn:ss:mls),end(yyyy:mm:dd:hh:mn:ss:mls),isi,set,stim_type,stim_id,stim_pool_id,deja,response\n"
+        var message = "event_id,task_id,task_type,trial_id,duration(mS),start(yyyy:mm:dd:hh:mn:ss:mls),end(yyyy:mm:dd:hh:mn:ss:mls),isi,set,stim_type,stim_id,stim_pool_id,response\n"
         var pi;
         for(var state_i = ctx.first_state; state_i != ctx.last_state; state_i = state_i.successor){
           var stim_type = null;
@@ -203,10 +203,6 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
           message += stim_type.toString() + ","         /* stim_type */
           message += my_stim.toString() + ","           /* stim_id */
           message += pi.toString() + ","                /* stimulus-pool id */
-          if(state_i.deja){
-            // message += state_i.deja.toString()
-          }
-          message += ","
           var response = ""
           for(var k in state_i.key_strokes){
             response += String.fromCharCode(state_i.key_strokes[k])
