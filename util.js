@@ -78,7 +78,7 @@ function xml_send(s, xml_receive_script_url){
   xhr.send(data)
 }
 
-/* Shuffles array in place, via http://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array 
+/* Shuffle array in place, via http://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array 
  * @param {Array} a items The array containing the items. */
 function shuffle(a) {
   var j, x, i
@@ -89,8 +89,3 @@ function shuffle(a) {
     a[j] = x
   }
 }
-
-var myArray = ['1','2','3','4','5','6','7','8','9'];
-console.log(myArray);
-shuffle(myArray);
-console.log(myArray);
