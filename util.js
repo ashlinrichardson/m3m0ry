@@ -6,6 +6,9 @@ function date_time(){
 /* load image data */
 function load_img(fn){
   var img = new Image()
+  img.onload = function(){
+    console.log('loaded image: ', fn)
+  } 
   img.src = fn 
   return img
 }
