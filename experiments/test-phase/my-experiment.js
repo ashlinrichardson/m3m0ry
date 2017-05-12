@@ -1,5 +1,4 @@
 /* recognition memory experiment set-up */
-
 var my_experiment = function(){
 
   /* set up some instruction slides */

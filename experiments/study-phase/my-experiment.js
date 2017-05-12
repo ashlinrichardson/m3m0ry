@@ -1,5 +1,4 @@
 /* recognition memory experiment set-up */
-
 var my_experiment = function(){
   
   /*set up some instruction slides */
@@ -10,7 +9,7 @@ var my_experiment = function(){
   var p = pool()
   
   /* add images to stimulus pool */  
-  for(var i=0; i<10; i++){
+  for(var i = 0; i < 10; i++){
     p.add(ctx.imgs[i])
   }
 
