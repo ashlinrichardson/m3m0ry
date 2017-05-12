@@ -19,7 +19,7 @@ function instructions(txt){
 }
 
 /* study phase, formerly known as orientation task: multiple `trials' / events occur here.. random selection of inputs... (for the test phase, the random selection is shuffled back into the pool).. */
-function study_phase(my_pool, isi=0){
+function study_phase(my_pool, isi=0, time_limit=0){
   var my_pools = []
   if(my_pool.is_pool){
     my_pools.push(my_pool)
@@ -72,7 +72,16 @@ function study_phase(my_pool, isi=0){
       var x = new state()
       
       /* need to add timed parameter to front-end API */
-      x.set_expiry(0)
+      //x.set_expiry(0)
+
+      if(time_limit <= 0){
+        x.set_expiry(0)
+        x.key_required = false;// true
+      }else{
+        x.set_expiry(time_limit)
+        x.key_required = false;// true // false
+      }
+
   
 
       /* discern by image or word, respectively */
@@ -96,7 +105,7 @@ function study_phase(my_pool, isi=0){
 }
 
 /* test phase, formerly known as recognition task - for this phase, the random selection is shuffled back into the pool -- all elements from the pool are shown (feedback is recorded).. */
-function test_phase(my_pool, isi=0){
+function test_phase(my_pool, isi=0, time_limit=0){
   var my_pools = []
   if(my_pool.is_pool){
     my_pools.push(my_pool)
@@ -153,8 +162,13 @@ for(var selection_ind in my_selection){
       }
 
       var x = new state()
-      x.set_expiry(0)
-      x.key_required = true
+      if(time_limit <= 0){
+        x.set_expiry(0)
+        x.key_required = true
+      }else{
+        x.set_expiry(time_limit)
+        x.key_required = true //false
+      }
 // var data = shuffled[i], deja = deja_vu[i]
 
       /* record within the object: do we have deja-vu? */    
@@ -204,11 +218,11 @@ function delay_task(txt, delay_time=30000){
   var my_task_id = next_task_id++
 
   var y = instructions(txt)
+  y.set_expiry(5000)
   y.key_expiry = true
-  y.set_expiry(500)
 
   /* keypress activated with minimum time */
-  y.hold_on()
+  //y.hold_on()
 
   /* time [mS] */
   var thirty_seconds = 30000, x = new state()

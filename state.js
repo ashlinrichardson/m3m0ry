@@ -13,7 +13,7 @@ function get_ctx(){
 
 /* state: generic object representing trial (like a card in "hypercard") */
 function state(expiry_ms  =     0,  /* max. presentation time (mS) */  
-               key_expiry =  true,  /* expiry by key-press (true <--> on) */
+               key_expiry =  true,  /* force expiry by key-press (true <--> on) */
                intvl_ms   =     0,  /* interval btwn stimuli.. (ISI) `blank slide' */
                img_idx    =    -1,  /* image data (if any) */
                txt    =    null,  /* text data (if any) */
@@ -26,7 +26,10 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
   this.hold_on = function(){
     this.hold = true
   }
+
   this.id = get_id()
+
+  /* is a key-press required to transition? */
   this.key_required = false
   
   /* array to store admissible key-codes for data entry or transition to next "slide" */
@@ -201,7 +204,10 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
             message += state_i.expiry_ms.toString()
           }
           message += ","                                /* ISI */
-          message += ","                                /* SET */
+          if(! state_i.expiry_ms){
+            state_i.expiry_ms = ""
+          }
+          message += state_i.expiry_ms.toString() + ","                                /* SET */
           message += stim_type.toString() + ","         /* stim_type */
           message += my_stim.toString() + ","           /* stim_id */
           message += pi.toString() + ","                /* stimulus-pool id */

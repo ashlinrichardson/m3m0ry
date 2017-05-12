@@ -8,7 +8,7 @@ function date_time(){
 }
 
 /* seed for rand() below */
-var seed = 777
+var seed = 5
 
 /*random-number generator http://indiegamr.com/generate-repeatable-random-numbers-in-js/ : initial seed.. in order to work 'Math.seed' must NOT be undefined, so in any case, you HAVE to provide a Math.seed */
 function rand(max, min) {

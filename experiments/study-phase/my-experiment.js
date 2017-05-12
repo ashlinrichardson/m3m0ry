@@ -19,8 +19,8 @@ var my_experiment = function(){
   p.add('umdiddlediddlediddleumdiddlei')
 
   /* select portion of items from stimulus pool */
-  p.select(3, 3)
+  p.select(2, 2)
 
   /* set up `study phase': show selected portions of pool */
-  study_phase(p, 111)
+  study_phase(p, 111, 3000)
 }

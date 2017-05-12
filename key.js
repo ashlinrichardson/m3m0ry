@@ -28,7 +28,7 @@ function keyboard_module(){
 
     /* record key press, if admissible */
     var admissible_keys = now.get_admissible_keys()
-    if(admissible_keys.includes(unicode)){
+    if(admissible_keys.includes(unicode) || now.type == 'delay'){
       now.record_key_stroke(unicode)
     }
 
@@ -60,9 +60,10 @@ function keyboard_module(){
           }
         }
       }else{ 
-
-        /* block if a key was required but the one entered was not admissible */
-        go = false
+        //if(now.key_expiry == true){
+          /* block if a key was required but the one entered was not admissible */
+          go = false
+       // }
       }
     }
     if(now.ding==false && now.hold==true){

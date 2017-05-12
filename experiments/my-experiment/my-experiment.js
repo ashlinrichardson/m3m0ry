@@ -32,9 +32,9 @@ var my_experiment = function(){
 
   /* selection from stimulus pool (parameters are N, M) */
   console.log('p1.select()')
-  p1.select(2, 3)
+  p1.select(2, 2)
   console.log('p2.select()')
-  p2.select(2, 3)
+  p2.select(2, 2)
   console.log('two pools')
 
   /* need to bundle the two pools together, into an array */
@@ -50,5 +50,5 @@ var my_experiment = function(){
   instructions('please press n if you did not see the image/word before')
  
   /* set up `test phase' (user input recorded for whole randomized pool) */
-  test_phase(two_pools, 333)
+  test_phase(two_pools, 1000, 2000)
 }
