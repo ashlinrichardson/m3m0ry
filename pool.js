@@ -4,7 +4,6 @@ function pool(){
   this.is_pool = true
   this.pool_id = next_pool_id
   next_pool_id += 1
-  console.log("pool id" + this.pool_id.toString())
   this.ctx = ctx
   this.stimuli = new Array()
 

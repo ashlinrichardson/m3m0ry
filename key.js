@@ -16,10 +16,10 @@ function keyboard_module(){
     
     /* ignore caps-lock key */
     if(unicode == 20){
+    
+      /* enable this line to debug key codes: console.log("unicode", unicode) */
       return
     }
-    
-    /* enable this line to debug key codes: console.log("unicode", unicode) */
 
     /* when are we? */
     var now = ctx.get_state() 

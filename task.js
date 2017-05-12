@@ -156,7 +156,6 @@ function feedback(txt, keys){
   x.key_required = true
   x.clear_admissible_keys()
   for(var i in keys){
-    console.log(i, keys[i])
     x.add_admissible_key(keys[i])
   }
   x.type = 'feedback'

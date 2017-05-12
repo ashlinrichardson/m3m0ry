@@ -83,7 +83,6 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
   }
   this.predecessor = ctx.last_new_state;
   var id = this.predecessor == null ? -1 : this.predecessor.id 
-  console.log(this.id, 'predecessor=', id, this.predecessor)
   ctx.last_new_state = this
   if(this.predecessor != null){
     this.predecessor.set_successor(this)
@@ -158,13 +157,11 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
         var message = "event_id,task_id,task_type,trial_id,duration(mS),start(yyyy:mm:dd:hh:mn:ss:mls),end(yyyy:mm:dd:hh:mn:ss:mls),isi,set,stim_type,stim_id,stim_pool_id,deja,response\n"
         var pi;
         for(var state_i = ctx.first_state; state_i != ctx.last_state; state_i = state_i.successor){
-          console.log('*** statei', state_i)
           var stim_type = null;
           var my_stim  = null;
     
           /* the right way to check if a variable is undefined or not */
           if(typeof state_i.pool_id !== 'undefined'){
-            console.log('*** poolid', state_i.pool_id)
             pi = JSON.parse(JSON.stringify(state_i.pool_id))
           }else{
             pi = ""
@@ -277,7 +274,6 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
       if(this.successor.successor == null){
       }
     }
-    console.log(this)
     /* record data to csv-line record (global) here..? */
     
   }
