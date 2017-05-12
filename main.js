@@ -153,7 +153,6 @@ function load_img(fn){
   return img
 }
 
-
 /* load all of the image data */
 ctx.load_imgs = function(n_imgs){
 
@@ -169,8 +168,8 @@ ctx.load_imgs = function(n_imgs){
   return ctx.imgs
 }
 
+/* keep track of the "task-index" as the experiment is intialized */
+var next_task_id = 0
+
+/* this line "makes everything go" */
 var my_images = ctx.load_imgs(n_imgs)
-var next_task_id = 0;
-
-
-
