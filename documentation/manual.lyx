@@ -668,6 +668,18 @@ The Examples
 \end_layout
 
 \begin_layout Standard
+Need to add
+\end_layout
+
+\begin_layout Standard
+x.set_expiry(delay_time)
+\end_layout
+
+\begin_layout Standard
+x.key_expiry = false 
+\end_layout
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
