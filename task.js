@@ -116,7 +116,7 @@ function test_phase(my_pool, isi=0){
     var my_pool = my_pools[a_pool]
     this.pool_ids.push(my_pool.pool_id)
     var trial_index = -1, shuffled_data = my_pool.reshuffle(), shuffled = shuffled_data[0], deja_vu = shuffled_data[1]
-    for(var i  in my_pool.selection_n){
+    for(var i  in shuffled){
       my_selection.push([shuffled[i], my_pool.pool_id, deja_vu[i]])
     }
   }

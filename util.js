@@ -87,7 +87,7 @@ function xml_send(s, xml_receive_script_url){
 function shuffle(a) {
   var j, x, i
   for(i = a.length; i; i--){
-    j = Math.floor(Math.random() * i)
+    j = Math.floor(Math.random() * i)  // j = rand(0, i)
     x = a[i - 1]
     a[i - 1] = a[j]
     a[j] = x
