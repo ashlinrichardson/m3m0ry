@@ -88,9 +88,11 @@ window.onload = function(){
 
 /* set up timer to coordinate transitions between trials */
 ctx.egg_timer = egg_timer
+
 ctx.clear_tmr = function(){
   ctx.egg_timer.cancel()
 }
+
 ctx.init_tmr = function(t_ms){
   ctx.egg_timer.setup(t_ms)
 }
@@ -103,11 +105,57 @@ ctx.first_new_state = null
 ctx.questions_correct = 0
 ctx.questions_total = 0
 
+/* this function sets up the experiment (according to the user function my_experiment)
+and we trigger this function after all the images have loaded. */
+function run_after_loading_images(){
+
+  /* set up an experiment according to user specs/code */
+  my_experiment(ctx)
+  
+  /* in this part, we should record only the images that we actually need */
+  
+  instructions('thank you')
+  
+  ctx.last_state = ctx.last_new_state
+  ctx.first_state = ctx.first_new_state
+  
+  /* start at the very beginning, it's a very good place to start.. */
+  ctx.set_state(ctx.first_state)
+  
+  /* respond to keyboard events */
+  key_unicode = keyboard_module()
+  
+  /* start "stopwatch" */
+  ctx.t0 = window.performance.now()
+
+  /* go */
+  ctx.get_state().start()
+}
+
 /* load some image files: need to change if the image database changes */
 var n_imgs = 200
+var n_imgs_loaded = 0
+
+/* load image data */
+function load_img(fn){
+  var img = new Image()
+  img.onload = function(){
+    /* console.log('loaded image: ', fn) */
+    n_imgs_loaded += 1
+    if(n_imgs_loaded == n_imgs){
+
+      /* proceed to init the experiment, after all images loaded.. */
+      run_after_loading_images()
+    }
+  } 
+  /* load the image */
+  img.src = fn 
+  return img
+}
+
 
 /* load all of the image data */
-ctx.load_imgs = function (n_imgs){
+ctx.load_imgs = function(n_imgs){
 
   /* ideally would only load the ones used */
   var imgs = new Array()
@@ -121,33 +169,8 @@ ctx.load_imgs = function (n_imgs){
   return ctx.imgs
 }
 
-var n_imgs_loaded = 0
 var my_images = ctx.load_imgs(n_imgs)
-
 var next_task_id = 0;
 
-/* set up an experiment according to user specs/code */
-my_experiment(ctx)
 
-/* in this part, we should record only the images that we actually need */
 
-instructions('thank you')
-
-/* put the image loading in here.. */
-
-/* once those are done, trigger this next part: */
-
-ctx.last_state = ctx.last_new_state
-ctx.first_state = ctx.first_new_state
-
-/* start at the very beginning, it's a very good place to start.. */
-ctx.set_state(ctx.first_state)
-
-/* respond to keyboard events */
-key_unicode = keyboard_module()
-
-/* start "stopwatch" */
-ctx.t0 = window.performance.now()
-
-/* go */
-ctx.get_state().start()

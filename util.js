@@ -3,16 +3,6 @@ function date_time(){
   return new Date()
 }
 
-/* load image data */
-function load_img(fn){
-  var img = new Image()
-  img.onload = function(){
-    console.log('loaded image: ', fn)
-  } 
-  img.src = fn 
-  return img
-}
-
 /* seed for rand() below */
 var seed = 5
 
