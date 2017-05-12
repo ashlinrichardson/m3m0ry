@@ -129,7 +129,13 @@ var next_task_id = 0;
 /* set up an experiment according to user specs/code */
 my_experiment(ctx)
 
+/* in this part, we should record only the images that we actually need */
+
 instructions('thank you')
+
+/* put the image loading in here.. */
+
+/* once those are done, trigger this next part: */
 
 ctx.last_state = ctx.last_new_state
 ctx.first_state = ctx.first_new_state
