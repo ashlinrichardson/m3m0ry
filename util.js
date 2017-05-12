@@ -74,14 +74,14 @@ function trim(s){
   return s.toString().replace(/^\s\s*/,'').replace(/\s\s*$/,'')
 }
 
-/* send text format data (string s) via XML to receive script at url (string): xml_receive_script_url  */
-function xml_send(s, xml_receive_script_url){
+/* send text format data (string s) via XML to receive script at url (string): xml-receive_script_url  */
+function xml_send(s, xml-receive_script_url){
 
   /* xml http request object */
   var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP")
   var data = new FormData()
   data.append("data", s)
-  xhr.open( 'post', xml_receive_script_url, true)
+  xhr.open( 'post', xml-receive_script_url, true)
   xhr.send(data)
 }
 

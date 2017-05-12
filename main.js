@@ -84,12 +84,12 @@
   }
 
   /* set up timer to coordinate transitions between trials */
-  ctx.egg_timer = egg_timer
+  ctx.egg-timer = egg-timer
   ctx.clear_tmr = function(){
-    ctx.egg_timer.cancel() 
+    ctx.egg-timer.cancel() 
   }
   ctx.init_tmr = function(t_ms){
-    ctx.egg_timer.setup(t_ms)
+    ctx.egg-timer.setup(t_ms)
   }
 
   /* initialize reference to first and most-recently-initialized trials */

@@ -28,10 +28,10 @@ function add_js(fn){
 }
 
 /* c411 411 th3 ch1ldr3n */
-dependencies = ['text', 'key', 'util', 'task', 'pool', 'state', 'egg_timer']
+dependencies = ['text', 'key', 'util', 'task', 'pool', 'state', 'egg-timer']
 for(var d in dependencies){
   deps.push('../../' + dependencies[d])
 }
-deps.push('my_experiment')
+deps.push('my-experiment')
 deps.push('../../main')
 add_js(deps[0], '')

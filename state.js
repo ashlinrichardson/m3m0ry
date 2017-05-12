@@ -218,10 +218,10 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
         /* window.location.href == http://domain/memory/examples/test_phase/memory.html */
         var href = window.location.href
 
-        /* remove last three elements from the array: take the page and navigate to: ../../xml_receive.py == http://domain/memory/xml_receive.py */
+        /* remove last three elements from the array: take the page and navigate to: ../../xml-receive.py == http://domain/memory/xml-receive.py */
         var words = href.split('/') 
         var nwords = words.length
-        var target = words.splice(0, nwords-3).join('/') + '/xml_receive.py'
+        var target = words.splice(0, nwords-3).join('/') + '/xml-receive.py'
 
         /* send the message to the server-side script at URL: target */
         xml_send(message, target)    
