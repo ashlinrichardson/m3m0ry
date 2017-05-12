@@ -43,6 +43,7 @@ function study_phase(my_pool, isi=0){
     for(var i  in my_pool.selection_n){
       trial_index ++
   
+      /* if ISI was set, prefix with a "blank" slide */
       if(isi > 0){
         var x = new state()
         x.set_expiry(isi)
@@ -104,6 +105,7 @@ function test_phase(my_pool, isi=false){
     for(var i in shuffled){
       trial_index ++
   
+      /* if ISI was set, prefix with a "blank" slide */
       if(isi > 0){
         var x = new state()
         x.set_expiry(isi)
