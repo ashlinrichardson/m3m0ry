@@ -23,7 +23,7 @@ var my_experiment = function(){
   y.set_expiry(5000)
   y.key_expiry = true
 
-
+  /* instruction slide */
   instructions('this is a normal instructions slide (press any key to continue)')
 
 }

@@ -1,7 +1,7 @@
 /* recognition memory experiment set-up */
 var my_experiment = function(){
   
-  /*set up some instruction slides */
+  /* instructions */
   instructions('study phase coming next:')
   instructions('please remember each word/image and press any key')
 
