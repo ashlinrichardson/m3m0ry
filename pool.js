@@ -50,7 +50,7 @@ function pool(){
       console.log('error: n-selection already made from this pool.')
       return null
     }
-    var n = parseInt(get_n())
+    var n = parseInt(this.get_n())
     if(n > this.stimuli.length){
       console.log('error: n > this.stimuli.length')
       return null
@@ -74,7 +74,7 @@ function pool(){
       console.log('error: m-selection already made from this pool.')
       return null
     }
-    var m = parseInt(get_m())
+    var m = parseInt(this.get_m())
     if(m > this.stimuli.length){
       console.log('error: m > this.stimuli.length')
       return null
