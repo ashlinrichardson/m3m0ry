@@ -16,8 +16,8 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
                key_expiry =  true,  /* force expiry by key-press (true <--> on) */
                intvl_ms   =     0,  /* interval btwn stimuli.. (ISI) `blank slide' */
                img_idx    =    -1,  /* image data (if any) */
-               txt    =    null,  /* text data (if any) */
-               successor = null){
+               txt        =  null,  /* text data (if any) */
+               successor  =  null){
   this.action = null
   this.ding = false
   var ctx = get_ctx()
@@ -58,10 +58,12 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
     this.pool_id = pid
   }
   this.get_pool_id = function(){  
-    if(this.pool_id)
+    if(this.pool_id){
       return this.pool_id
-    else
+    }
+    else{
       return ""
+    }
   }
 
   /* keep a reference to this state, if it's the first one ever.. */
@@ -88,6 +90,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
   this.predecessor = ctx.last_new_state;
   var id = this.predecessor == null ? -1 : this.predecessor.id 
   ctx.last_new_state = this
+  
   if(this.predecessor != null){
     this.predecessor.set_successor(this)
   }
@@ -125,8 +128,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
     }
 
     /* might need the wrap_text back on for long strings.. */
-    if(this.wrd_stim!=null){
-      // wrap_text(this.wrd_stim, ctx, ctx.h()/2);
+    if(this.wrd_stim!=null){  // wrap_text(this.wrd_stim, ctx, ctx.h()/2);
 
       /* no wrap */
       centre_text(this.wrd_stim)
@@ -161,8 +163,8 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
         var message = "url,event_id,task_id,task_type,trial_id,duration(mS),start(yyyy:mm:dd:hh:mn:ss:mls),end(yyyy:mm:dd:hh:mn:ss:mls),isi,set,stim_type,stim_id,stim_pool_id,response\n"
         var pi;
         for(var state_i = ctx.first_state; state_i != ctx.last_state; state_i = state_i.successor){
-          var stim_type = null;
-          var my_stim  = null;
+          var stim_type = null
+          var my_stim  = null
     
           /* the right way to check if a variable is undefined or not */
           if(typeof state_i.pool_id !== 'undefined'){
@@ -207,7 +209,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
           if(! state_i.expiry_ms){
             state_i.expiry_ms = ""
           }
-          message += state_i.expiry_ms.toString() + ","                                /* SET */
+          message += state_i.expiry_ms.toString() + "," /* SET */
           message += stim_type.toString() + ","         /* stim_type */
           message += my_stim.toString() + ","           /* stim_id */
           message += pi.toString() + ","                /* stimulus-pool id */

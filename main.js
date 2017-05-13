@@ -1,7 +1,5 @@
-//alert("Loading images.. Please wait")
-
 abs_path = '../../'
-var history = []  // canvas = document.getElementsByTagName("canvas")[0]
+var history = []
 var ctx = canvas.getContext("2d")
 
 /* background color */
@@ -80,8 +78,9 @@ window.onresize = function(event){
 function update(){
   resize()
   var now = ctx.get_state()
-  if(now != null)
+  if(now != null){
     now.show(ctx)
+  }
 }
 
 /* "in" hook: plot the current trial */

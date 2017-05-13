@@ -238,10 +238,10 @@ function feedback(txt, keys){
 }
 
 /* list as many countries as possible during e.g., a 3-minute period (default, 30s) */
-function delay_task(txt, delay_time=30000){
+function delay_task(txt, delay_time=30000, isi_=500){
   var my_task_id = next_task_id++
 
-  var isi = 500  // mS
+  var isi = parseInt(isi_)  // 500  // mS
   /* if ISI was set, prefix with a "blank" slide */
   if(isi > 0){
     var x = new state()
@@ -254,23 +254,17 @@ function delay_task(txt, delay_time=30000){
     x.key_expiry = false
   }
 
-
   var y = instructions(txt)
-  //y.set_expiry(0) //5000)
-  //y.key_expiry = true
-
-  /* keypress activated with minimum time */
-  //y.hold_on()
   if(true){
-  /* time [mS] */
-  var thirty_seconds = 30000
-  var x = new state()
-  x.set_expiry(delay_time)
-  x.key_expiry = false
-  x.txt = '' 
-  x.type = 'delay'
-  x.trial_id = 0
-  x.task_id = my_task_id
+    /* time [mS] */
+    var thirty_seconds = 30000
+    var x = new state()
+    x.set_expiry(delay_time)
+    x.key_expiry = false
+    x.txt = '' 
+    x.type = 'delay'
+    x.trial_id = 0
+    x.task_id = my_task_id
   }
   return this;
 }

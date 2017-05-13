@@ -6,7 +6,7 @@ function sleep(ms){
 var js_added = 0
 deps = []
 
-/*  j4v4scr1pt 4n4l0g 0f 1nclud3 st4t3m3nt */
+/* j4v4scr1pt 4n4l0g 0f 1nclud3 st4t3m3nt */
 function add_js(fn){
   var body = document.getElementsByTagName('body')[0], s = document.createElement('script')
   s.async = false

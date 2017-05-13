@@ -13,9 +13,8 @@ var egg_timer = {
     this.timeoutID = window.setTimeout(function(){ 
         var now = ctx.get_state()
         var id = now.id
-        console.log('ding from now(): id', id, "now.expiry_ms", now.expiry_ms )
         now.ding = true
-        if(now.key_expiry ==false || now.expiry_ms > 0){
+        if(now.key_expiry == false || now.expiry_ms > 0){
           now.expire()
         }
     }.bind(this), t_ms)
