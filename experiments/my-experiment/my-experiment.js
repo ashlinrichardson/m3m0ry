@@ -41,7 +41,7 @@ var my_experiment = function(){
   var two_pools = [p1, p2]
 
   /* set up `study phase': show selected portions of pool */
-  study_phase(two_pools, 111)
+  study_phase(two_pools, 111, 2000)
 
   /* some instructions before `test phase' */
   instructions('test phase coming up')

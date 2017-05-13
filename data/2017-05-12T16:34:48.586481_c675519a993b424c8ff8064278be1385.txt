@@ -1,8 +1,0 @@
-url,event_id,task_id,task_type,trial_id,duration(mS),start(yyyy:mm:dd:hh:mn:ss:mls),end(yyyy:mm:dd:hh:mn:ss:mls),isi,set,stim_type,stim_id,stim_pool_id,response
-http://ashlinrichardson.com/memory/experiments/delay/memory.html,0,0,instructions,0,1147.1,2017:50:12:15:34:25:905,2017:50:12:15:34:27:520,,,,,,
-http://ashlinrichardson.com/memory/experiments/delay/memory.html,1,2,instructions,0,540.6,2017:50:12:15:34:27:520,2017:50:12:15:34:27:593,,5000,,,,
-http://ashlinrichardson.com/memory/experiments/delay/memory.html,2,1,delay,0,5004.5,2017:50:12:15:34:27:593,2017:50:12:15:34:32:597,,5000,,,,WHAT IS GOIN 
-http://ashlinrichardson.com/memory/experiments/delay/memory.html,3,3,instructions,0,704.3,2017:50:12:15:34:32:597,2017:50:12:15:34:33:301,,,,,,
-http://ashlinrichardson.com/memory/experiments/delay/memory.html,4,5,instructions,0,1563.7,2017:50:12:15:34:33:302,2017:50:12:15:34:34:865,,5000,,,,
-http://ashlinrichardson.com/memory/experiments/delay/memory.html,5,4,delay,0,10005.7,2017:50:12:15:34:34:865,2017:50:12:15:34:44:871,,10000,,,, ASDLFKJ ASDFLKJ ASDFLKJ AWLESFJ  
-http://ashlinrichardson.com/memory/experiments/delay/memory.html,6,6,instructions,0,3552.4,2017:50:12:15:34:44:871,2017:50:12:15:34:48:423,,,,,,
