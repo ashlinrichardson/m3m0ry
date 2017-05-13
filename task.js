@@ -217,20 +217,36 @@ function feedback(txt, keys){
 function delay_task(txt, delay_time=30000){
   var my_task_id = next_task_id++
 
+  var isi = 500  // mS
+  /* if ISI was set, prefix with a "blank" slide */
+  if(isi > 0){
+    var x = new state()
+    x.set_expiry(isi)
+    x.type = 'isi'
+    x.wrd_stim = ""
+    x.trial_id = 0
+    x.task_id = my_task_id  // x.set_pool_id(p_id)
+    x.clear_admissible_keys()
+    x.key_expiry = false
+  }
+
+
   var y = instructions(txt)
-  y.set_expiry(5000)
-  y.key_expiry = true
+  //y.set_expiry(0) //5000)
+  //y.key_expiry = true
 
   /* keypress activated with minimum time */
   //y.hold_on()
-
+  if(true){
   /* time [mS] */
-  var thirty_seconds = 30000, x = new state()
+  var thirty_seconds = 30000
+  var x = new state()
   x.set_expiry(delay_time)
   x.key_expiry = false
   x.txt = '' 
   x.type = 'delay'
   x.trial_id = 0
   x.task_id = my_task_id
+  }
   return this;
 }
