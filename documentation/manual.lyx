@@ -22,7 +22,7 @@
 \def\us{\char`\_}
  
 
-\lstset{tabsize=2,frame=lines,keywordstyle=\color{blue},commentstyle=\color{darkgreen},stringstyle=\color{red},numbers=left,numberstyle=\tiny,numbersep=5pt,breaklines=false,showstringspaces=false,basicstyle=\footnotesize}
+\lstset{tabsize=2,frame=lines,keywordstyle=\color{blue},commentstyle=\color{darkgreen},stringstyle=\color{red},numbers=left,numberstyle=\tiny,numbersep=5pt,breaklines=true,showstringspaces=false,basicstyle=\footnotesize}
 \numberwithin{equation}{section}
 \numberwithin{figure}{section}
 \definecolor{listinggray}{gray}{0.9}
@@ -668,18 +668,6 @@ To deploy your experiment on the web,
 
 \series bold
 The Examples
-\end_layout
-
-\begin_layout Standard
-Need to add
-\end_layout
-
-\begin_layout Standard
-x.set_expiry(delay_time)
-\end_layout
-
-\begin_layout Standard
-x.key_expiry = false 
 \end_layout
 
 \begin_layout Standard
