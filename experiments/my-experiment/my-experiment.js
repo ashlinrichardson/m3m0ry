@@ -40,7 +40,7 @@ var my_experiment = function(){
   /* set up `study phase': show selected portions of pool */
   study_phase(two_pools, 
               111, /* ISI */
-              2000 /* SET */ ∂)
+              2000 /* SET */ )
 
   /* some instructions before `test phase' */
   instructions('test phase coming up')
