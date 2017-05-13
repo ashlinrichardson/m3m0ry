@@ -1,6 +1,6 @@
 /* convert form unicode to familiar symbol */
 function unicode_from_key_event(e){
-  return e.charCode? e.charCode : e.keyCode
+  return e.charCode ? e.charCode : e.keyCode
 }
 
 /* keyboard status array (unicode format) */
@@ -14,8 +14,6 @@ function keyboard_module(){
     var unicode = unicode_from_key_event(e), key =  String.fromCharCode(unicode)
     key_unicode[unicode] = true
   
-    // console.log("unicode", unicode)
-    
     /* ignore caps-lock key */
     if(unicode == 20){
     
@@ -34,16 +32,19 @@ function keyboard_module(){
 
     /* by default, transition from a slide upon key-press */
     var go = true
-    if(now.type=='delay'){
-      if(now.txt ==null){
-        now.txt =''
+
+    /* special treatment for delay task */
+    if(now.type == 'delay'){
+      if(now.txt == null){
+        now.txt = ''
       }
-      if(unicode ==8 ){
+      if(unicode == 8){
         var len = now.txt.length
         if(now.txt[len-1] != ' '){
           now.txt = now.txt.substring(0, len - 1)    
         }
-      }else if(unicode == 0){ 
+      }else if(unicode == 0){
+        /* */ 
       }else{
         now.txt += key.toLowerCase()
       }
@@ -55,18 +56,16 @@ function keyboard_module(){
       if(admissible_keys.includes(unicode)){
         if(!(now.deja == undefined)){
           ctx.questions_total += 1
-          if((now.deja == true && unicode == 77)||(now.deja == false && unicode == 78)){
+          if((now.deja == true && unicode == 77) || (now.deja == false && unicode == 78)){
             ctx.questions_correct += 1
           }
         }
       }else{ 
-        //if(now.key_expiry == true){
-          /* block if a key was required but the one entered was not admissible */
-          go = false
-       // }
+        /* block if a key was required but the one entered was not admissible */
+        go = false
       }
     }
-    if(now.ding==false && now.hold==true){
+    if(now.ding == false && now.hold == true){
       go = false
     }
 

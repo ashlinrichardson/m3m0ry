@@ -33,7 +33,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
   this.key_required = false
   
   /* array to store admissible key-codes for data entry or transition to next "slide" */
-  this.admissible_keys = [77,78]
+  this.admissible_keys = [77, 78]
   
   this.get_admissible_keys = function(){
     return this.admissible_keys
@@ -57,6 +57,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
   this.set_pool_id = function(pid){
     this.pool_id = pid
   }
+
   this.get_pool_id = function(){  
     if(this.pool_id){
       return this.pool_id
@@ -112,6 +113,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
     if(this.txt2 && (!this.wrd_stim)){
       //wrap_text(this.txt2, ctx, ctx.h() - (2 * ctx.font_size+20));
     }
+
     if(this.txt2){
       wrap_text(this.txt2, ctx, ctx.h() - (2 * ctx.font_size + 20))
     }
@@ -128,7 +130,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
     }
 
     /* might need the wrap_text back on for long strings.. */
-    if(this.wrd_stim!=null){  // wrap_text(this.wrd_stim, ctx, ctx.h()/2);
+    if(this.wrd_stim != null){  // wrap_text(this.wrd_stim, ctx, ctx.h()/2);
 
       /* no wrap */
       centre_text(this.wrd_stim)
@@ -157,14 +159,15 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
     var ctx = get_ctx()
 
     if(this == ctx.last_state){
+        /* window.location.href == http://domain/memory/examples/test_phase/memory.html */
+        var href = window.location.href
 
         /* go through all the states and record (in string format) the contents, as we'd like it to appear on the server */
         var state_i = ctx.first_state, state_index = 0
         var message = "url,event_id,task_id,task_type,trial_id,duration(mS),start(yyyy:mm:dd:hh:mn:ss:mls),end(yyyy:mm:dd:hh:mn:ss:mls),isi,set,stim_type,stim_id,stim_pool_id,response\n"
-        var pi;
+        var pi
         for(var state_i = ctx.first_state; state_i != ctx.last_state; state_i = state_i.successor){
-          var stim_type = null
-          var my_stim  = null
+          var stim_type = null, my_stim  = null
     
           /* the right way to check if a variable is undefined or not */
           if(typeof state_i.pool_id !== 'undefined'){
@@ -183,18 +186,17 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
             my_stim = state_i.img_stim.fn 
           }
 
-          if(stim_type){
-          }else{
+          if(!stim_type){
             stim_type = ""
           }
 
-          if(my_stim){
-          }else{
+          if(!my_stim){
             my_stim = ""
           }
 
+
           /* for a given "state", record a line of data */
-          message += window.location.href.toString() + ","
+          message += href + ","
           message += state_index.toString() + ","       /* event_id: global index / line number */
           message += state_i.task_id + ","              /* task_id */
           message += state_i.type + ","                 /* task_type */
@@ -223,9 +225,6 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
           message += "\n"
           state_index += 1
         }
-
-        /* window.location.href == http://domain/memory/examples/test_phase/memory.html */
-        var href = window.location.href
 
         /* remove last three elements from the array: take the page and navigate to: ../../xml-receive.py == http://domain/memory/xml-receive.py */
         var words = href.split('/') 

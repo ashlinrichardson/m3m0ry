@@ -11,7 +11,7 @@ function date_time(){
 var seed = 5
 
 /*random-number generator http://indiegamr.com/generate-repeatable-random-numbers-in-js/ : initial seed.. in order to work 'Math.seed' must NOT be undefined, so in any case, you HAVE to provide a Math.seed */
-function rand(max, min) {
+function rand(max, min){
   max = max || 1
   min = min || 0
   seed = (seed * 9301 + 49297) % 233280
@@ -45,21 +45,36 @@ function get_keys(dictionary){
 
 /* draw an image */
 function draw_img(x, ctx){
-    var cf = 4 * ctx.font_size, h = ctx.h() - cf, w = ctx.w(), lw = x.width, lh = x.height, sf = Math.min(w, h) / Math.max(lw, lh), a = (w - lw * sf) / 2, b = (h - lh * sf) / 2, c = lw * sf, d = lh * sf, df =  (-20 + cf / 2)
-    ctx.drawImage(x, a, b + df, c, d)
+  var cf = 4 * ctx.font_size,
+  var h = ctx.h() - cf, w = ctx.w()
+  var lw = x.width, lh = x.height
+  var sf = Math.min(w, h) / Math.max(lw, lh)
+  var a = (w - lw * sf) / 2, b = (h - lh * sf) / 2
+  var c = lw * sf, d = lh * sf, df =  (-20 + cf / 2)
+  ctx.drawImage(x, a, b + df, c, d)
 }
 
 /* write the above to a standardized format */
 function parse_date_time(today){
 
   /* most significant units first */
-  var bits = [today.getFullYear(), today.getMonth() + 1, today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds(), today.getMilliseconds()]
+  var bits = [today.getFullYear(),
+              today.getMonth() + 1,
+              today.getDate(),
+              today.getHours(),
+              today.getMinutes(),
+              today.getSeconds(), 
+              today.getMilliseconds()]
 
   /* pad with zeros */
   for(var i = 0; i < bits.length; i++){
     var n_pad = 2
-    if(i==0) n_pad = 4
-    if(i== 6) n_pad = 3
+    if(i == 0){
+      n_pad = 4
+    }
+    if(i == 6){
+      n_pad = 3
+    }
     var bts = bits[i].toString()
     bits[i] = pad_n(bts, n_pad)
   }
@@ -78,7 +93,7 @@ function xml_send(s, xml_receive_script_url){
   var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP")
   var data = new FormData()
   data.append("data", s)
-  xhr.open( 'post', xml_receive_script_url, true)
+  xhr.open('post', xml_receive_script_url, true)
   xhr.send(data)
 }
 

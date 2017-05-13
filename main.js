@@ -44,7 +44,7 @@ ctx.draw_symbol = function(){
 
 /* access current "state" (a state represents a particular "trial" in an experiment) */
 ctx.set_state = function(s){
-  last_state = null;
+  last_state = null
   if(ctx.current_state != null){
     last_state = ctx.current_state
   }
@@ -144,11 +144,12 @@ var n_imgs_loaded = 0
 function load_img(fn){
   var img = new Image()
   img.onload = function(){
-    console.log('loaded image: ', fn)
     n_imgs_loaded += 1
+
+    /* have all images been loaded? */
     if(n_imgs_loaded == n_imgs){
 
-      /* proceed to init the experiment, after all images loaded.. */
+      /* proceed to init the experiment */
       run_after_loading_images()
     }
   } 
@@ -159,9 +160,10 @@ function load_img(fn){
 
 /* load all of the image data */
 ctx.load_imgs = function(n_imgs){
+
   /* ideally would only load the ones used */
   var imgs = new Array()
-  for(var i=1; i <= n_imgs; i++){
+  for(var i = 1; i <= n_imgs; i++){
     var img_fn = abs_path + 'images/' + i + '.jpg'
     var my_img = load_img(img_fn)
     my_img.fn = 'images/' + i + '.jpg'
