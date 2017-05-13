@@ -105,6 +105,7 @@ function study_phase(my_pool, isi=0, time_limit=0, extra_feedback=false, extra_f
       x.set_pool_id(p_id)
 
       if(extra_feedback_this_slide){
+        var x_f = feedback(extra_feedback_message, extra_feedback_keys)
       }
 
     } /* for var i  in my_pool.selection_n */
@@ -202,6 +203,11 @@ for(var selection_ind in my_selection){
       x.trial_id = trial_index
       x.task_id = my_task_id 
       x.set_pool_id(p_id)
+
+      if(extra_feedback_this_slide){
+        var x_f = feedback(extra_feedback_message, extra_feedback_keys)
+      }
+
     }
   //}
   var m = 'Thank you for completing this section. '
