@@ -45,24 +45,25 @@ function study_phase(my_pool, isi=0, time_limit=0, extra_feedback=false, extra_f
       my_selection.push([my_pool.selection_n[i], my_pool.pool_id, extra_feedback_this_slide])
     }
   }
+
+  /* randomize the order of the array */
   shuffle(my_selection)
+
   for(var selection_ind in my_selection){
 
+    /* increment the trial-index counter */
     trial_index ++
 
     var a_selection = my_selection[selection_ind]
     
     /* data (word or image) assigned to "trial" */
-    var data = a_selection[0]
-    var p_id = a_selection[1]
-    var extra_feedback_this_slide = a_selection[2]
+    var data = a_selection[0], p_id = a_selection[1], extra_feedback_this_slide = a_selection[2]
   
     /* if ISI was set, prefix with a "blank" slide */
     if(isi > 0){
       var x = new state()
       x.set_expiry(isi)
-      x.type = 'isi', x.wrd_stim = "", x.trial_id = trial_index
-      x.task_id = my_task_id
+      x.type = 'isi', x.wrd_stim = "", x.trial_id = trial_index, x.task_id = my_task_id
       x.set_pool_id(my_pool.pool_id)
       x.clear_admissible_keys()
       x.key_expiry = false
@@ -128,10 +129,7 @@ function test_phase(my_pool, isi=0, time_limit=0, extra_feedback=false, extra_fe
     trial_index ++
 
     var a_selection = my_selection[selection_ind]
-    var data = a_selection[0]
-    var p_id = a_selection[1]
-    var deja = a_selection[2]
-    var extra_feedback_this_slide = a_selection[3]
+    var data = a_selection[0], p_id = a_selection[1], deja = a_selection[2], extra_feedback_this_slide = a_selection[3]
 
     /* if ISI was set, prefix with a "blank" slide */
     if(isi > 0){
