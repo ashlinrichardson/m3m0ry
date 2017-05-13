@@ -2,8 +2,7 @@
 var state_id = -1
 
 function get_id(){
-  state_id += 1
-  return state_id
+  return ++ state_id
 }
 
 /* reference to 2d canvas graphics context */
@@ -19,13 +18,11 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
                txt        =  null,  /* text data (if any) */
                successor  =  null){
   var ctx = get_ctx()
-  this.action = null, this.ding = false, this.hold = false
+  this.action = null, this.ding = false, this.hold = false, this.id = get_id()
     
   this.hold_on = function(){
     this.hold = true
-  }
-
-  this.id = get_id()
+  }  
 
   /* is a key-press required to transition? */
   this.key_required = false
@@ -57,12 +54,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
   }
 
   this.get_pool_id = function(){  
-    if(this.pool_id){
-      return this.pool_id
-    }
-    else{
-      return ""
-    }
+    return this.pool_id ? this.pool_id : ""
   }
 
   /* keep a reference to this state, if it's the first one ever.. */
@@ -80,14 +72,13 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
   this.key_expiry = key_expiry
   
   /* global image index (images added as member of ctx) */  
-  this.img_idx = img_idx
-  this.successor = null  
+  this.img_idx = img_idx, this.successor = null, this.predecessor = ctx.last_new_state  
   
   this.require_key = function(){
     return this.key_required
   }
-  this.predecessor = ctx.last_new_state;
-  var id = this.predecessor == null ? -1 : this.predecessor.id 
+
+  var id = (this.predecessor == null) ? -1 : this.predecessor.id 
   ctx.last_new_state = this
   
   if(this.predecessor != null){
@@ -109,7 +100,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
   
     /* bottom text */
     if(this.txt2 && (!this.wrd_stim)){
-      //wrap_text(this.txt2, ctx, ctx.h() - (2 * ctx.font_size+20));
+      // wrap_text(this.txt2, ctx, ctx.h() - (2 * ctx.font_size+20));
     }
 
     if(this.txt2){
@@ -123,8 +114,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
 
     /* img or middle text (if word stim) */
     if(this.img_stim){
-      x = this.img_stim
-      draw_img(x, ctx)  
+      draw_img(this.img_stim, ctx)  
     }
 
     /* might need the wrap_text back on for long strings.. */
@@ -161,27 +151,21 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
         var href = window.location.href
 
         /* go through all the states and record (in string format) the contents, as we'd like it to appear on the server */
-        var state_i = ctx.first_state, state_index = 0
-        var message = "url,event_id,task_id,task_type,trial_id,duration(mS),start(yyyy:mm:dd:hh:mn:ss:mls),end(yyyy:mm:dd:hh:mn:ss:mls),isi,set,stim_type,stim_id,stim_pool_id,response\n"
-        var pi
+        var state_i = ctx.first_state, state_index = 0, message = "url,event_id,task_id,task_type,trial_id,duration(mS),start(yyyy:mm:dd:hh:mn:ss:mls),end(yyyy:mm:dd:hh:mn:ss:mls),isi,set,stim_type,stim_id,stim_pool_id,response\n"
         for(var state_i = ctx.first_state; state_i != ctx.last_state; state_i = state_i.successor){
-          var stim_type = null, my_stim  = null
+          var stim_type = null, my_stim  = null, pi = ""
     
           /* the right way to check if a variable is undefined or not */
           if(typeof state_i.pool_id !== 'undefined'){
             pi = JSON.parse(JSON.stringify(state_i.pool_id))
-          }else{
-            pi = ""
           }
 
           if(state_i.wrd_stim){
-            stim_type = "word"
-            my_stim = state_i.wrd_stim 
+            stim_type = "word", my_stim = state_i.wrd_stim 
           }
 
           if(state_i.img_stim){
-            stim_type = "image"
-            my_stim = state_i.img_stim.fn 
+            stim_type = "image", my_stim = state_i.img_stim.fn 
           }
 
           if(!stim_type){
@@ -221,7 +205,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
 
           /* add a newline character */ 
           message += "\n"
-          state_index += 1
+          ++ state_index
         }
 
         /* remove last three elements from the array: take the page and navigate to: ../../xml-receive.py == http://domain/memory/xml-receive.py */
@@ -236,8 +220,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
     var ctx = get_ctx()
 
     /* start the clock.. */
-    this.t0 = window.performance.now()
-    this.start_date_time = date_time()
+    this.t0 = window.performance.now(), this.start_date_time = date_time()
     
     /* clear the timer */
     ctx.clear_tmr()
@@ -260,8 +243,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
     ctx.clear_tmr()
     
     /* r3c0rd st0p t1m3 */
-    this.end_date_time = date_time()
-    this.t1 = window.performance.now()
+    this.end_date_time = date_time(), this.t1 = window.performance.now()
     var txt = this.txt, suc_txt = null, suc = this.successor
 
     if(suc!=null && suc.txt !=null){

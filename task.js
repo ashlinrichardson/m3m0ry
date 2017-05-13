@@ -52,7 +52,7 @@ function study_phase(my_pool, isi=0, time_limit=0, extra_feedback=false, extra_f
   for(var selection_ind in my_selection){
 
     /* increment the trial-index counter */
-    trial_index ++
+    ++ trial_index
 
     var a_selection = my_selection[selection_ind]
     
@@ -126,7 +126,7 @@ function test_phase(my_pool, isi=0, time_limit=0, extra_feedback=false, extra_fe
   shuffle(my_selection)
 
   for(var selection_ind in my_selection){
-    trial_index ++
+    ++ trial_index
 
     var a_selection = my_selection[selection_ind]
     var data = a_selection[0], p_id = a_selection[1], deja = a_selection[2], extra_feedback_this_slide = a_selection[3]
@@ -142,12 +142,11 @@ function test_phase(my_pool, isi=0, time_limit=0, extra_feedback=false, extra_fe
     }
 
     var x = new state()
+    x.key_required = true
     if(time_limit <= 0){
       x.set_expiry(0)
-      x.key_required = true
     }else{
       x.set_expiry(time_limit)
-      x.key_required = true
     }
 
     /* record within the object: do we have deja-vu? */    
@@ -177,7 +176,7 @@ function test_phase(my_pool, isi=0, time_limit=0, extra_feedback=false, extra_fe
 
 /* previously known as feedback task */
 function feedback(txt, keys){
-  var my_task_id = next_task_id++
+  var my_task_id = next_task_id ++
 
   var x = new state()
   x.set_expiry(0)
@@ -191,9 +190,8 @@ function feedback(txt, keys){
 
 /* list as many countries as possible during e.g., a 3-minute period (default, 30s) */
 function delay_task(txt, delay_time=30000, isi_=500){
-  var my_task_id = next_task_id++
+  var my_task_id = next_task_id ++, isi = parseInt(isi_)
 
-  var isi = parseInt(isi_)  // 500  // mS
   /* if ISI was set, prefix with a "blank" slide */
   if(isi > 0){
     var x = new state()
@@ -210,5 +208,5 @@ function delay_task(txt, delay_time=30000, isi_=500){
     x.set_expiry(delay_time)
     x.key_expiry = false, x.txt = '', x.type = 'delay', x.trial_id = 0, x.task_id = my_task_id
   }
-  return this;
+  return this
 }

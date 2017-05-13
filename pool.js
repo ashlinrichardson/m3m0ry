@@ -3,7 +3,7 @@ by draw() method. That selection is shuffled back into the deck, for the "test p
 var next_pool_id = 0
 function pool(){
   this.is_pool = true, this.pool_id = next_pool_id, this.ctx = ctx, this.stimuli = new Array()
-  next_pool_id += 1
+  ++ next_pool_id
 
   /* add a stimulus to the pool */
   this.add = function(stim){
@@ -35,7 +35,6 @@ function pool(){
     return this.m
   }
 
-
   /* remove any "blank" elements that appeared from drawing elements without
     replacement */
   this.remove_blanks = function(){
@@ -57,8 +56,7 @@ function pool(){
     this.selection_n = new Array()
     var rem = this.stimuli.length
     for(var i = 0; i < n; i++){ 
-      var qx = rand() * parseFloat(rem), idx = parseInt(qx)
-      rem -= 1
+      var qx = rand() * parseFloat(rem --), idx = parseInt(qx)
       this.selection_n.push(this.stimuli[idx])
       delete this.stimuli[idx]
       this.remove_blanks()
@@ -80,8 +78,7 @@ function pool(){
     this.selection_m = new Array()
     var rem = this.stimuli.length
     for(var i = 0; i < m; i++){ 
-      var qx = rand() * parseFloat(rem), idx = parseInt(qx)
-      rem -= 1
+      var qx = rand() * parseFloat(rem --), idx = parseInt(qx)
       this.selection_m.push(this.stimuli[idx])
       delete this.stimuli[idx]
       this.remove_blanks()
@@ -110,16 +107,14 @@ function pool(){
 
     /* "shuffle"-- randomize the ordering of the combined array */
     var shuffled = new Array(), deja_vu = new Array(), rem = to_shuffle.length
-    while(rem >0){
-      rem -= 1
+    while((rem --) > 0){
       var idx = parseInt(rand() * parseFloat(rem)), dat_i = to_shuffle[idx]
       shuffled.push(dat_i[0])
       deja_vu.push(dat_i[1])
       delete to_shuffle[idx]
       to_shuffle = to_shuffle.filter(function(){return true})
     }
-    var ret = [shuffled, deja_vu]
-    return ret
+    return [shuffled, deja_vu]
   }
 
   this.draw = function(){

@@ -29,9 +29,10 @@ function wrap_text(s, ctx, start_y=0){
   }
 }
 
+/* write centred text */
 function centre_text(s){
-  var font_size = ctx.font_size, textString = s; 
-  ctx.font = 30 +'px Arial'
-  textWidth = ctx.measureText(textString ).width
-  ctx.fillText(textString, (canvas.width/2) - (textWidth / 2), canvas.height/2)
+  var font_size = ctx.font_size, textString = s 
+  ctx.font = 30 + 'px Arial'
+  textWidth = ctx.measureText(textString).width
+  ctx.fillText(textString, (canvas.width / 2) - (textWidth / 2), canvas.height / 2)
 }

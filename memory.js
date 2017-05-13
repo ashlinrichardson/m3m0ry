@@ -9,14 +9,13 @@ var js_added = -1, deps = []
 function add_js(fn){
   var body = document.getElementsByTagName('body')[0], s = document.createElement('script')
   s.async = false, s.src = fn + '.js'
-  var callback = function(){
+  
+  /* wait until script is loaded before proceeding.. */
+  s.onload = function(){
     if(++js_added < deps.length){
       add_js(deps[js_added])
     }
   }
-
-  /* wait until script is loaded before proceeding.. */
-  s.onload = callback
   body.appendChild(s)
 }
 

@@ -22,8 +22,7 @@ var my_experiment = function(){
   p.select(2, 2)
 
   /* set up `study phase': show selected portions of pool */
-  study_phase(p,
-              111,
-              3000
-             )
+  study_phase(p,  /* stimulus pool */  
+              111 /* ISI (optional) */, 
+              3000  /* SET (optional) */ )
 }

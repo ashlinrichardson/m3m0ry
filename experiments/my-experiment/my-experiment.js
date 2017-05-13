@@ -8,7 +8,7 @@ var my_experiment = function(){
   var p1 = stimulus_pool()
 
   /* add images to stimulus pool */
-  for(var i = 40; i < 45; i++){
+  for(var i = 65; i < 70; i++){
     p1.add(ctx.imgs[i])
   }
 
@@ -16,7 +16,7 @@ var my_experiment = function(){
   var p2 = stimulus_pool()
 
   /* add images to stimulus pool */
-  for(var i = 60; i < 65; i++){
+  for(var i = 100; i < 105; i++){
     p2.add(ctx.imgs[i])
   }
 
@@ -31,17 +31,16 @@ var my_experiment = function(){
   p2.add('dogovarivatsya')
 
   /* selection from stimulus pool (parameters are N, M) */
-  p1.select(2, 2)
-  p2.select(2, 2)
+  p1.select(3, 3)
+  p2.select(3, 3)
 
   /* need to bundle the two pools together, into an array */
   var two_pools = [p1, p2]
 
   /* set up `study phase': show selected portions of pool */
   study_phase(two_pools, 
-              111,
-              2000
-             )
+              111, /* ISI */
+              2000 /* SET */ ∂)
 
   /* some instructions before `test phase' */
   instructions('test phase coming up')
@@ -50,11 +49,10 @@ var my_experiment = function(){
   instructions('please press n if you did not see the image/word before')
  
   /* set up `test phase' (user input recorded for whole randomized pool) */
-  test_phase(two_pools, 
-             1000, 
-             2000, 
-             2, 
-             "Extra feedback: please press A, B, C, or D",
-             [65, 66, 67, 68]
-            )
+  test_phase(two_pools, /* stimulus pools */
+             1000, /* ISI */
+             2000, /* SET */
+             4, /* extra feedback (one for every 3 slides, approx.) */
+             "Did you like the last picture? A=yes, B=no, C=maybe, D=not sure", /* message for extra feedback */
+             [65, 66, 67, 68] /* accepted keypresses for extra feedback */ )
 }
