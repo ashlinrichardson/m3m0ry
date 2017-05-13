@@ -1,4 +1,4 @@
-/* recognition memory experiment set-up */
+/* recognition memory experiment set-up: customized/ complex experiment */
 var my_experiment = function(){
 
   /* set up some instruction slides */
@@ -50,5 +50,5 @@ var my_experiment = function(){
   instructions('please press n if you did not see the image/word before')
  
   /* set up `test phase' (user input recorded for whole randomized pool) */
-  test_phase(two_pools, 1000, 2000)
+  test_phase(two_pools, 1000, 2000, 2, "Extra feedback: please press A, B, C, or D", [65, 66, 67, 68])
 }
