@@ -19,7 +19,10 @@ function instructions(txt){
 }
 
 /* study phase, formerly known as orientation task: multiple `trials' / events occur here.. random selection of inputs... (for the test phase, the random selection is shuffled back into the pool).. */
-function study_phase(my_pool, isi=0, time_limit=0){
+function study_phase(my_pool, isi=0, time_limit=0, extra_feedback=false, extra_feedback_message="", extra_feedback_keys=[]){
+
+  /* the above constructor (same with test_phase) can accept either a single stimulus pool (pool()),
+    or an array of stimulus pools (pool()) */
   var my_pools = []
   if(my_pool.is_pool){
     my_pools.push(my_pool)
@@ -40,7 +43,13 @@ function study_phase(my_pool, isi=0, time_limit=0){
     var my_pool = my_pools[a_pool]
     this.pool_ids.push(my_pool.pool_id)
     for(var i  in my_pool.selection_n){
-      my_selection.push([my_pool.selection_n[i], my_pool.pool_id])
+      var extra_feedback_this_slide = false
+      if(extra_feedback != false){
+        if(0 == i % parseInt(extra_feedback)){
+          extra_feedback_this_slide = true
+        }
+      }
+      my_selection.push([my_pool.selection_n[i], my_pool.pool_id, extra_feedback_this_slide])
     }
   }
   shuffle(my_selection)
@@ -50,7 +59,7 @@ function study_phase(my_pool, isi=0, time_limit=0){
     /* data (word or image) assigned to "trial" */
     var data = a_selection[0] //my_pool.selection_n[i]
     var p_id = a_selection[1]
-
+    var extra_feedback_this_slide = a_selection[2]
     /* iterate over selected elements of pool */
     //for(var i  in my_pool.selection_n){
       trial_index ++
@@ -95,8 +104,8 @@ function study_phase(my_pool, isi=0, time_limit=0){
       x.task_id = my_task_id
       x.set_pool_id(p_id)
 
-      /* the ASPECT about set_expiry/ key_expiry needs to go here.. */
-      /* ... */
+      if(extra_feedback_this_slide){
+      }
 
     } /* for var i  in my_pool.selection_n */
   //} /* for var a_pool in my_pools */
@@ -104,8 +113,10 @@ function study_phase(my_pool, isi=0, time_limit=0){
   return this
 }
 
-/* test phase, formerly known as recognition task - for this phase, the random selection is shuffled back into the pool -- all elements from the pool are shown (feedback is recorded).. */
-function test_phase(my_pool, isi=0, time_limit=0){
+/* test phase, formerly known as recognition task - for this phase,
+the random selection is shuffled back into the pool -- all elements 
+from the pool are shown (feedback is recorded).. */
+function test_phase(my_pool, isi=0, time_limit=0, extra_feedback=false, extra_feedback_message="", extra_feedback_keys=[]){
   var my_pools = []
   if(my_pool.is_pool){
     my_pools.push(my_pool)
@@ -126,7 +137,13 @@ function test_phase(my_pool, isi=0, time_limit=0){
     this.pool_ids.push(my_pool.pool_id)
     var trial_index = -1, shuffled_data = my_pool.reshuffle(), shuffled = shuffled_data[0], deja_vu = shuffled_data[1]
     for(var i  in shuffled){
-      my_selection.push([shuffled[i], my_pool.pool_id, deja_vu[i]])
+      var extra_feedback_this_slide = false
+      if(extra_feedback != false){
+        if(0 == i % parseInt(extra_feedback)){
+          extra_feedback_this_slide = true
+        }
+      }
+      my_selection.push([shuffled[i], my_pool.pool_id, deja_vu[i], extra_feedback_this_slide])
     }
   }
   shuffle(my_selection)
@@ -137,6 +154,7 @@ for(var selection_ind in my_selection){
     var data = a_selection[0] //my_pool.selection_n[i]
     var p_id = a_selection[1]
     var deja = a_selection[2]
+    var extra_feedback_this_slide = a_selection[3]
 
 /*  
   for(var a_pool in my_pools){
