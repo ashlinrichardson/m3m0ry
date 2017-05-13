@@ -12,11 +12,9 @@ var seed = 5
 
 /*random-number generator http://indiegamr.com/generate-repeatable-random-numbers-in-js/ : initial seed.. in order to work 'Math.seed' must NOT be undefined, so in any case, you HAVE to provide a Math.seed */
 function rand(max, min){
-  max = max || 1
-  min = min || 0
+  max = max || 1, min = min || 0
   seed = (seed * 9301 + 49297) % 233280
-  var rnd = seed / 233280
-  return min + rnd * (max - min)
+  return min + (seed / 233280) * (max - min)
 }
 
 /* pad to length n (with 0's on the left) */
@@ -45,7 +43,7 @@ function get_keys(dictionary){
 
 /* draw an image */
 function draw_img(x, ctx){
-  var cf = 4 * ctx.font_size,
+  var cf = 4 * ctx.font_size
   var h = ctx.h() - cf, w = ctx.w()
   var lw = x.width, lh = x.height
   var sf = Math.min(w, h) / Math.max(lw, lh)

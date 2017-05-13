@@ -2,8 +2,8 @@
 var state_id = -1
 
 function get_id(){
-  state_id += 1;
-  return state_id;
+  state_id += 1
+  return state_id
 }
 
 /* reference to 2d canvas graphics context */
@@ -18,11 +18,9 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
                img_idx    =    -1,  /* image data (if any) */
                txt        =  null,  /* text data (if any) */
                successor  =  null){
-  this.action = null
-  this.ding = false
   var ctx = get_ctx()
-  this.hold = false
-  
+  this.action = null, this.ding = false, this.hold = false
+    
   this.hold_on = function(){
     this.hold = true
   }
@@ -167,7 +165,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
         var message = "url,event_id,task_id,task_type,trial_id,duration(mS),start(yyyy:mm:dd:hh:mn:ss:mls),end(yyyy:mm:dd:hh:mn:ss:mls),isi,set,stim_type,stim_id,stim_pool_id,response\n"
         var pi
         for(var state_i = ctx.first_state; state_i != ctx.last_state; state_i = state_i.successor){
-          var stim_type = null, my_stim  = null
+          var stim_type = null, my_stim  = null
     
           /* the right way to check if a variable is undefined or not */
           if(typeof state_i.pool_id !== 'undefined'){
@@ -194,27 +192,27 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
             my_stim = ""
           }
 
-
           /* for a given "state", record a line of data */
           message += href + ","
           message += state_index.toString() + ","       /* event_id: global index / line number */
           message += state_i.task_id + ","              /* task_id */
           message += state_i.type + ","                 /* task_type */
           message += state_i.trial_id + ","             /* trial_id */
-          message +=  Math.round(10. * (state_i.t1 -  state_i.t0)) / 10. + "," 
+          message += Math.round(10. * (state_i.t1 - state_i.t0)) / 10. + "," 
           message += parse_date_time(state_i.start_date_time).toString() + ","
           message += parse_date_time(state_i.end_date_time).toString() + ","
           if(state_i.type == 'isi'){
             message += state_i.expiry_ms.toString()
           }
           message += ","                                /* ISI */
-          if(! state_i.expiry_ms){
+          if(!state_i.expiry_ms){
             state_i.expiry_ms = ""
           }
           message += state_i.expiry_ms.toString() + "," /* SET */
           message += stim_type.toString() + ","         /* stim_type */
           message += my_stim.toString() + ","           /* stim_id */
           message += pi.toString() + ","                /* stimulus-pool id */
+
           var response = ""
           for(var k in state_i.key_strokes){
             response += String.fromCharCode(state_i.key_strokes[k])
@@ -274,13 +272,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
     if(this.successor!=null){
       ctx.set_state(this.successor)
       ctx.get_state().start()
-
-      /* this condition might only be good if we have the "score card"? not sure. Replace score card with thank-you card? */
-      if(this.successor.successor == null){
-      }
     }
-    /* record data to csv-line record (global) here..? */
-    
   }
   return this
 }

@@ -31,17 +31,17 @@ var my_experiment = function(){
   p2.add('dogovarivatsya')
 
   /* selection from stimulus pool (parameters are N, M) */
-  console.log('p1.select()')
   p1.select(2, 2)
-  console.log('p2.select()')
   p2.select(2, 2)
-  console.log('two pools')
 
   /* need to bundle the two pools together, into an array */
   var two_pools = [p1, p2]
 
   /* set up `study phase': show selected portions of pool */
-  study_phase(two_pools, 111, 2000)
+  study_phase(two_pools, 
+              111,
+              2000
+             )
 
   /* some instructions before `test phase' */
   instructions('test phase coming up')
@@ -50,5 +50,11 @@ var my_experiment = function(){
   instructions('please press n if you did not see the image/word before')
  
   /* set up `test phase' (user input recorded for whole randomized pool) */
-  test_phase(two_pools, 1000, 2000, 2, "Extra feedback: please press A, B, C, or D", [65, 66, 67, 68])
+  test_phase(two_pools, 
+             1000, 
+             2000, 
+             2, 
+             "Extra feedback: please press A, B, C, or D",
+             [65, 66, 67, 68]
+            )
 }

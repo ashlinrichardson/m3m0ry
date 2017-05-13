@@ -1,12 +1,8 @@
 /* stimulus pool - object that has words or images added to it. Selections drawn randomly for "study phase" by draw() method. That selection is shuffled back into the deck, for the "test phase" */
 var next_pool_id = 0
 function pool(){
-  this.is_pool = true
-  this.pool_id = next_pool_id
+  this.is_pool = true, this.pool_id = next_pool_id, this.ctx = ctx, this.stimuli = new Array()
   next_pool_id += 1
-  console.log('pool, id=', this.pool_id)
-  this.ctx = ctx
-  this.stimuli = new Array()
 
   /* add a stimulus to the pool */
   this.add = function(stim){
@@ -22,7 +18,9 @@ function pool(){
   /* set number of additional samples to be included for test phase */
   this.set_m = function(m){
 
-    /* subsequently to drawing "n" items from the pool (without replacement), an additional "m" samples are drawn from the pool. For the test phase, the "n" and "m" selections are mixed together and shuffled. */
+    /* subsequently to drawing "n" items from the pool (without replacement), 
+       a further "m" samples are drawn from the pool. For the test phase, the
+      "n" and "m" selections are mixed together and shuffled. */
     this.m = m
   }
 
@@ -37,14 +35,14 @@ function pool(){
   }
 
 
-  /* remove any "blank" elements (an operation needed due to an apparent curiosity of the language) that appeared from drawing elements without replacement */
+  /* remove any "blank" elements that appeared from drawing elements without
+    replacement */
   this.remove_blanks = function(){
     this.stimuli = this.stimuli.filter(function(){return true})
   }
 
   /* pseudorandom selection of size "n" */
   this.draw_n = function(){
-    console.log('\tpool, id=', this.pool_id)
 
     if(this.selection_n){
       console.log('error: n-selection already made from this pool.')
@@ -68,7 +66,6 @@ function pool(){
 
   /* pseudorandom selection of size "m" */
   this.draw_m = function(){
-    console.log('\tpool, id=', this.pool_id)
 
     if(this.selection_m){
       console.log('error: m-selection already made from this pool.')
@@ -125,17 +122,13 @@ function pool(){
   }
 
   this.draw = function(){
-    console.log('draw_n()')
     this.draw_n()
-    console.log('draw_m()')
     this.draw_m()
-    console.log('reshuffle()')
     this.reshuffle()
   }
 
   /* set N, M parameters and make a selection */
   this.select = function(n,m){
-    console.log('select(n,m)')
     this.set_n(n)
     this.set_m(m)
     this.draw()

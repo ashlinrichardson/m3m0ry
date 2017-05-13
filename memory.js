@@ -9,8 +9,7 @@ deps = []
 /* j4v4scr1pt 4n4l0g 0f 1nclud3 st4t3m3nt */
 function add_js(fn){
   var body = document.getElementsByTagName('body')[0], s = document.createElement('script')
-  s.async = false
-  s.src = fn + '.js'
+  s.async = false, s.src = fn + '.js'
   var callback = function(){
     js_added += 1  
     if(js_added < deps.length){

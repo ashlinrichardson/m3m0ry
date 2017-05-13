@@ -11,7 +11,7 @@ function keyboard_module(){
 
   /* set up key-down event handler function */
   document.onkeydown = function(e){
-    var unicode = unicode_from_key_event(e), key =  String.fromCharCode(unicode)
+    var unicode = unicode_from_key_event(e), key = String.fromCharCode(unicode)
     key_unicode[unicode] = true
   
     /* ignore caps-lock key */

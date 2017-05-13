@@ -1,15 +1,10 @@
-abs_path = '../../'
-var history = []
-var ctx = canvas.getContext("2d")
+var abs_path = '../../', history = [], ctx = canvas.getContext("2d")
 
 /* background color */
 document.bgColor = "#FFFFFF"
 
-/* shape parameter */
-ctx.pad = 20
-
-/* font size */
-ctx.font_size = 30
+/* shape parameter and font size */
+ctx.pad = 20, ctx.font_size = 30
 
 /* canvas dimensions manipulation */
 var less = function(x){
@@ -26,8 +21,7 @@ ctx.h = function(){
 
 /* canvas resize */
 function resize(){
-  canvas.width = ctx.w()
-  canvas.height = ctx.h()
+  canvas.width = ctx.w(), canvas.height = ctx.h()
 }
 
 /* load corporate logo */
@@ -110,8 +104,6 @@ ctx.questions_total = 0
 /* this function sets up the experiment (according to the user function my_experiment)
 and we trigger this function after all the images have loaded. */
 function run_after_loading_images(){
-  console.log('run after loading images()')
-  //document.body.innerHTML = ""
 
   /* set up an experiment according to user specs/code */
   my_experiment(ctx)
