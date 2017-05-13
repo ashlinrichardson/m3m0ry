@@ -1,10 +1,7 @@
-var abs_path = '../../', history = [], ctx = canvas.getContext("2d")
+var abs_path = '../../', ctx = canvas.getContext("2d")
 
-/* background color */
-document.bgColor = "#FFFFFF"
-
-/* shape parameter and font size */
-ctx.pad = 20, ctx.font_size = 30
+/* background color, shape parameter and font size */
+document.bgColor = "#FFFFFF", ctx.pad = 20, ctx.font_size = 30
 
 /* canvas dimensions manipulation */
 var less = function(x){
@@ -44,7 +41,7 @@ ctx.set_state = function(s){
   }
   ctx.current_state = s
 
-  /* should not happen.. */
+  /* sanity check */
   if(s != null){
     s.daddy = last_state
   }
@@ -53,14 +50,7 @@ ctx.set_state = function(s){
 
 /* access present "state" */
 ctx.get_state = function(){
-  var s = ctx.current_state
-  var st = ''
-  try{
-    st = s.txt
-  }catch(e){
-    st = ''
-  }
-  return s
+  return ctx.current_state
 }
 
 /* trigger update/plotting from window resize event */
@@ -72,7 +62,7 @@ window.onresize = function(event){
 function update(){
   resize()
   var now = ctx.get_state()
-  if(now != null){
+  if(now){
     now.show(ctx)
   }
 }
@@ -94,12 +84,10 @@ ctx.init_tmr = function(t_ms){
 }
 
 /* initialize reference to first and most-recently-initialized trials */
-ctx.last_new_state = null
-ctx.first_new_state = null
+ctx.last_new_state = null, ctx.first_new_state = null
 
 /* count number of questions answered correctly (this is redundant) */
-ctx.questions_correct = 0
-ctx.questions_total = 0
+ctx.questions_correct = 0, ctx.questions_total = 0
 
 /* this function sets up the experiment (according to the user function my_experiment)
 and we trigger this function after all the images have loaded. */
@@ -112,8 +100,7 @@ function run_after_loading_images(){
   
   instructions('thank you')
   
-  ctx.last_state = ctx.last_new_state
-  ctx.first_state = ctx.first_new_state
+  ctx.last_state = ctx.last_new_state, ctx.first_state = ctx.first_new_state
   
   /* start at the very beginning, it's a very good place to start.. */
   ctx.set_state(ctx.first_state)
@@ -129,17 +116,15 @@ function run_after_loading_images(){
 }
 
 /* load some image files: need to change if the image database changes */
-var n_imgs = 200
-var n_imgs_loaded = 0
+var n_imgs = 200, n_imgs_loaded = 0
 
 /* load image data */
 function load_img(fn){
   var img = new Image()
   img.onload = function(){
-    n_imgs_loaded += 1
 
     /* have all images been loaded? */
-    if(n_imgs_loaded == n_imgs){
+    if(++n_imgs_loaded == n_imgs){
 
       /* proceed to init the experiment */
       run_after_loading_images()

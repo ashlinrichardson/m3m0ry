@@ -1,4 +1,4 @@
-/* convert form unicode to familiar symbol */
+/* convert from unicode to familiar symbol */
 function unicode_from_key_event(e){
   return e.charCode ? e.charCode : e.keyCode
 }
@@ -16,7 +16,7 @@ function keyboard_module(){
   
     /* ignore caps-lock key */
     if(unicode == 20){
-    
+
       /* enable this line to debug key codes: console.log("unicode", unicode) */
       return
     }
@@ -36,18 +36,27 @@ function keyboard_module(){
     /* special treatment for delay task */
     if(now.type == 'delay'){
       if(now.txt == null){
+
+        /* init */
         now.txt = ''
       }
       if(unicode == 8){
+      
+        /* backspace */
         var len = now.txt.length
         if(now.txt[len-1] != ' '){
           now.txt = now.txt.substring(0, len - 1)    
         }
       }else if(unicode == 0){
-        /* */ 
+        
+        /* null */ 
       }else{
+  
+        /* add character */
         now.txt += key.toLowerCase()
       }
+
+      /* redraw */
       update()
     }
 
