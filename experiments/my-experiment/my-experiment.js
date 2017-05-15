@@ -31,8 +31,8 @@ var my_experiment = function(){
   p2.add('umdiddlediddlediddleumdiddlei')
 
   /* selection from stimulus pool (parameters are N, M) */
-  p1.select(3, 3)
-  p2.select(3, 3)
+  p1.select(5, 5)
+  p2.select(5, 5)
 
   /* need to bundle the two pools together, into an array */
   var two_pools = [p1, p2]
