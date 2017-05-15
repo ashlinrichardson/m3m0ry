@@ -11,6 +11,8 @@ function keyboard_module(){
 
   /* set up key-down event handler function */
   document.onkeydown = function(e){
+
+    /* unicode vs. character representation */
     var unicode = unicode_from_key_event(e), key = String.fromCharCode(unicode)
     key_unicode[unicode] = true
   
@@ -52,7 +54,7 @@ function keyboard_module(){
         /* null */ 
       }else{
   
-        /* add character */
+        /* add character to buffer */
         now.txt += key.toLowerCase()
       }
 
@@ -62,9 +64,15 @@ function keyboard_module(){
 
     /* check if this state "requires" keyboard input */
     if(now.require_key() == true){
+
+      /* is the key that was pressed, in the list of "admissible" keys? */
       if(admissible_keys.includes(unicode)){
+
+        /* if we have a "deja-vu" variable, calculate a score */
         if(!(now.deja == undefined)){
           ctx.questions_total += 1
+
+          /* check for N or M keypress */
           if((now.deja == true && unicode == 77) || (now.deja == false && unicode == 78)){
             ctx.questions_correct += 1
           }
@@ -77,6 +85,8 @@ function keyboard_module(){
 
     /* t <-- t + 1 */
     if(now && now.key_expiry && go){
+
+        /* clear the timer and "go next" */
         ctx.clear_tmr()
         now.expire()
     }

@@ -1,9 +1,13 @@
+var next_pool_id = 0
+
 /* stimulus pool - object that has words or images added to it. Selections drawn randomly for "study phase"
 by draw() method. That selection is shuffled back into the deck, for the "test phase" */
-var next_pool_id = 0
 function pool(){
-  this.is_pool = true, this.pool_id = next_pool_id, this.ctx = ctx, this.stimuli = new Array()
+
+  /* keep count */
   ++ next_pool_id
+
+  this.is_pool = true, this.pool_id = next_pool_id, this.ctx = ctx, this.stimuli = new Array()
 
   /* add a stimulus to the pool */
   this.add = function(stim){
@@ -48,11 +52,15 @@ function pool(){
       console.log('error: n-selection already made from this pool.')
       return null
     }
+
+    /* check the selection size */
     var n = parseInt(this.get_n())
     if(n > this.stimuli.length){
       console.log('error: n > this.stimuli.length')
       return null
     }
+    
+    /* make a pseudorandom selection */
     this.selection_n = new Array()
     var rem = this.stimuli.length
     for(var i = 0; i < n; i++){ 
@@ -70,11 +78,15 @@ function pool(){
       console.log('error: m-selection already made from this pool.')
       return null
     }
+
+    /* check the selection size */
     var m = parseInt(this.get_m())
     if(m > this.stimuli.length){
       console.log('error: m > this.stimuli.length')
       return null
     }
+
+    /* make a pseudorandom selection */
     this.selection_m = new Array()
     var rem = this.stimuli.length
     for(var i = 0; i < m; i++){ 
@@ -87,6 +99,9 @@ function pool(){
   
   /* for initializing a test phase: mix "N"-selection and "M"-selection together */
   this.reshuffle = function(){
+
+    /* put the "N"-selection and "M" selection, together in array to_shuffle,
+      which will be shuffled */
     var to_shuffle = [], i = 0
     
     /* add the "N"-selection */
@@ -117,13 +132,15 @@ function pool(){
     return [shuffled, deja_vu]
   }
 
+
+  /* perform all of the above */
   this.draw = function(){
     this.draw_n()
     this.draw_m()
     this.reshuffle()
   }
 
-  /* set N, M parameters and make a selection */
+  /* set N, M parameters and make a selection cf the above */
   this.select = function(n,m){
     this.set_n(n)
     this.set_m(m)
@@ -134,6 +151,7 @@ function pool(){
   return this
 }
 
+/* following the convention to wrap away the new() operator */
 function stimulus_pool(){
   return new pool()
 }
