@@ -19,7 +19,7 @@ var my_experiment = function(){
   p.add('umdiddlediddlediddleumdiddlei')
 
   /* select portion of items from stimulus pool */
-  p.select(2, 2)
+  p.select(5)
 
   /* set up `study phase': show selected portions of pool */
   study_phase(p,  /* stimulus pool */  

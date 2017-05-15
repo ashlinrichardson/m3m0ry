@@ -142,7 +142,7 @@ function pool(){
   }
 
   /* set N, M parameters and make a selection cf the above */
-  this.select = function(n,m){
+  this.select = function(n, m=n){
     this.set_n(n)
     this.set_m(m)
     this.draw()
