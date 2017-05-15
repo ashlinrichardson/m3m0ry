@@ -52,7 +52,7 @@ var my_experiment = function(){
   test_phase(two_pools, /* stimulus pools */
              1000, /* ISI */
              4500, /* SET */
-             4, /* extra feedback (one for every 3 slides, approx.) */
+             6, /* extra feedback (one for every 6 slides, approx.) */
              "How did you feel about the last stimulus? A=positive, B=negative, C=neutral, D=not sure", /* message for extra feedback */
              [65, 66, 67, 68] /* accepted keypresses for extra feedback */ )
 }
