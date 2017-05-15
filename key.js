@@ -107,9 +107,6 @@ function keyboard_module(){
         /* clear the timer and "go next" */
         ctx.clear_tmr()
         now.expire()
-        if(now.type != 'isi'){
-          bell.play()
-        }
     }
   }
   return key_unicode

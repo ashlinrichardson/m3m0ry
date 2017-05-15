@@ -53,6 +53,6 @@ var my_experiment = function(){
              1000, /* ISI */
              4500, /* SET */
              4, /* extra feedback (one for every 3 slides, approx.) */
-             "Did you like the last picture? A=yes, B=no, C=maybe, D=not sure", /* message for extra feedback */
+             "How did you feel about the last stimulus? A=positive, B=negative, C=neutral, D=not sure", /* message for extra feedback */
              [65, 66, 67, 68] /* accepted keypresses for extra feedback */ )
 }
