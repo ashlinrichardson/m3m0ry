@@ -678,6 +678,8 @@ status open
 
 
 \backslash
+newpage 
+\backslash
 subsection{experiments/instructions}
 \backslash
  
@@ -705,6 +707,8 @@ status open
 \begin_layout Plain Layout
 
 
+\backslash
+newpage 
 \backslash
 subsection{experiments/delay}
 \backslash
@@ -734,6 +738,8 @@ status open
 
 
 \backslash
+newpage 
+\backslash
 subsection{experiments/feedback}
 \backslash
  
@@ -761,6 +767,8 @@ status open
 \begin_layout Plain Layout
 
 
+\backslash
+newpage 
 \backslash
 subsection{experiments/study-phase}
 \backslash
@@ -790,6 +798,8 @@ status open
 
 
 \backslash
+newpage 
+\backslash
 subsection{experiments/test-phase}
 \backslash
  
@@ -803,6 +813,36 @@ lstset{linewidth=
 textwidth}
 \backslash
 lstinputlisting{../experiments/test-phase/my-experiment.js}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage 
+\backslash
+subsection{experiments/my-experiment}
+\backslash
+ 
+\backslash
+ 
+\backslash
+lstset{language=C} 
+\backslash
+lstset{linewidth=
+\backslash
+textwidth}
+\backslash
+lstinputlisting{../experiments/my-experiment/my-experiment.js}
 \end_layout
 
 \end_inset
@@ -858,6 +898,8 @@ status open
 
 
 \backslash
+newpage 
+\backslash
 subsection{key.js}
 \backslash
  
@@ -885,6 +927,8 @@ status open
 \begin_layout Plain Layout
 
 
+\backslash
+newpage 
 \backslash
 subsection{main.js}
 \backslash
@@ -914,6 +958,8 @@ status open
 
 
 \backslash
+newpage 
+\backslash
 subsection{memory.js}
 \backslash
  
@@ -941,6 +987,8 @@ status open
 \begin_layout Plain Layout
 
 
+\backslash
+newpage 
 \backslash
 subsection{pool.js}
 \backslash
@@ -970,6 +1018,8 @@ status open
 
 
 \backslash
+newpage 
+\backslash
 subsection{state.js}
 \backslash
  
@@ -997,6 +1047,8 @@ status open
 \begin_layout Plain Layout
 
 
+\backslash
+newpage 
 \backslash
 subsection{task.js}
 \backslash
@@ -1026,6 +1078,8 @@ status open
 
 
 \backslash
+newpage 
+\backslash
 subsection{text.js}
 \backslash
  
@@ -1054,6 +1108,8 @@ status open
 
 
 \backslash
+newpage 
+\backslash
 subsection{util.js}
 \backslash
  
@@ -1066,7 +1122,9 @@ lstset{linewidth=
 \backslash
 textwidth}
 \backslash
-lstinputlisting{../util.js}
+lstinputlisting{../util.js} 
+\backslash
+newpage
 \end_layout
 
 \end_inset
