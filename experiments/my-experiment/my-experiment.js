@@ -8,7 +8,7 @@ var my_experiment = function(){
   var p1 = stimulus_pool()
 
   /* add images to stimulus pool */
-  for(var i = 65; i < 70; i++){
+  for(var i = 65; i < 75; i++){
     p1.add(ctx.imgs[i])
   }
 
@@ -16,7 +16,7 @@ var my_experiment = function(){
   var p2 = stimulus_pool()
 
   /* add images to stimulus pool */
-  for(var i = 100; i < 105; i++){
+  for(var i = 100; i < 110; i++){
     p2.add(ctx.imgs[i])
   }
 
