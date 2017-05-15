@@ -23,12 +23,12 @@ var my_experiment = function(){
   /* add words to stimulus pool */ 
   p1.add('floccinaucinihilipilification')
   p1.add('supercalifragilisticexpialidocious')
-  p1.add('umdiddlediddlediddleumdiddlei')
-
+  p1.add('equanimity')
+  
   /* add words to second stimulus pool */
   p2.add('compassion')
-  p2.add('equanimity')
   p2.add('dogovarivatsya')
+  p2.add('umdiddlediddlediddleumdiddlei')
 
   /* selection from stimulus pool (parameters are N, M) */
   p1.select(3, 3)
