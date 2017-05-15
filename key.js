@@ -74,9 +74,6 @@ function keyboard_module(){
         go = false
       }
     }
-    if(now.ding == false){
-      go = false
-    }
 
     /* t <-- t + 1 */
     if(now && now.key_expiry && go){
