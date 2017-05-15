@@ -78,8 +78,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
   var id = (this.predecessor == null) ? -1 : this.predecessor.id 
   ctx.last_new_state = this
   
-  /* sanity check: make sure the predecessor points here */
-  if(this.predecessor){
+  if(this.predecessor != null){
     this.predecessor.set_successor(this)
   }
   
@@ -90,22 +89,24 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
 
   /* plot text or images */
   this.show = function(){
-
-    /* execute associated action, if we have one */
     if(this.action){
       this.action(this)
     }
     var ctx = get_ctx()
     ctx.clearRect(0, 0, ctx.w(), ctx.h())
-      
+  
+    /* bottom text */
+    if(this.txt2 && (!this.wrd_stim)){
+      // wrap_text(this.txt2, ctx, ctx.h() - (2 * ctx.font_size+20));
+    }
+
+    if(this.txt2){
+      wrap_text(this.txt2, ctx, ctx.h() - (2 * ctx.font_size + 20))
+    }
+    
     /* upper text */
     if(this.txt){ 
       wrap_text(this.txt, ctx, 0)
-    }
-
-    /* middle text */
-    if(this.txt2){
-      wrap_text(this.txt2, ctx, ctx.h() - (2 * ctx.font_size + 20))
     }
 
     /* img or middle text (if word stim) */
@@ -114,7 +115,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
     }
 
     /* might need the wrap_text back on for long strings.. */
-    if(this.wrd_stim){
+    if(this.wrd_stim != null){  // wrap_text(this.wrd_stim, ctx, ctx.h()/2);
 
       /* no wrap */
       centre_text(this.wrd_stim)
@@ -142,92 +143,69 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
   this.start = function(){
     var ctx = get_ctx()
 
-    /* do data dump, if we're at the end */
     if(this == ctx.last_state){
-
         /* window.location.href == http://domain/memory/examples/test_phase/memory.html */
         var href = window.location.href
 
-        /* go through all the states and record (in string format) the info we'd like to appear on the server */
+        /* go through all the states and record (in string format) the contents, as we'd like it to appear on the server */
         var state_i = ctx.first_state, state_index = 0, message = "url,event_id,task_id,task_type,trial_id,duration(mS),start(yyyy:mm:dd:hh:mn:ss:mls),end(yyyy:mm:dd:hh:mn:ss:mls),isi,set,stim_type,stim_id,stim_pool_id,response\n"
         for(var state_i = ctx.first_state; state_i != ctx.last_state; state_i = state_i.successor){
           var stim_type = null, my_stim  = null, pi = ""
     
-          /* "the right way to check if a variable is undefined or not" */
+          /* the right way to check if a variable is undefined or not */
           if(typeof state_i.pool_id !== 'undefined'){
             pi = JSON.parse(JSON.stringify(state_i.pool_id))
           }
 
-          /* assign "stimulus type" keyword */
           if(state_i.wrd_stim){
             stim_type = "word", my_stim = state_i.wrd_stim 
           }
+
           if(state_i.img_stim){
             stim_type = "image", my_stim = state_i.img_stim.fn 
           }
+
           if(!stim_type){
             stim_type = ""
           }
+
           if(!my_stim){
             my_stim = ""
           }
 
           /* for a given "state", record a line of data */
           message += href + ","
-
-          /* event_id: global index / line number */
-          message += state_index.toString() + ","
-
-          /* task_id */
-          message += state_i.task_id + ","
-
-          /* task_type */              
-          message += state_i.type + ","                 
-          
-          /* trial_id */
-          message += state_i.trial_id + ","             
+          message += state_index.toString() + ","       /* event_id: global index / line number */
+          message += state_i.task_id + ","              /* task_id */
+          message += state_i.type + ","                 /* task_type */
+          message += state_i.trial_id + ","             /* trial_id */
           message += Math.round(10. * (state_i.t1 - state_i.t0)) / 10. + "," 
           message += parse_date_time(state_i.start_date_time).toString() + ","
           message += parse_date_time(state_i.end_date_time).toString() + ","
-
-          /* ISI */
           if(state_i.type == 'isi'){
             message += state_i.expiry_ms.toString()
           }
-          message += ","
-                   
+          message += ","                                /* ISI */
           if(!state_i.expiry_ms){
             state_i.expiry_ms = ""
           }
-    
-          /* SET */
-          message += state_i.expiry_ms.toString() + ","
-    
-          /* stimulus type */
-          message += stim_type.toString() + ","
-    
-          /* stimulus id */
-          message += my_stim.toString() + ","
-          
-          /* stimulus-pool id */
-          message += pi.toString() + ","
+          message += state_i.expiry_ms.toString() + "," /* SET */
+          message += stim_type.toString() + ","         /* stim_type */
+          message += my_stim.toString() + ","           /* stim_id */
+          message += pi.toString() + ","                /* stimulus-pool id */
 
-          /* user response */
           var response = ""
           for(var k in state_i.key_strokes){
             response += String.fromCharCode(state_i.key_strokes[k])
           }
-          message += response + ""
+          message += response + ""                      /* response */
 
           /* add a newline character */ 
           message += "\n"
-
-          /* go next */
           ++ state_index
         }
 
-        /* remove last three elements from array: take current page and navigate to:
-          ../../xml-receive.py == http://domain/memory/xml-receive.py */
+        /* remove last three elements from the array: take the page and navigate to: ../../xml-receive.py == http://domain/memory/xml-receive.py */
         var words = href.split('/') 
         var nwords = words.length
         var target = words.splice(0, nwords-3).join('/') + '/xml-receive.py'
@@ -265,12 +243,12 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
     this.end_date_time = date_time(), this.t1 = window.performance.now()
     var txt = this.txt, suc_txt = null, suc = this.successor
 
-    if(suc && suc.txt){
+    if(suc!=null && suc.txt !=null){
       suc_txt = suc.txt
     }
 
     /* enter next state */
-    if(this.successor){
+    if(this.successor!=null){
       ctx.set_state(this.successor)
       ctx.get_state().start()
     }
