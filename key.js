@@ -1,3 +1,5 @@
+var bell = new Audio("../../ding.mp3")
+
 /* convert from unicode to familiar symbol */
 function unicode_from_key_event(e){
   return e.charCode ? e.charCode : e.keyCode
@@ -14,12 +16,24 @@ function keyboard_module(){
 
     /* unicode vs. character representation */
     var unicode = unicode_from_key_event(e), key = String.fromCharCode(unicode)
-    key_unicode[unicode] = true
-  
-    /* ignore caps-lock key */
-    if(unicode == 20){
 
-      /* enable this line to debug key codes: console.log("unicode", unicode) */
+    /* inverted question mark */
+    if(unicode == 191){
+      unicode = 63, key = '?'
+    }else if(unicode == 188){
+      unicode = 44, key = ','  
+    }else if(unicode == 190){
+      unicode = 46, key = "."
+    }
+    
+    /* console.log("unicode", unicode)*/
+
+    key_unicode[unicode] = true
+
+    var ignore = [20, 192, 189, 187, 93, 91, 219, 221, 220, 186, 222, 33, 36, 34, 35, 37, 38, 39, 40]
+  
+    /* ignore caps-lock and other special key */
+    if(ignore.includes(unicode)){
       return
     }
 
@@ -49,9 +63,13 @@ function keyboard_module(){
         if(now.txt[len-1] != ' '){
           now.txt = now.txt.substring(0, len - 1)    
         }
-      }else if(unicode == 0){
-        
-        /* null */ 
+      }else if(admissible_keys.includes(27) && unicode==27){
+
+        /* break out of free-form text input mode with <esc> key */
+        ctx.clear_tmr()
+        now.expire()
+        bell.play()
+        return key_unicode
       }else{
   
         /* add character to buffer */
@@ -89,6 +107,9 @@ function keyboard_module(){
         /* clear the timer and "go next" */
         ctx.clear_tmr()
         now.expire()
+        if(now.type != 'isi'){
+          bell.play()
+        }
     }
   }
   return key_unicode
