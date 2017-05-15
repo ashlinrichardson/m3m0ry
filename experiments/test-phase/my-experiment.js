@@ -9,7 +9,7 @@ var my_experiment = function(){
 
   /* add images to stimulus pool */
   for(var i = 0; i < 10; i++){
-    p.add(ctx.imgs[i])
+    p.add(get_image())
   }
 
   /* add words to stimulus pool */ 

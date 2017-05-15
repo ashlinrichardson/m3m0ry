@@ -8,22 +8,22 @@ var my_experiment = function(){
   var p1 = stimulus_pool()
 
   /* add images to stimulus pool */
-  for(var i = 65; i < 75; i++){
-    p1.add(ctx.imgs[i])
-  }
-
-  /* set up a stimulus pool */
-  var p2 = stimulus_pool()
-
-  /* add images to stimulus pool */
-  for(var i = 100; i < 110; i++){
-    p2.add(ctx.imgs[i])
+  for(var i =0; i < 10; i++){
+    p1.add(get_image())
   }
 
   /* add words to stimulus pool */ 
   p1.add('floccinaucinihilipilification')
   p1.add('supercalifragilisticexpialidocious')
   p1.add('equanimity')
+
+  /* set up a stimulus pool */
+  var p2 = stimulus_pool()
+
+  /* add images to stimulus pool */
+  for(var i = 0; i < 10; i++){
+    p2.add(get_image())
+  }
   
   /* add words to second stimulus pool */
   p2.add('compassion')
@@ -50,9 +50,9 @@ var my_experiment = function(){
  
   /* set up `test phase' (user input recorded for whole randomized pool) */
   test_phase(two_pools, /* stimulus pools */
-             1000, /* ISI */
+             111, /* ISI */
              4500, /* SET */
-             6, /* extra feedback (one for every 6 slides, approx.) */
+             0, /* extra feedback (one for every 6 slides, approx.) */
              "How did you feel about the last stimulus? A=positive, B=negative, C=neutral, D=not sure", /* message for extra feedback */
              [65, 66, 67, 68] /* accepted keypresses for extra feedback */ )
 }

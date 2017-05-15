@@ -1,9 +1,5 @@
 /* global counter for states/ AKA frames/ AKA slides */
-var state_id = -1
-
-function get_id(){
-  return ++ state_id
-}
+var last_state_id = -1
 
 /* reference to 2d canvas graphics context */
 function get_ctx(){
@@ -18,7 +14,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
                txt        =  null,  /* text data (if any) */
                successor  =  null){
   var ctx = get_ctx()
-  this.action = null, this.ding = false, this.id = get_id()
+  this.action = null, this.ding = false, this.id = ++ last_state_id 
     
   /* is a key-press required to transition? */
   this.key_required = false
@@ -142,8 +138,11 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
   this.start = function(){
     var ctx = get_ctx()
 
+    /* start the clock.. */
+    this.t0 = window.performance.now(), this.start_date_time = date_time()
+
     /* do data dump, if we're at the end */
-    if(this == ctx.last_state){
+    if(this.id >= last_state_id){ //== ctx.last_state){
 
         /* window.location.href == http://domain/memory/examples/test_phase/memory.html */
         var href = window.location.href
@@ -151,6 +150,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
         /* go through all the states and record (in string format) the info we'd like to appear on the server */
         var state_i = ctx.first_state, state_index = 0, message = "url,event_id,task_id,task_type,trial_id,duration(mS),start(yyyy:mm:dd:hh:mn:ss:mls),end(yyyy:mm:dd:hh:mn:ss:mls),isi,set,stim_type,stim_id,stim_pool_id,response\n"
         for(var state_i = ctx.first_state; state_i != ctx.last_state; state_i = state_i.successor){
+
           var stim_type = null, my_stim  = null, pi = ""
     
           /* "the right way to check if a variable is undefined or not" */
@@ -236,11 +236,6 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
         xml_send(message, target)    
     } 
 
-    var ctx = get_ctx()
-
-    /* start the clock.. */
-    this.t0 = window.performance.now(), this.start_date_time = date_time()
-    
     /* clear the timer */
     ctx.clear_tmr()
 
@@ -270,7 +265,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
     }
 
     /* enter next state */
-    if(this.successor){
+    if(this.successor && (this.successor!=this)){
       ctx.set_state(this.successor)
       ctx.get_state().start()
     }

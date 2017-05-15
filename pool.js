@@ -12,6 +12,7 @@ function pool(){
   /* add a stimulus to the pool */
   this.add = function(stim){
     this.stimuli.push(stim)
+    stim.load_me = true
     return stim
   }
 

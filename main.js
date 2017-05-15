@@ -22,7 +22,8 @@ function resize(){
 }
 
 /* load corporate logo */
-ctx.symbol = load_img(abs_path + "logo/uvic_gray.png")
+ctx.symbol = new Image()
+ctx.symbol.fn = abs_path + "logo/uvic_gray.png"
 
 /* algo to draw scaled corporate logo */
 ctx.draw_symbol = function(){
@@ -91,7 +92,7 @@ ctx.questions_correct = 0, ctx.questions_total = 0
 
 /* this function sets up the experiment (according to the user function my_experiment)
 and we trigger this function after all the images have loaded. */
-function run_after_loading_images(){
+function run_before_loading_images(){
 
   /* set up an experiment according to user specs/code */
   my_experiment(ctx)
@@ -109,47 +110,76 @@ function run_after_loading_images(){
   /* start "stopwatch" */
   ctx.t0 = window.performance.now()
 
-  /* go */
-  ctx.get_state().start()
 }
+
 
 /* load some image files: need to change if the image database changes */
-var n_imgs = 200, n_imgs_loaded = 0
+var n_imgs = 200, n_imgs_to_load = 0, n_imgs_loaded = 0
+
+var images_to_load = []
+
+/* scan images to determine which need to be loaded */
+var idx = new Array()
+ctx.imgs = new Array()
+for(var i = 1; i <= n_imgs; i++){
+    idx.push(i)
+}
+
+/* randomize the order of the images */
+shuffle(idx)
+
+for(var i=1; i<=n_imgs; i++){
+  var img = new Image()
+  img.fn = abs_path + 'images/' + idx[i-1] + '.jpg'   // load_img(img) //var my_img = load_img(img_fn)
+  ctx.imgs.push(img)
+} 
+
+var get_image = function(){
+  return ctx.imgs[n_imgs_to_load++]
+}
 
 /* load image data */
-function load_img(fn){
-  var img = new Image()
-  img.onload = function(){
-
+function load_img(i){
+  ctx.imgs[i].onload = function(){
+    
     /* have all images been loaded? */
-    if(++n_imgs_loaded == n_imgs){
-
+    if(++n_imgs_loaded == n_imgs_to_load){
+      
       /* proceed to init the experiment */
-      run_after_loading_images()
+      ctx.get_state().start()
     }
-  } 
-  /* load the image */
-  img.src = fn 
-  return img
-}
-
-/* load all of the image data */
-ctx.load_imgs = function(n_imgs){
-
-  /* ideally would only load the ones used */
-  var imgs = new Array()
-  for(var i = 1; i <= n_imgs; i++){
-    var img_fn = abs_path + 'images/' + i + '.jpg'
-    var my_img = load_img(img_fn)
-    my_img.fn = 'images/' + i + '.jpg'
-    imgs.push(my_img)
   }
-  ctx.imgs = imgs
-  return ctx.imgs
+
+  /* load the image */
+  ctx.imgs[i].src = ctx.imgs[i].fn 
+  return ctx.imgs[i]
 }
+
 
 /* keep track of the "task-index" as the experiment is intialized */
 var next_task_id = 0
 
-/* this line "makes everything go" */
-var my_images = ctx.load_imgs(n_imgs)
+run_before_loading_images()
+
+
+/* load the symbol */
+++ n_imgs_to_load
+
+ctx.symbol.onload = function(){
+
+   /* have all images been loaded? */
+  if(++n_imgs_loaded == n_imgs_to_load){
+
+     /* proceed to init the experiment */
+      ctx.get_state().start()
+   }
+}
+ctx.symbol.src = ctx.symbol.fn
+
+/* load the other images.. */
+for(var i=0; i<ctx.imgs.length; i++){
+  if(ctx.imgs[i].load_me){
+    load_img(i)
+  }
+}
+
