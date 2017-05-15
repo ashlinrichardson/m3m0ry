@@ -40,7 +40,7 @@ var my_experiment = function(){
   /* set up `study phase': show selected portions of pool */
   study_phase(two_pools, 
               111, /* ISI */
-              2000 /* SET */ )
+              4500 /* SET */ )
 
   /* some instructions before `test phase' */
   instructions('test phase coming up')
@@ -51,7 +51,7 @@ var my_experiment = function(){
   /* set up `test phase' (user input recorded for whole randomized pool) */
   test_phase(two_pools, /* stimulus pools */
              1000, /* ISI */
-             4000, /* SET */
+             4500, /* SET */
              4, /* extra feedback (one for every 3 slides, approx.) */
              "Did you like the last picture? A=yes, B=no, C=maybe, D=not sure", /* message for extra feedback */
              [65, 66, 67, 68] /* accepted keypresses for extra feedback */ )
