@@ -74,7 +74,7 @@ function keyboard_module(){
         go = false
       }
     }
-    if(now.ding == false && now.hold == true){
+    if(now.ding == false){
       go = false
     }
 

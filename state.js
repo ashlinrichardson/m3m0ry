@@ -18,16 +18,13 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
                txt        =  null,  /* text data (if any) */
                successor  =  null){
   var ctx = get_ctx()
-  this.action = null, this.ding = false, this.hold = false, this.id = get_id()
+  this.action = null, this.ding = false, this.id = get_id()
     
-  this.hold_on = function(){
-    this.hold = true
-  }  
-
   /* is a key-press required to transition? */
   this.key_required = false
   
-  /* array to store admissible key-codes for data entry or transition to next "slide" */
+  /* array to store admissible key-codes for data entry or transition to next "slide":
+    default: M, N */
   this.admissible_keys = [77, 78]
   
   this.get_admissible_keys = function(){
