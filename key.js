@@ -68,7 +68,7 @@ function keyboard_module(){
         /* break out of free-form text input mode with <esc> key */
         ctx.clear_tmr()
         now.expire()
-        bell.play()
+        // bell.play()
         return key_unicode
       }else{
   
