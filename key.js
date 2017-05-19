@@ -72,7 +72,7 @@ function keyboard_module(){
 
       }else{
   
-        /* add character to buffer */
+         /* add character to buffer */
         now.txt += key.toLowerCase()
       }
 
