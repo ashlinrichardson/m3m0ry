@@ -2,7 +2,7 @@
 var my_experiment = function(){
 
   /* instruction slide */
-  instructions('welcome to the recognition memory experiment framework (press any key to continue)')
+  instructions('welcome to the recognition memory experiment framework\nnew line\nanother new line\n(press any key to continue)')
 
   /* instruction slide */
   instructions('here is what happens when you put in a lot of text-- if you put in lots of text, it might go over the edge (press any key to continue)')
