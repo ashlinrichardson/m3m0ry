@@ -213,11 +213,26 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
           message += pi.toString() + ","
 
           /* user response */
-          var response = ""
-          for(var k in state_i.key_strokes){
-            response += String.fromCharCode(state_i.key_strokes[k])
+          var response = '"'
+
+          if(state_i.type == 'delay'){
+
+            /* use the response text (not the sequence of characters). When testing with Max, discovered we could see a symbol for each keystroke, in the data stream (incl., e.g., backspace characters). We want the final result, not the intermediary. */
+            response += state_i.txt
+          }else{
+            
+            /* write out the individual response key(s) in terms of the representative characters */
+            for(var k in state_i.key_strokes){
+              response += String.fromCharCode(state_i.key_strokes[k])
+            }
           }
-          message += response + ""
+          message += response + '"'
+          if(response=='""'){
+            response = ''  
+          }
+
+          /* filter the response data for possible newline characters */
+          response.replace('\n', ' ')
 
           /* add a newline character */ 
           message += "\n"
