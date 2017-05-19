@@ -42,6 +42,18 @@ var my_experiment = function(){
               111, /* ISI */
               4500 /* SET */ )
 
+  /* instruction slide */
+  instructions('second delay phase (5 seconds): please press any key to start')
+
+  /* set up delay task: 5 seconds */
+  delay_task('please type names of as many countries as you can think of in 10 seconds, separated by spaces...press any key to begin',
+             10000 /* 5000 mS */)
+
+  /* instruction slide -- fixed duration */
+  var x = instructions('thank you for completing the delay task: test phase coming up in 5 seconds..')
+  x.set_expiry(5000)
+  x.key_expiry = false
+
   /* some instructions before `test phase' */
   instructions('test phase coming up')
   instructions('when you see an image/word, please press m or n')
@@ -51,8 +63,8 @@ var my_experiment = function(){
   /* set up `test phase' (user input recorded for whole randomized pool) */
   test_phase(two_pools, /* stimulus pools */
              111, /* ISI */
-             4500, /* SET */
-             0, /* extra feedback (one for every 6 slides, approx.) */
+             6000, /* SET */
+             6, /* extra feedback (one for every 6 slides, approx.) */
              "How did you feel about the last stimulus? A=positive, B=negative, C=neutral, D=not sure", /* message for extra feedback */
              [65, 66, 67, 68] /* accepted keypresses for extra feedback */ )
 }
