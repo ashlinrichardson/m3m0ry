@@ -13,11 +13,16 @@ var my_experiment = function(){
              5000 /* 5000 mS */)
 
   /* instruction slide */
+  /* instruction slide -- fixed duration */
+  var x = instructions('thank you for completing the delay task: test phase coming up in 5 seconds..')
+  x.set_expiry(5000)
+  x.key_expiry = false
+
   instructions('third delay phase (10 seconds): please press any key to start')
 
   /* set up delay task: 10 seconds */
-  delay_task('please type names of as many countries as you can think of in 10 seconds, separated by spaces...press any key to begin',
-             10000 /* 10000 mS */)
+  delay_task('please type names of as many countries as you can think of in 6 seconds, separated by spaces...press any key to begin',
+             6000 /* 10000 mS */)
 
   /* instruction slide */
   instructions('all done.. thank you.. please press any key to finish..')
