@@ -60,16 +60,16 @@ function keyboard_module(){
       
         /* backspace */
         var len = now.txt.length
-        //if(now.txt[len-1] != ' '){
-          now.txt = now.txt.substring(0, len - 1)    
-        //}
-      }else if(admissible_keys.includes(27) && unicode==27){
+        now.txt = now.txt.substring(0, len - 1)    
+      
+      }else if(admissible_keys.includes(27) && unicode == 27){
 
         /* break out of free-form text input mode with <esc> key */
         ctx.clear_tmr()
         now.expire()
         // bell.play()
         return key_unicode
+
       }else{
   
         /* add character to buffer */
