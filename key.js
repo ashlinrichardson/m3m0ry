@@ -117,12 +117,17 @@ function keyboard_module(){
         ctx.clear_tmr()
         now.expire()
         // bell.play()
+        
         return key_unicode
 
       }else{
   
          /* add character to buffer */
-        now.txt += key;//.toLowerCase()
+        if(unicode >= 65 && unicode <= 90){
+          now.txt += key.toLowerCase()
+        }else{
+          now.txt += key
+        }
       }
 
       /* redraw */
