@@ -24,19 +24,68 @@ function keyboard_module(){
       unicode = 44, key = ','  
     }else if(unicode == 190){
       unicode = 46, key = "."
+    }else if(unicode == 13){
+    
+      /* replace enter with space */
+      unicode = 32, key = " "
+    }
+
+    if(unicode == 27){
+        
+      /* do nothing if we get a key that is code 27, but not an escape key.. */
+      if(!(e.key == "Escape" || e.key == "Esc")){
+        return;
+      } 
+    }
+
+    if(unicode == 222){
+      unicode = 39, key ="'"
     }
     
-    /* console.log("unicode", unicode)*/
+    console.log("unicode", unicode)
 
     key_unicode[unicode] = true
 
-    var ignore = [20, 192, 189, 187, 93, 91, 219, 221, 220, 186, 222, 33, 36, 34, 35, 37, 38, 39, 40]
+    var ignore = [20, 192, 189, 187, 93, 91, 219, 221, 222, 220, 186, 33, 36, 34, 35, 37, 38, 40]
   
     /* ignore caps-lock and other special key */
     if(ignore.includes(unicode)){
       return
     }
 
+    var allow = [];
+    for(var i=65; i<=90; i++){
+      allow.push(i);
+    }
+    for(var i=48; i<=57; i++){
+      allow.push(i);
+    }
+
+    /* allow space bar */
+    allow.push(32)
+
+    /* allow escape key */
+    allow.push(27)
+    
+    /* allow comma */
+    allow.push(44)
+
+    /* allow period */ 
+    allow.push(46)
+
+    /* allow question mark */
+    allow.push(63)
+
+    /* allow backspace */
+    allow.push(8)
+
+    /* allow single right quotation mark */
+    allow.push(39)
+
+    if(!allow.includes(unicode)){
+      return
+    }
+    
     /* when are we? */
     var now = ctx.get_state() 
 
@@ -73,7 +122,7 @@ function keyboard_module(){
       }else{
   
          /* add character to buffer */
-        now.txt += key.toLowerCase()
+        now.txt += key;//.toLowerCase()
       }
 
       /* redraw */
