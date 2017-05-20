@@ -2,7 +2,7 @@
 var my_experiment = function(){
 
   /* instruction slide */
-  instructions('welcome to the recognition memory experiment framework\nnew line\nanother new line\n(press any key to continue)')
+  instructions('welcome to the recognition memory experiment framework (press any key to continue)')
 
   /* instruction slide */
   instructions('here is what happens when you put in a lot of text-- if you put in lots of text, it might go over the edge (press any key to continue)')
@@ -11,7 +11,7 @@ var my_experiment = function(){
   instructions('this is an instructions slide (press any key to continue)')
 
   /* instruction slide */
-  instructions('this is another instructions slide (press any key to continue)')
+  instructions('this is an instructions slide with extra line breaks:\nsingle line break:\ndouble line break:\n\ntriple line break:\n\n\n (press any key to continue)')
 
   /* instruction slide -- fixed duration */
   var x = instructions('this instructions slide will display for 5 seconds: if you press a key, it will do nothing')
