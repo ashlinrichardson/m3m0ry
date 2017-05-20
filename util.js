@@ -10,11 +10,41 @@ function date_time(){
 /* seed for rand() below */
 var seed = 5
 
+var get_seconds = function(){
+  var d = new Date()
+
+  /* return an epoch time (S) */
+  return d.getMilliseconds()
+}
+
+var mutable_seed = get_seconds()
+
 /*random-number generator http://indiegamr.com/generate-repeatable-random-numbers-in-js/ : initial seed.. in order to work 'Math.seed' must NOT be undefined, so in any case, you HAVE to provide a Math.seed */
-function rand(max, min){
-  max = max || 1, min = min || 0
-  seed = (seed * 9301 + 49297) % 233280
-  return min + (seed / 233280) * (max - min)
+function rand(max, min, mutable=false){
+    max = max || 1, min = min || 0
+  if(mutable){
+    mutable_seed = (mutable_seed * 9301 + 49297) % 233280
+    return min + (mutable_seed / 233280) * (max - min)
+  }else{
+    seed = (seed * 9301 + 49297) % 233280
+    return min + (seed / 233280) * (max - min)
+  }
+}
+
+/* Shuffle array in place, via http://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array 
+ * @param {Array} a items The array containing the items. 
+
+  setting the parameter "mutable" to true, makes random selections that will change between runs. */
+function shuffle(a, mutable=false) {
+  var j, x, i
+  for(i = a.length; i; i--){
+
+    /* use our seeded random number generator, so we get the same results every time */
+    j = Math.floor(rand(null, null, mutable) * (1. * i))  /* j = Math.floor(Math.random() * i) */
+    x = a[i - 1]
+    a[i - 1] = a[j]
+    a[j] = x
+  }
 }
 
 /* pad to length n (with 0's on the left) */
@@ -95,16 +125,4 @@ function xml_send(s, xml_receive_script_url){
   xhr.send(data)
 }
 
-/* Shuffle array in place, via http://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array 
- * @param {Array} a items The array containing the items. */
-function shuffle(a) {
-  var j, x, i
-  for(i = a.length; i; i--){
 
-    /* use our seeded random number generator, so we get the same results every time */
-    j = Math.floor(rand() * (1. * i))  /* j = Math.floor(Math.random() * i) */
-    x = a[i - 1]
-    a[i - 1] = a[j]
-    a[j] = x
-  }
-}

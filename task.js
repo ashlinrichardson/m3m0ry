@@ -31,6 +31,7 @@ function study_phase(my_pool, isi=0, time_limit=0, extra_feedback=false, extra_f
   var trial_index = -1, my_task_id = next_task_id++
   this.ctx = ctx, this.p = my_pools, this.pool_ids = new Array()
   
+  /* for study phase, selection is built from combination of all selection_n arrays, from each of the supplied pools */
   var my_selection = new Array()
   for(var a_pool in my_pools){
     var my_pool = my_pools[a_pool]
@@ -47,7 +48,7 @@ function study_phase(my_pool, isi=0, time_limit=0, extra_feedback=false, extra_f
   }
 
   /* randomize the order of the array */
-  shuffle(my_selection)
+  shuffle(my_selection, true)
 
   for(var selection_ind in my_selection){
 
@@ -108,6 +109,7 @@ function test_phase(my_pool, isi=0, time_limit=0, extra_feedback=false, extra_fe
   var trial_index = -1, my_task_id = next_task_id++
   this.ctx = ctx, this.p = my_pools, this.pool_ids = new Array()
 
+  /* for test phase, selection is built from combination of all selection_m arrays, from each of the supplied pools */
   var my_selection = new Array()
   for(var a_pool in my_pools){
     var my_pool = my_pools[a_pool]
@@ -123,7 +125,7 @@ function test_phase(my_pool, isi=0, time_limit=0, extra_feedback=false, extra_fe
       my_selection.push([shuffled[i], my_pool.pool_id, deja_vu[i], extra_feedback_this_slide])
     }
   }
-  shuffle(my_selection)
+  shuffle(my_selection, true)
 
   for(var selection_ind in my_selection){
     ++ trial_index
