@@ -16,6 +16,13 @@ function pool(){
     return stim
   }
 
+  /* add one or more images to the stimulus pool */
+  this.add_image = function(n=1){
+    for(var i = 0; i < n; i++){
+      this.add(get_image())
+    }
+  }
+
   /* set number of samples for study phase */
   this.set_n = function(n){
     this.n = n

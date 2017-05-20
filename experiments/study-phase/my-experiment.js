@@ -2,16 +2,14 @@
 var my_experiment = function(){
   
   /* instructions */
-  instructions('study phase coming next:')
-  instructions('please remember each word/image and press any key')
+  instructions('study phase coming next: (please press any key to continue)')
+  instructions('please remember each word/image and press any key (please press any key to continue)')
 
   /* set up a stimulus pool */
   var p = stimulus_pool()
   
-  /* add images to stimulus pool */  
-  for(var i = 0; i < 10; i++){
-    p.add(get_image())
-  }
+  /* add images to stimulus pool */ 
+  p.add_image(10)
 
   /* add words to stimulus pool */ 
   p.add('floccinaucinihilipilification')
@@ -24,5 +22,5 @@ var my_experiment = function(){
   /* set up `study phase': show selected portions of pool */
   study_phase(p,  /* stimulus pool */  
               111 /* ISI (optional) */, 
-              3000  /* SET (optional) */ )
+              4500  /* SET (optional) */ )
 }

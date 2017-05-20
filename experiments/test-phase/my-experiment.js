@@ -2,15 +2,13 @@
 var my_experiment = function(){
 
   /* set up some instruction slides */
-  instructions('study phase: please remember images and press any key')
+  instructions('study phase: please remember images and press any key (please press any key to continue)')
 
   /* set up a stimulus pool */
   var p = stimulus_pool()
 
   /* add images to stimulus pool */
-  for(var i = 0; i < 10; i++){
-    p.add(get_image())
-  }
+  p.add_image(10)
 
   /* add words to stimulus pool */ 
   p.add('floccinaucinihilipilification')
@@ -24,10 +22,10 @@ var my_experiment = function(){
   study_phase(p, 111)
 
   /* some instructions before `test phase' */
-  instructions('test phase coming up')
-  instructions('when you see an image/word, please press m or n')
-  instructions('please press m if you saw an image/word before')
-  instructions('please press n if you did not see the image/word before')
+  instructions('test phase coming up (please press any key to continue)')
+  instructions('when you see an image/word, please press m or n (please press any key to continue)')
+  instructions('please press m if you saw an image/word before (please press any key to continue)')
+  instructions('please press n if you did not see the image/word before (please press any key to continue)')
  
   /* set up `test phase' (user input recorded for whole randomized pool) */
   test_phase(p, 333)

@@ -1,15 +1,15 @@
 /* recognition memory experiment set-up */
 var my_experiment = function(){
 
-  instructions('first delay phase (please press <esc> key to end): please press any key to start')
+  instructions('first delay phase (please press <esc> key to end): (please press any key to continue)')
 
-  delay_task('please write out anything that comes to mind (please press <esc> key when finished)')
+  delay_task('please write out anything that comes to mind (please press <esc> key when finished) (please press any key to continue)')
 
   /* instruction slide */
-  instructions('second delay phase (5 seconds): please press any key to start')
+  instructions('second delay phase (5 seconds): (please press any key to continue)')
 
   /* set up delay task: 5 seconds */
-  delay_task('please type names of as many countries as you can think of in 5 seconds, separated by spaces...press any key to begin',
+  delay_task('please type names of as many countries as you can think of in 5 seconds, separated by spaces.. (please press any key to continue)',
              5000 /* 5000 mS */)
 
   /* instruction slide */
@@ -18,12 +18,12 @@ var my_experiment = function(){
   x.set_expiry(5000)
   x.key_expiry = false
 
-  instructions('third delay phase (10 seconds): please press any key to start')
+  instructions('third delay phase (10 seconds): (please press any key to continue)')
 
   /* set up delay task: 10 seconds */
-  delay_task('please type names of as many countries as you can think of in 6 seconds, separated by spaces...press any key to begin',
+  delay_task('please type names of as many countries as you can think of in 6 seconds, separated by spaces.. (please press any key to continue)',
              6000 /* 10000 mS */)
 
   /* instruction slide */
-  instructions('all done.. thank you.. please press any key to finish..')
+  instructions('all done.. thank you.. (please press any key to continue)')
 }

@@ -2,15 +2,13 @@
 var my_experiment = function(){
 
   /* set up some instruction slides */
-  instructions('study phase: please remember words/images and press any key')
+  instructions('study phase: please remember words/images and press any key (please press any key to continue)')
 
   /* set up a stimulus pool */
   var p1 = stimulus_pool()
 
   /* add images to stimulus pool */
-  for(var i =0; i < 10; i++){
-    p1.add(get_image())
-  }
+  p1.add_image(10)
 
   /* add words to stimulus pool */ 
   p1.add('floccinaucinihilipilification')
@@ -21,9 +19,7 @@ var my_experiment = function(){
   var p2 = stimulus_pool()
 
   /* add images to stimulus pool */
-  for(var i = 0; i < 10; i++){
-    p2.add(get_image())
-  }
+  p2.add_image(10)
   
   /* add words to second stimulus pool */
   p2.add('compassion')
@@ -43,10 +39,10 @@ var my_experiment = function(){
               4500 /* SET */ )
 
   /* instruction slide */
-  instructions('second delay phase (5 seconds): please press any key to start')
+  instructions('second delay phase (5 seconds): (please press any key to continue)')
 
   /* set up delay task: 5 seconds */
-  delay_task('please type names of as many countries as you can think of in 10 seconds, separated by spaces...press any key to begin',
+  delay_task('please type names of as many countries as you can think of in 10 seconds, separated by spaces.. (please press any key to continue),
              10000 /* 5000 mS */)
 
   /* instruction slide -- fixed duration */
@@ -55,10 +51,10 @@ var my_experiment = function(){
   x.key_expiry = false
 
   /* some instructions before `test phase' */
-  instructions('test phase coming up')
-  instructions('when you see an image/word, please press m or n')
-  instructions('please press m if you saw an image/word before')
-  instructions('please press n if you did not see the image/word before')
+  instructions('test phase coming up (please press any key to continue)')
+  instructions('when you see an image/word, please press m or n (please press any key to continue)')
+  instructions('please press m if you saw an image/word before (please press any key to continue)')
+  instructions('please press n if you did not see the image/word before (please press any key to continue)')
  
   /* set up `test phase' (user input recorded for whole randomized pool) */
   test_phase(two_pools, /* stimulus pools */
