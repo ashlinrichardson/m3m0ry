@@ -42,7 +42,7 @@ function keyboard_module(){
       unicode = 39, key ="'"
     }
     
-    console.log("unicode", unicode)
+    /* console.log("unicode", unicode) */
 
     key_unicode[unicode] = true
 
