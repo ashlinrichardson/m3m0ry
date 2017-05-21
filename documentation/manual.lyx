@@ -65,7 +65,7 @@ figs-within-sections
 \pdf_colorlinks true
 \pdf_backref false
 \pdf_pdfusetitle true
-\papersize default
+\papersize letterpaper
 \use_geometry true
 \use_package amsmath 1
 \use_package amssymb 1
@@ -90,10 +90,10 @@ figs-within-sections
 \shortcut idx
 \color #008000
 \end_index
-\leftmargin 2.5cm
-\topmargin 2.5cm
-\rightmargin 2.5cm
-\bottommargin 2.5cm
+\leftmargin 1.5cm
+\topmargin 2cm
+\rightmargin 1.5cm
+\bottommargin 2cm
 \secnumdepth 2
 \tocdepth 5
 \paragraph_separation skip
@@ -285,8 +285,8 @@ Overview
 \begin_layout Standard
 An online framework for parametric generation of Recognition Memory experiments
  to support researchers at the University of Victoria.
- The software is web based, self contained yet comprehensive, and reasonably
- flexible.
+ The software is intended to be web based, self contained yet comprehensive,
+ and reasonably flexible.
 \end_layout
 
 \begin_layout Subsection
@@ -295,6 +295,10 @@ Requirements
 
 \begin_layout Subsubsection
 Server-side
+\begin_inset space ~
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -850,6 +854,22 @@ lstinputlisting{../experiments/my-experiment/my-experiment.js}
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 
 \series bold
@@ -1001,6 +1021,22 @@ lstset{linewidth=
 textwidth}
 \backslash
 lstinputlisting{../data/my-experiment.csv}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
 \end_layout
 
 \end_inset
@@ -1284,6 +1320,22 @@ newpage
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 
 \series bold
@@ -1316,6 +1368,22 @@ lstset{linewidth=
 textwidth}
 \backslash
 lstinputlisting{../xml-receive.py}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
 \end_layout
 
 \end_inset
