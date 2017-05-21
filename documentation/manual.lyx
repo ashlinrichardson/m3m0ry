@@ -854,6 +854,158 @@ lstinputlisting{../experiments/my-experiment/my-experiment.js}
 
 \series bold
 Sample Response Data
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+subsection{instructions}
+\backslash
+ 
+\backslash
+ 
+\backslash
+lstset{language=TeX} 
+\backslash
+lstset{linewidth=
+\backslash
+textwidth}
+\backslash
+lstinputlisting{../data/instructions.csv}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage 
+\backslash
+subsection{delay}
+\backslash
+ 
+\backslash
+ 
+\backslash
+lstset{language=TeX} 
+\backslash
+lstset{linewidth=
+\backslash
+textwidth}
+\backslash
+lstinputlisting{../data/delay.csv}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage 
+\backslash
+subsection{study-phase}
+\backslash
+ 
+\backslash
+ 
+\backslash
+lstset{language=TeX} 
+\backslash
+lstset{linewidth=
+\backslash
+textwidth}
+\backslash
+lstinputlisting{../data/study-phase.csv}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage 
+\backslash
+subsection{test-phase}
+\backslash
+ 
+\backslash
+ 
+\backslash
+lstset{language=TeX} 
+\backslash
+lstset{linewidth=
+\backslash
+textwidth}
+\backslash
+lstinputlisting{../data/test-phase.csv}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage 
+\backslash
+subsection{my-experiment}
+\backslash
+ 
+\backslash
+ 
+\backslash
+lstset{language=TeX} 
+\backslash
+lstset{linewidth=
+\backslash
+textwidth}
+\backslash
+lstinputlisting{../data/my-experiment.csv}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section

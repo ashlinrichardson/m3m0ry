@@ -1,0 +1,8 @@
+url,event_id,task_id,task_type,trial_id,duration(mS),start(yyyy:mm:dd:hh:mn:ss:mls),end(yyyy:mm:dd:hh:mn:ss:mls),isi,set,stim_type,stim_id,stim_pool_id,response
+http://ashy.ca/memory/experiments/instructions/memory.html,0,0,instructions,0,7110.3,2017:50:20:22:37:50:980,2017:50:20:22:37:12:208,,,,,,""
+http://ashy.ca/memory/experiments/instructions/memory.html,1,1,instructions,0,1276.8,2017:50:20:22:37:12:208,2017:50:20:22:37:13:484,,,,,,""
+http://ashy.ca/memory/experiments/instructions/memory.html,2,2,instructions,0,590.6,2017:50:20:22:37:13:484,2017:50:20:22:37:14:750,,,,,,""
+http://ashy.ca/memory/experiments/instructions/memory.html,3,3,instructions,0,1052.9,2017:50:20:22:37:14:750,2017:50:20:22:37:15:128,,,,,,""
+http://ashy.ca/memory/experiments/instructions/memory.html,4,4,instructions,0,5003.9,2017:50:20:22:37:15:128,2017:50:20:22:37:20:132,,5000,,,,""
+http://ashy.ca/memory/experiments/instructions/memory.html,5,5,instructions,0,880.1,2017:50:20:22:37:20:132,2017:50:20:22:37:21:120,,5000,,,,""
+http://ashy.ca/memory/experiments/instructions/memory.html,6,6,instructions,0,676.8,2017:50:20:22:37:21:120,2017:50:20:22:37:21:689,,,,,,""
