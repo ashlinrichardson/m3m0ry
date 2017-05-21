@@ -42,7 +42,7 @@ var my_experiment = function(){
   instructions('second delay phase (5 seconds): (please press any key to continue)')
 
   /* set up delay task: 5 seconds */
-  delay_task('please type names of as many countries as you can think of in 10 seconds, separated by spaces.. (please press any key to continue),
+  delay_task('please type names of as many countries as you can think of in 10 seconds, separated by spaces.. (please press any key to continue)',
              10000 /* 5000 mS */)
 
   /* instruction slide -- fixed duration */
