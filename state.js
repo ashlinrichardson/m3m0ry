@@ -148,7 +148,7 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
         var href = window.location.href
 
         /* go through all the states and record (in string format) the info we'd like to appear on the server */
-        var state_i = ctx.first_state, state_index = 0, message = "url,event_id,task_type,trial_id,duration(mS),start(yyyy:mm:dd:hh:mn:ss:mls),end(yyyy:mm:dd:hh:mn:ss:mls),isi,set,stim_type,stim_id,stim_pool_id,response\n"
+        var state_i = ctx.first_state, state_index = 0, message = "url,event_id,task_id,task_type,trial_id,duration(mS),start(yyyy:mm:dd:hh:mn:ss:mls),end(yyyy:mm:dd:hh:mn:ss:mls),isi,set,stim_type,stim_id,stim_pool_id,response\n"
         for(var state_i = ctx.first_state; state_i != ctx.last_state; state_i = state_i.successor){
 
           var stim_type = null, my_stim  = null, pi = ""
@@ -177,6 +177,9 @@ function state(expiry_ms  =     0,  /* max. presentation time (mS) */
 
           /* event_id: global index / line number */
           message += state_index.toString() + ","
+
+          /* task_id */
+          message += state_i.task_id + ","
 
           /* task_type */              
           message += state_i.type + ","                 

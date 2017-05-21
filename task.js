@@ -16,6 +16,50 @@ function instructions(txt){
   return x
 }
 
+/* previously known as feedback task */
+function feedback(txt, keys){
+  var my_task_id = next_task_id ++
+
+  var x = new state()
+  x.set_expiry(0)
+  x.txt = txt, x.key_required = true
+  x.clear_admissible_keys()
+  for(var i in keys){
+    x.add_admissible_key(keys[i])
+  }
+  x.type = 'feedback', x.trial_id = 0, x.task_id = my_task_id
+}
+
+/* list as many countries as possible during e.g., a 3-minute period (default, 30s) 
+  20170515: default for delay_time used to be 30000. Today we added the end on <esc>
+  key feature
+*/
+function delay_task(txt, delay_time=0, isi_=500){
+  var my_task_id = next_task_id ++, isi = parseInt(isi_)
+
+  /* if ISI was set, prefix with a "blank" slide */
+  if(isi > 0){
+    var x = new state()
+    x.set_expiry(isi)
+    x.type = 'isi', x.wrd_stim = "", x.trial_id = 0, x.task_id = my_task_id
+    x.clear_admissible_keys()
+    x.key_expiry = false
+  }
+
+  var y = instructions(txt)
+
+  /* time [mS] */
+  var x = new state()
+  x.set_expiry(delay_time)
+  x.key_expiry = false, x.txt = '', x.type = 'delay', x.trial_id = 0, x.task_id = my_task_id
+  if(delay_time <= 0){
+    x.clear_admissible_keys()
+    x.add_admissible_key(27)
+    console.log('admissible_keys', x.admissible_keys)
+  }
+  return x
+}
+
 /* study phase, formerly known as orientation task: multiple `trials' / events occur here.. random selection of inputs... (for the test phase, the random selection is shuffled back into the pool).. */
 function study_phase(my_pool, isi=0, time_limit=0, extra_feedback=false, extra_feedback_message="", extra_feedback_keys=[]){
 
@@ -176,48 +220,4 @@ function test_phase(my_pool, isi=0, time_limit=0, extra_feedback=false, extra_fe
   return this
 }
 
-/* previously known as feedback task */
-function feedback(txt, keys){
-  var my_task_id = next_task_id ++
 
-  var x = new state()
-  x.set_expiry(0)
-  x.txt = txt, x.key_required = true
-  x.clear_admissible_keys()
-  for(var i in keys){
-    x.add_admissible_key(keys[i])
-  }
-  x.type = 'feedback', x.trial_id = 0, x.task_id = my_task_id
-}
-
-/* list as many countries as possible during e.g., a 3-minute period (default, 30s) 
-  20170515: default for delay_time used to be 30000. Today we added the end on <esc>
-  key feature
-*/
-function delay_task(txt, delay_time=0, isi_=500){
-  var my_task_id = next_task_id ++, isi = parseInt(isi_)
-
-  /* if ISI was set, prefix with a "blank" slide */
-  if(isi > 0){
-    var x = new state()
-    x.set_expiry(isi)
-    x.type = 'isi', x.wrd_stim = "", x.trial_id = 0, x.task_id = my_task_id
-    x.clear_admissible_keys()
-    x.key_expiry = false
-  }
-
-  var y = instructions(txt)
-
-  if(true){
-    /* time [mS] */
-    var x = new state()
-    x.set_expiry(delay_time)
-    x.key_expiry = false, x.txt = '', x.type = 'delay', x.trial_id = 0, x.task_id = my_task_id
-    if(delay_time <= 0){
-      x.clear_admissible_keys()
-      x.add_admissible_key(27)
-      console.log('admissible_keys', x.admissible_keys)
-    }
-  }
-  return this
-}
