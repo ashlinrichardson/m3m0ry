@@ -292,7 +292,7 @@ The intended audience for this document is a researcher with some programming
 \end_layout
 
 \begin_layout Subsection
-Description
+Description 
 \end_layout
 
 \begin_layout Standard
@@ -326,11 +326,19 @@ researcher facing
 \series default
  portion, which is a simplified API-style programming interface, that specifies
  sequencing of both:
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
 online interactive visual elements, and
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -348,23 +356,39 @@ The
 participant facing
 \series default
  portion consists of
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
 an experimental survey (based on JavaScript/HTML5) which runs client-side
  in the participant's web browser, and is specified by the researcher in
- terms of
+ terms of:
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
 the different stimuli or other interactive visual elements revealed to the
  participant, and
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
 the possible responses/feedback requested of the partcipant, and
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \end_deeper
@@ -375,6 +399,13 @@ d by the researcher, that receives user responses, timing, and other information
 \end_layout
 
 \end_deeper
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Requirements for using the software
 \end_layout
@@ -385,11 +416,19 @@ Server-side
 
 \begin_layout Itemize
 Host:
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
 An ordinary web server with Python/CGI enabled, is required.
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -403,6 +442,10 @@ Client-side
 
 \begin_layout Itemize
 For experiment participants:
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -415,22 +458,38 @@ A modern web browser (Firefox, Google Chrome, or Safari) on a desktop computer
 \begin_layout Itemize
 The system was tested with Chrome v.
  57, Safari 10.1, and Firefox 53.0 (64 bit).
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \end_deeper
 \end_deeper
 \begin_layout Itemize
 For researchers and experiment administrators:
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
 A text editor is required to edit experiment script files.
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
 Limited technical knowledge about JavaScript is required to edit or modify
  experiments.
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -438,6 +497,23 @@ An FTP program is required for uploading experiment scripts (and downloading
  response data).
 \end_layout
 
+\begin_deeper
+\begin_layout Itemize
+A free/open implementation is FileZilla, available at 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://filezilla-project.org/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
 \end_deeper
 \begin_layout Section
 
@@ -453,47 +529,7 @@ Installation
 The system may be installed on a web server by downloading:
 \end_layout
 
-\begin_layout Standard
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset space ~
-\end_inset
-
-
+\begin_layout Itemize
 \begin_inset Flex URL
 status open
 
@@ -510,6 +546,7 @@ https://github.com/ashlinrichardson/m3m0ry/archive/master.zip
 \begin_layout Standard
 and extracting the ZIP file to an administrator-determined folder/location
  on the server.
+ Typically this might involve downloading 
 \end_layout
 
 \begin_layout Subsection
@@ -518,7 +555,7 @@ Project Structure
 
 \begin_layout Standard
 The system has the following directory structure as in Fig.
- (1).
+ (1.1).
 \end_layout
 
 \begin_layout Standard
@@ -556,8 +593,15 @@ status open
 \end_layout
 
 \begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 In Fig.
- (1) above:
+ (1.1) above:
 \end_layout
 
 \begin_layout Itemize
@@ -565,27 +609,42 @@ In Fig.
 \series bold
 data/
 \series default
- will contain CSV data files representing the user experience:
+ should, once survey(s) have been successfully completed, contain CSV data
+ files representing the user experience:
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-If all goes well, a data file should automagically appear in the 
+If all goes well, an additional data file should automagically appear in
+ the 
 \series bold
 data/
 \series default
- folder, each time a survey/experiment is completed.
+ folder, for any given survey/experiment that is successfully completed.
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
 Upon completion of a survey/experiment, the client-side JavaScript code
  submits (via util.js::xml_send()) a CSV data file to the web server, which
  receives the data using CGI/Python (via xml-receive.py).
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
 The CSV file is saved with a name reflecting the date/time when the file
- was recorded, and a randomly-generated string to prevent 
+ was recorded, and also a randomly-generated string that is added to prevent
+ file-naming 
 \begin_inset Quotes eld
 \end_inset
 
@@ -606,7 +665,7 @@ collisions
 \series bold
 documentation/
 \series default
- contains this manual
+ is where this manual resides.
 \begin_inset Newline newline
 \end_inset
 
@@ -623,7 +682,7 @@ experiments/
 
 \begin_deeper
 \begin_layout Itemize
-contains a number of sub-folders, one for each of the included examples:
+Contains a number of sub-folders, one for each of the included examples:
 \end_layout
 
 \begin_deeper
@@ -671,7 +730,7 @@ my-experiment/
 
 \end_deeper
 \begin_layout Itemize
-Each subfolder contains a file 
+Each of the above subfolder contains a file 
 \series bold
 memory.html
 \series default
@@ -706,13 +765,32 @@ status open
 \begin_inset space ~
 \end_inset
 
+Note: any experiment/survey project developed by the user must also:
+\end_layout
 
+\begin_deeper
+\begin_layout Itemize
+reside in the 
+\series bold
+experiments/
+\series default
+ folder (as with the examples provided), and:
+\end_layout
+
+\begin_layout Itemize
+include a 
+\series bold
+memory.html
+\series default
+ file, which should be the same as in Fig.
+ (1.2).
 \begin_inset Newline newline
 \end_inset
 
 
 \end_layout
 
+\end_deeper
 \end_deeper
 \begin_layout Itemize
 
@@ -721,6 +799,10 @@ images/
 \series default
  contains image data used in experiments.
  To change image data used in experiments, the administrator should:
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -729,12 +811,12 @@ upload new image data into the
 \series bold
 images/
 \series default
- folder, ensuring that the image data is named according to the same numbered
- format: 
+ folder, ensuring that the image data is consistently named according to
+ the same numbered format followed by the provided image data: 
 \series bold
 1.jpg, 2.jpg,
 \series default
- and so on, this convention being followed as in the included test data.
+ and so on.
 \end_layout
 
 \end_deeper
@@ -744,37 +826,122 @@ images/
 Setup
 \end_layout
 
-\begin_layout Itemize
-Then, supposing the project is uploaded to the main HTTP directory of a
- web server with URL 
+\begin_layout Subsection
+
+\series bold
+Accessing an Existing Survey
+\end_layout
+
+\begin_layout Standard
+Supposing the project is uploaded to the main HTTP directory of a web server
+ with URL 
 \series bold
 http://my-web-server.com
 \series default
-, the survey in the folder experiments/my-experiment/ represented by 
+/, the survey in the folder 
+\series bold
+experiments/my-experiment/
+\series default
+ as represented by the JavaScript file 
 \series bold
 experiments/my-experiment/my-experiment.js
 \series default
- will be accessed by navigating to the following address, in a web browser:
+ administered by the researcher/administrator, will be accessed by navigating
+ in a web broswer to the following address:
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 
 \series bold
 http://my-web-server.com/experiments/my-experiment/memory.html
+\end_layout
+
+\begin_layout Standard
+Of course, for any given experiment, a researcher/administrator is advised
+ to thoroughly test the survey, in a web browser, by accessing a URL like
+ the one above.
+\end_layout
+
+\begin_layout Subsection
+Creating A New Survey or Modifying An Existing One
+\end_layout
+
+\begin_layout Standard
+To create your own experiment we recommend, with respect to the 
+\series bold
+experiments/
+\series default
+ folder on the local computer (which will later be uploaded to the web server
+ e.g., via FTP): 
+\end_layout
+
+\begin_layout Enumerate
+making a copy (with a different name) of
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+the folder corresponding to the given example provided which is 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+most closely representative of the experiment which one would like to create.
 \begin_inset Newline newline
 \end_inset
 
 
 \end_layout
 
-\end_deeper
+\begin_deeper
 \begin_layout Itemize
-
+For example, if we wanted to make simple modifications to the instructions-type
+ example, we could make a copy of the 
 \series bold
-To create your own experiment,
+experiments/instructions/
 \series default
- we recommend editing the file 
+ folder, and rename that folder 
+\series bold
+experiment/test-experiment/
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+If we wanted to develop a more detailed and realistic complete experiment,
+ we might make a copy of the experiment folder 
+\series bold
+experiment/my-experiment/
+\series default
+, and rename the copied folder to e.g.:
+\series bold
+ experiment/test-experiment/
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+given the folder we created, e..g, 
+\series bold
+experiment/test-experiment/, 
+\series default
+we should
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+edit the file 
 \series bold
 my-experiment.js
 \series default
@@ -782,16 +949,94 @@ my-experiment.js
 \series bold
 my-experiment/
 \series default
- folder
+ folder, for example:
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
+we could change the messages on any instructions slides;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+adjust timing parameters (e.g.
+ ISI: Inter-Stimulus-Interval) for certain components;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+add additional word/image stimuli to an experiment (study/test phase components)
+ with respect to one or more 
+\begin_inset Quotes eld
+\end_inset
+
+stimulus pools
+\begin_inset Quotes erd
+\end_inset
+
+;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+add further tasks to the experiment (more study/test phases, instructions,
+ delay activities, or extra feedback questions).
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
 
 \series bold
-To deploy your experiment on the web,
+To deploy such an experiment on the web,
 \series default
- don't forget to upload your revised my-experiment.js to the server.
+ please make sure to upload your revised folder on the local computer (e.g.,
+ 
+\series bold
+experiment/test-experiment/
+\series default
+) to the web server.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Please ensure that the revised folder is uploaded in the correct location
+ (i.e., within the 
+\series bold
+experiment/
+\series default
+ relative to the main project folder, as it appears on the web server),
+ and that the revised folder includes both a 
+\series bold
+my-experiment.js
+\series default
+ file and a 
+\series bold
+memory.html
+\series default
+ file.
+ 
 \end_layout
 
 \end_deeper
@@ -802,6 +1047,82 @@ The Examples
 \end_layout
 
 \begin_layout Standard
+Five example surveys are included:
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+instructions/
+\series default
+: involving display of instructions text or other directions/information;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+delay/
+\series default
+: involving presenting the user with free-form or other response fields,
+ to occupy the participant between different experiment/survey components;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+feedback/
+\series default
+: involving presenting the user with various (multiple-choice) opportunities
+ to reply with feedback/information;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+study-phase/
+\series default
+: involving presenting the user with a variety of stimuli (usually accompanied
+ by instructions that indicate to try to remember the stimuli presented);
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+test-phase/
+\series default
+: involving requesting feedback from the user, with respect to a sequence
+ of stimuli information;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+my-experiment/
+\series default
+: a more-detailed example, representing a typical possible experiment.
+\end_layout
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -809,13 +1130,201 @@ status open
 
 
 \backslash
-newpage 
+newpage
 \backslash
-subsection{experiments/instructions}
+subsection{experiments/instructions/my-experiment.js}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The file my-experiment.js below exemplifies the required format of a 
+\series bold
+my-experiment.js
+\series default
+ file, which must contain a function called my_experiment, as indicated
+ in line 2:
+\end_layout
+
+\begin_layout Quotation
+
+\series bold
+var my_experiment = function(){
+\end_layout
+
+\begin_layout Standard
+Please note the closing bracket for that function, on line 29.
+ For those not familiar with JavaScript code, the text which appears within
+ the marks: /* */ is a 
+\begin_inset Quotes eld
+\end_inset
+
+comment
+\begin_inset Quotes erd
+\end_inset
+
+, e.g., /* this is a comment: text within a program that does not represent
+ instructions to be executed */
+\end_layout
+
+\begin_layout Subsubsection
+Instructions Statements
+\end_layout
+
+\begin_layout Standard
+Note that, e.g.
+ in line 5:
+\end_layout
+
+\begin_layout Quotation
+
+\series bold
+instructions('welcome to the recognition memory experiment framework
 \backslash
- 
+n
 \backslash
- 
+n
+\backslash
+n
+\backslash
+t* please press any key to continue')
+\end_layout
+
+\begin_layout Standard
+this indicates presenting the text within the single quotation-marks, to
+ the user.
+ Note: 
+\begin_inset Quotes eld
+\end_inset
+
+/n
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+/t
+\begin_inset Quotes erd
+\end_inset
+
+ represent 
+\begin_inset Quotes eld
+\end_inset
+
+control characters
+\begin_inset Quotes erd
+\end_inset
+
+ which affect the flow of text on the screen: 
+\begin_inset Quotes eld
+\end_inset
+
+/n
+\begin_inset Quotes erd
+\end_inset
+
+ is the newline-character which causes the rendering of text to proceed
+ on the next available line, and 
+\begin_inset Quotes eld
+\end_inset
+
+
+\backslash
+t
+\begin_inset Quotes erd
+\end_inset
+
+ is the tab-character, which indents text several spaces.
+ The researcher can insert as many such statements as they like.
+ Note some possible modifications to the 
+\begin_inset Quotes eld
+\end_inset
+
+vanilla
+\begin_inset Quotes erd
+\end_inset
+
+ instructions statement above, as follows:
+\end_layout
+
+\begin_layout Subsubsection
+Instructions: Fixed Duration
+\end_layout
+
+\begin_layout Standard
+For displaying instructions for a fixed interval (in milliSeconds) we can
+ insert a code block as follows, as in lines 17-19:
+\end_layout
+
+\begin_layout Quotation
+
+\series bold
+var x = instructions('this information will be displayed for 5 seconds')
+\end_layout
+
+\begin_layout Quotation
+
+\series bold
+x.set_expiry(5000)
+\end_layout
+
+\begin_layout Quotation
+
+\series bold
+x.key_expiry = false
+\end_layout
+
+\begin_layout Subsubsection
+Instructions: Fixed Duration or User Intervention
+\end_layout
+
+\begin_layout Standard
+For instructions that are shown until a key is pressed, but are shown for
+ (at most) a given fixed interval (in milliSeconds) we can insert a code
+ block as follows, as in lines 22-24:
+\end_layout
+
+\begin_layout Quotation
+
+\series bold
+var x = instructions('this information will be displayed for 5 seconds')
+\end_layout
+
+\begin_layout Quotation
+
+\series bold
+x.set_expiry(5000)
+\end_layout
+
+\begin_layout Quotation
+
+\series bold
+x.key_expiry = true
+\end_layout
+
+\begin_layout Subsubsection
+The file my-experiment.js
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
 \backslash
 lstset{language=C} 
 \backslash
@@ -839,13 +1348,123 @@ status open
 
 
 \backslash
-newpage 
-\backslash
-subsection{experiments/delay}
-\backslash
+subsection{experiments/delay/my-experiment.js}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Although other manifestations could be possible for the delay task, the
+ current implementation involves a free-form reponse section to involve
+ the participant in an activity other than observing stimuli (an interval-type
+ activity to be deployed between other experimental components, e.g., between
+ a study-phase component and the subsequent test-phase component).
  
+\end_layout
+
+\begin_layout Subsubsection
+Delay Task
+\end_layout
+
+\begin_layout Standard
+The basic syntax for specifying a 
+\begin_inset Quotes eld
+\end_inset
+
+delay
+\begin_inset Quotes erd
+\end_inset
+
+ task is like that for the 
+\begin_inset Quotes eld
+\end_inset
+
+instructions
+\begin_inset Quotes erd
+\end_inset
+
+ task:
+\end_layout
+
+\begin_layout Quotation
+
+\series bold
+delay('please enter the names of as many countries as you can think of,
+ followed by the escape key
 \backslash
- 
+n
+\backslash
+n
+\backslash
+n
+\backslash
+t* please press any key to continue')
+\end_layout
+
+\begin_layout Standard
+By default, the delay task will continue collecting user input, until the
+ <escape> key is pressed.
+\end_layout
+
+\begin_layout Subsubsection
+Delay Task: Fixed Interval
+\end_layout
+
+\begin_layout Standard
+It's also possible to specify a 
+\begin_inset Quotes eld
+\end_inset
+
+delay
+\begin_inset Quotes erd
+\end_inset
+
+ task that doesn't wait for an <escape> key to be pressed: this version
+ waits for a specified interval (in mS) instead.
+ To operate the delay with a fixed interval, simply add a time parameter
+ (in mS) to the invocation:
+\end_layout
+
+\begin_layout Quotation
+
+\series bold
+delay('please enter the names of as many countries as you can think of,
+ in 5 seconds
+\backslash
+n
+\backslash
+n
+\backslash
+n
+\backslash
+t* please press any key to continue', 5000)
+\end_layout
+
+\begin_layout Standard
+where 5000 mS is five seconds.
+\end_layout
+
+\begin_layout Subsubsection
+The file my-experiment.js
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
 \backslash
 lstset{language=C} 
 \backslash
@@ -869,13 +1488,96 @@ status open
 
 
 \backslash
-newpage 
-\backslash
-subsection{experiments/feedback}
-\backslash
- 
-\backslash
- 
+subsection{experiments/feedback/my-experiment.js}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To collect user feedback in a multiple-choice format, we use the 
+\begin_inset Quotes eld
+\end_inset
+
+feedback
+\begin_inset Quotes erd
+\end_inset
+
+ command, which takes two parameters: 1) the text to be supplied to the
+ user, and 2) an array of key-codes for the permitted responses.
+\end_layout
+
+\begin_layout Itemize
+E.g., 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+the array [49, 50, 51, 52, 53] represents the numeric keys 1-5
+\end_layout
+
+\begin_layout Itemize
+[49, 50, 51, 52, 53, 54, 55, 56, 57, 48] represents the numeric keys 0-9
+\end_layout
+
+\begin_layout Itemize
+[65, 66, 67, 68] represents the letters A,B,C,D
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+and of course, other key combinations are possible.
+ It may be necessary to consult a reference table such as
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://en.wikipedia.org/wiki/List_of_Unicode_characters#Basic_Latin
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Please see the below file 
+\series bold
+my-experiment.js
+\series default
+ for examples.
+\end_layout
+
+\begin_layout Subsubsection
+The file my-experiment.js
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
 \backslash
 lstset{language=C} 
 \backslash
@@ -899,13 +1601,268 @@ status open
 
 
 \backslash
-newpage 
-\backslash
-subsection{experiments/study-phase}
-\backslash
+subsection{experiments/study-phase/my-experiment.js}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The study phase is the part of an experiment/survey where word/image (or
+ other) stimuli are revealed in sequence.
+ To implement a 
+\begin_inset Quotes eld
+\end_inset
+
+study-phase
+\begin_inset Quotes erd
+\end_inset
+
+, we must:
+\end_layout
+
+\begin_layout Enumerate
+declare a stimulus pool (e.g., line 9 of the file below)
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+optionally, add a number of images to the stimulus pool (e.g., line 12 of
+ the file below)
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+optionally, add a number of words to the stimulus pool (e.g., lines 15-17
+ of the file below)
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+make a selection of items from the stimulus pool (e.g., line 20 of the file
+ below):
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+note that only one parameter is supplied on line 20 (the parameter 
+\begin_inset Quotes eld
+\end_inset
+
+N
+\begin_inset Quotes erd
+\end_inset
+
+ from the spec), although it will be necessary for a 
+\begin_inset Quotes eld
+\end_inset
+
+M
+\begin_inset Quotes erd
+\end_inset
+
+ parameter to be included in subsequent examples, in order to implement
+ the 
+\begin_inset Quotes eld
+\end_inset
+
+test-phase
+\begin_inset Quotes erd
+\end_inset
+
+.
+ This will be discussed re: the next example.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+declare the study phase:
+\end_layout
+
+\begin_layout Itemize
+note that declaring the study phase is as simple as (where 
+\begin_inset Quotes eld
+\end_inset
+
+p
+\begin_inset Quotes erd
+\end_inset
+
+ is a stimulus pool, previously defined in the 
+\series bold
+my-experiment.js
+\series default
+ file):
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+study_phase(p)
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+although, in line 23 of the file below, two extra parameters are added:
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+an ISI (which was set to be 111 mS in the example): an (optional) duration
+ of exposure of nothing, between exposure of stimuli, and
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+a SET (stimulus expiry time) which represents an (optional) maximum duration
+ of exposure of the stimulus.
+ Note: if one additional parameter is included in hte 
+\begin_inset Quotes eld
+\end_inset
+
+study_phase
+\begin_inset Quotes erd
+\end_inset
+
+ statement, this will be interpreted as ISI.
+ In order to declare a 
+\begin_inset Quotes eld
+\end_inset
+
+study_phase
+\begin_inset Quotes erd
+\end_inset
+
+ with a SET (but not an ISI), one should provide two extra parameters (after
  
-\backslash
- 
+\begin_inset Quotes eld
+\end_inset
+
+p
+\begin_inset Quotes erd
+\end_inset
+
+) where the first parameter (the ISI) is set as 0, e.g.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+study_phase(p, 0, 5000)
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+where the parameters above represent a 
+\begin_inset Quotes eld
+\end_inset
+
+study_phase
+\begin_inset Quotes erd
+\end_inset
+
+ with ISI of 0 mS, and a SET of 5 seconds.
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection
+The file my-experiment.js
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
 \backslash
 lstset{language=C} 
 \backslash
@@ -929,13 +1886,271 @@ status open
 
 
 \backslash
-newpage 
-\backslash
-subsection{experiments/test-phase}
-\backslash
+subsection{experiments/test-phase/my-experiment.js}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For the 
+\begin_inset Quotes eld
+\end_inset
+
+test-phase
+\begin_inset Quotes erd
+\end_inset
+
+ example, we don't introduce anything new in lines 1-16.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+However, on line 19, note that the second 
+\begin_inset Quotes eld
+\end_inset
+
+M
+\begin_inset Quotes erd
+\end_inset
+
+ parameter is added: calling the function 
+\series bold
+p.select() 
+\series default
+with two parameters, as in line 19, is required before implementing the
  
-\backslash
- 
+\begin_inset Quotes eld
+\end_inset
+
+study-phase
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+test-phase
+\begin_inset Quotes erd
+\end_inset
+
+ in lines 22 and 28, respectively.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Note that, to declare a 
+\begin_inset Quotes eld
+\end_inset
+
+test_phase
+\begin_inset Quotes erd
+\end_inset
+
+ as on line 28 below, an optional ISI parameter has been included.
+ The ISI parameter is optional, so the simplest invocation is:
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+test_phase(p)
+\end_layout
+
+\begin_layout Standard
+Similarly to declaring a 
+\begin_inset Quotes eld
+\end_inset
+
+study-phase
+\begin_inset Quotes erd
+\end_inset
+
+ in the previous example, a SET parameter may also be added when declaring
+ a 
+\begin_inset Quotes eld
+\end_inset
+
+test-phase
+\begin_inset Quotes erd
+\end_inset
+
+ (again, if one wishes to declare a 
+\begin_inset Quotes eld
+\end_inset
+
+test_phase
+\begin_inset Quotes erd
+\end_inset
+
+ without ISI, and with SET > 0, two parameters need to be included: the
+ first being ISI, which should be 0).
+ So, while
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+test_phase(p)
+\end_layout
+
+\begin_layout Standard
+is the simplest invocation, 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+test_phase(p, 111)
+\end_layout
+
+\begin_layout Standard
+adds an ISI of 111 mS, and 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+test_phase(p, 111, 5000)
+\end_layout
+
+\begin_layout Standard
+adds a SET of 5 seconds.
+ Of course, 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+test_phase(p, 0, 5000)
+\end_layout
+
+\begin_layout Standard
+would add a SET of 5 seconds, without adding ISI.
+\end_layout
+
+\begin_layout Subsubsection
+The file my-experiment.js
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
 \backslash
 lstset{language=C} 
 \backslash
@@ -959,13 +2174,66 @@ status open
 
 
 \backslash
-newpage 
+newpage
 \backslash
-subsection{experiments/my-experiment}
-\backslash
- 
-\backslash
- 
+subsection{experiments/my-experiment/my-experiment.js}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This example represents a more detailed sample, which is more representative
+ of an 
+\begin_inset Quotes eld
+\end_inset
+
+actual
+\begin_inset Quotes erd
+\end_inset
+
+ experiment.
+\end_layout
+
+\begin_layout Subsubsection
+Study/Test Phase: Multiple Stimuli Pools
+\end_layout
+
+\begin_layout Standard
+In this example, the procedure for adding stimulus to a pool is diversified
+ by the specification of multiple stimulus pools, as in lines 8-16 for a
+ first pool, and lines 19-27 for a second pool.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Note: the required selection from each of the two stimulus pools, happens
+ at lines 30 and 31, respectively.
+\end_layout
+
+\begin_layout Subsubsection
+The file my-experiment.js
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
 \backslash
 lstset{language=C} 
 \backslash
