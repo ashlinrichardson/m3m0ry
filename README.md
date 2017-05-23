@@ -1,7 +1,7 @@
 # Recognition Memory Experiment Framework
 
 ## Overview
-The Recognition Memory Experiment Framework is an online utility for parametric generation of Recognition Memory experiments to support researchers at the University of Victoria. The software is intended to be web based, self contained yet comprehensive, and reasonably flexible.
+The Recognition Memory Experiment Framework is an online utility for parametric generation of Recognition Memory experiments to support researchers at the University of Victoria.
 
 The software is web based, self contained yet comprehensive, and reasonably flexible.
 
