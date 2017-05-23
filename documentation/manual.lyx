@@ -2442,32 +2442,6 @@ newpage
 \begin_layout Section
 
 \series bold
-Procedures
-\end_layout
-
-\begin_layout Standard
-Add a new experiment
-\end_layout
-
-\begin_layout Standard
-Assume images are numbered
-\end_layout
-
-\begin_layout Standard
-ISI: omit or set to zero
-\end_layout
-
-\begin_layout Standard
-Note: response text recorded is final output (not data stream).
-\end_layout
-
-\begin_layout Standard
-Filtered for newline characters 
-\end_layout
-
-\begin_layout Section
-
-\series bold
 Source Code: Client Side
 \end_layout
 
