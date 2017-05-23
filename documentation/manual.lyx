@@ -94,7 +94,7 @@ figs-within-sections
 \topmargin 2cm
 \rightmargin 1.5cm
 \bottommargin 2cm
-\secnumdepth 2
+\secnumdepth 3
 \tocdepth 5
 \paragraph_separation skip
 \defskip medskip
@@ -282,23 +282,105 @@ LatexCommand tableofcontents
 Overview
 \end_layout
 
+\begin_layout Subsection
+Audience
+\end_layout
+
 \begin_layout Standard
-An online framework for parametric generation of Recognition Memory experiments
- to support researchers at the University of Victoria.
- The software is intended to be web based, self contained yet comprehensive,
- and reasonably flexible.
+The intended audience for this document is a researcher with some programming
+ experience.
 \end_layout
 
 \begin_layout Subsection
-Requirements
+Description
+\end_layout
+
+\begin_layout Standard
+The 
+\series bold
+Recognition Memory Experiment Framework
+\series default
+ is an online utility for parametric generation of 
+\series bold
+Recognition Memory experiments
+\series default
+ to support researchers at the University of Victoria.
+ The software is intended to be web based, self contained yet comprehensive,
+ and reasonably flexible.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The software is a foundation upon which to develop and deploy interactive
+ surveys/questionnaires as an essential component of Recognition Memory
+ experiment methodologies, and is comprised of two aspects:
+\end_layout
+
+\begin_layout Enumerate
+The 
+\series bold
+researcher facing
+\series default
+ portion, which is a simplified API-style programming interface, that specifies
+ sequencing of both:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+online interactive visual elements, and
+\end_layout
+
+\begin_layout Itemize
+requests to the participant for feedback.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The 
+\series bold
+participant facing
+\series default
+ portion consists of
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+an experimental survey (based on JavaScript/HTML5) which runs client-side
+ in the participant's web browser, and is specified by the researcher in
+ terms of
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+the different stimuli or other interactive visual elements revealed to the
+ participant, and
+\end_layout
+
+\begin_layout Itemize
+the possible responses/feedback requested of the partcipant, and
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+a server-side program (written in Python) running on the web server administrate
+d by the researcher, that receives user responses, timing, and other information
+ sent back to the researcher by the JavaScript/HTML5 program.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Requirements for using the software
 \end_layout
 
 \begin_layout Subsubsection
 Server-side
-\begin_inset space ~
-\end_inset
-
-
 \end_layout
 
 \begin_layout Itemize
@@ -329,26 +411,19 @@ A modern web browser (Firefox, Google Chrome, or Safari) on a desktop computer
  is required.
 \end_layout
 
+\begin_deeper
 \begin_layout Itemize
-Note: the system was tested with Chrome v.
- 57.
-\begin_inset Newline newline
-\end_inset
-
-
+The system was tested with Chrome v.
+ 57, Safari 10.1, and Firefox 53.0 (64 bit).
 \end_layout
 
 \end_deeper
+\end_deeper
 \begin_layout Itemize
-For administrators:
+For researchers and experiment administrators:
 \end_layout
 
 \begin_deeper
-\begin_layout Itemize
-An FTP program is required for uploading experiment scripts (and downloading
- response data).
-\end_layout
-
 \begin_layout Itemize
 A text editor is required to edit experiment script files.
 \end_layout
@@ -358,6 +433,11 @@ Limited technical knowledge about JavaScript is required to edit or modify
  experiments.
 \end_layout
 
+\begin_layout Itemize
+An FTP program is required for uploading experiment scripts (and downloading
+ response data).
+\end_layout
+
 \end_deeper
 \begin_layout Section
 
@@ -365,8 +445,12 @@ Limited technical knowledge about JavaScript is required to edit or modify
 The System
 \end_layout
 
+\begin_layout Subsection
+Installation
+\end_layout
+
 \begin_layout Standard
-The system, which may be downloaded from
+The system may be installed on a web server by downloading:
 \end_layout
 
 \begin_layout Standard
@@ -424,7 +508,17 @@ https://github.com/ashlinrichardson/m3m0ry/archive/master.zip
 \end_layout
 
 \begin_layout Standard
-has the following directory structure:
+and extracting the ZIP file to an administrator-determined folder/location
+ on the server.
+\end_layout
+
+\begin_layout Subsection
+Project Structure
+\end_layout
+
+\begin_layout Standard
+The system has the following directory structure as in Fig.
+ (1).
 \end_layout
 
 \begin_layout Standard
@@ -462,8 +556,8 @@ status open
 \end_layout
 
 \begin_layout Standard
-where this document lives in the documentation/ folder.
- Additionally,
+In Fig.
+ (1) above:
 \end_layout
 
 \begin_layout Itemize
@@ -471,7 +565,7 @@ where this document lives in the documentation/ folder.
 \series bold
 data/
 \series default
- will contain CSV data files representing the user experience.
+ will contain CSV data files representing the user experience:
 \end_layout
 
 \begin_deeper
@@ -510,34 +604,15 @@ collisions
 \begin_layout Itemize
 
 \series bold
-images/
+documentation/
 \series default
- contains image data used in experiments.
- To change the image data used in experiments, the administrator should:
+ contains this manual
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
-\begin_deeper
-\begin_layout Itemize
-upload new image data into the 
-\series bold
-images/
-\series default
- folder, and
-\end_layout
-
-\begin_layout Itemize
-modify (an) experiment script(s) to reflect the filenames corresponding
- to the new image files added.
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-This is slightly technical, unless the image data obeys the usual numbered
- file-name convention.
-\end_layout
-
-\end_deeper
-\end_deeper
 \begin_layout Itemize
 
 \series bold
@@ -553,27 +628,41 @@ contains a number of sub-folders, one for each of the included examples:
 
 \begin_deeper
 \begin_layout Itemize
+
+\series bold
 delay/
 \end_layout
 
 \begin_layout Itemize
+
+\series bold
 feedback/
 \end_layout
 
 \begin_layout Itemize
+
+\series bold
 instructions/
 \end_layout
 
 \begin_layout Itemize
+
+\series bold
 study-phase/
 \end_layout
 
 \begin_layout Itemize
+
+\series bold
 test-phase/
 \end_layout
 
 \begin_layout Itemize
+
+\series bold
 my-experiment/
+\series default
+
 \begin_inset Newline newline
 \end_inset
 
@@ -614,6 +703,45 @@ status open
 \end_inset
 
 
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+images/
+\series default
+ contains image data used in experiments.
+ To change image data used in experiments, the administrator should:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+upload new image data into the 
+\series bold
+images/
+\series default
+ folder, ensuring that the image data is named according to the same numbered
+ format: 
+\series bold
+1.jpg, 2.jpg,
+\series default
+ and so on, this convention being followed as in the included test data.
+\end_layout
+
+\end_deeper
+\begin_layout Section
+
+\series bold
+Setup
 \end_layout
 
 \begin_layout Itemize
@@ -666,7 +794,6 @@ To deploy your experiment on the web,
  don't forget to upload your revised my-experiment.js to the server.
 \end_layout
 
-\end_deeper
 \end_deeper
 \begin_layout Section
 
@@ -1047,6 +1174,32 @@ newpage
 \begin_layout Section
 
 \series bold
+Procedures
+\end_layout
+
+\begin_layout Standard
+Add a new experiment
+\end_layout
+
+\begin_layout Standard
+Assume images are numbered
+\end_layout
+
+\begin_layout Standard
+ISI: omit or set to zero
+\end_layout
+
+\begin_layout Standard
+Note: response text recorded is final output (not data stream).
+\end_layout
+
+\begin_layout Standard
+Filtered for newline characters 
+\end_layout
+
+\begin_layout Section
+
+\series bold
 Source Code: Client Side
 \end_layout
 
@@ -1343,8 +1496,12 @@ Source Code: Server Side
 \end_layout
 
 \begin_layout Standard
-The folder data/ in the directory structure: if it doesn't yet exist, the
- server-side python code will create it.
+The folder 
+\series bold
+data/
+\series default
+ in the directory structure, relative to the installation folder: if it
+ doesn't yet exist, the server-side python code will create it.
 \end_layout
 
 \begin_layout Standard
@@ -1407,11 +1564,15 @@ Finish drag-and drop implementation, that
 
 \begin_deeper
 \begin_layout Itemize
-does not allow invalid experiments to be constructed
+prevents programmatic errors;
 \end_layout
 
 \begin_layout Itemize
-removes any technicality from the process of coding an experiment
+does not allow invalid experiments to be constructed; and
+\end_layout
+
+\begin_layout Itemize
+removes any technicality from the process of coding an experiment.
 \end_layout
 
 \end_deeper
@@ -1421,13 +1582,37 @@ Smarter image loading
 
 \begin_deeper
 \begin_layout Itemize
-Only load the images that are actually used in the experiment
+Automagically detect available images from folder, and
 \end_layout
 
 \begin_layout Itemize
-Automagically detect available images from folder
+modify program to allow administrator to upload images with file names that
+ aren't required to follow the numbered format.
 \end_layout
 
 \end_deeper
+\begin_layout Itemize
+Support for mobile devices, or possibly:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+show a warning message for un-supported devices.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Accomplish API-level integration with 
+\begin_inset Quotes eld
+\end_inset
+
+Mechanical Turk
+\begin_inset Quotes erd
+\end_inset
+
+ for detailed/complex systematic/automated deployment of surveys for use
+ in Recognition Memory experiments.
+\end_layout
+
 \end_body
 \end_document

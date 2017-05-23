@@ -97,7 +97,8 @@ function run_before_loading_images(){
   /* set up an experiment according to user specs/code */
   my_experiment(ctx)
   
-  instructions('thank you')
+  /* display a goodbye message every time */
+  instructions('survey complete: thank you for your participation')
   
   ctx.last_state = ctx.last_new_state, ctx.first_state = ctx.first_new_state
   
