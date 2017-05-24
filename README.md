@@ -12,6 +12,9 @@ http://web.uvic.ca/~lindlab/memory/experiments/instructions/memory.html
 ### Delay activity
 http://web.uvic.ca/~lindlab/memory/experiments/delay/memory.html
 
+### Feedback activity
+http://web.uvic.ca/~lindlab/memory/experiments/feedback/memory.html
+
 ### Study activity
 http://web.uvic.ca/~lindlab/memory/experiments/study-phase/memory.html
 
