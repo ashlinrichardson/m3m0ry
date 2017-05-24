@@ -1,8 +1,3 @@
-/* sleep function */
-function sleep(ms){
-  return new Promise(resolve => setTimeout(resolve, ms))
-}
-
 var js_added = -1, deps = []
 
 /* j4v4scr1pt 4n4l0g 0f 1nclud3 st4t3m3nt */
