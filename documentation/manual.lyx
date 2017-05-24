@@ -276,6 +276,22 @@ LatexCommand tableofcontents
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section*
 
 \series bold
@@ -324,8 +340,8 @@ The
 \series bold
 researcher facing
 \series default
- portion, which is a simplified API-style programming interface, that specifies
- sequencing of both:
+ portion, which is a simplified API-style programming interface, specifies
+ the sequencing of both:
 \begin_inset Newline newline
 \end_inset
 
@@ -399,13 +415,6 @@ d by the researcher, that receives user responses, timing, and other information
 \end_layout
 
 \end_deeper
-\begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsection
 Requirements for using the software
 \end_layout
@@ -546,7 +555,45 @@ https://github.com/ashlinrichardson/m3m0ry/archive/master.zip
 \begin_layout Standard
 and extracting the ZIP file to an administrator-determined folder/location
  on the server.
- Typically this might involve downloading 
+ It's important to check the permissions on the files (please see section
+ 2.1).
+ Note: the University of Victoria Unix web server does not require 
+\series bold
+.htaccess
+\series default
+ files.
+ If using the software on another server, an 
+\series bold
+.htaccess
+\series default
+ file may be required.
+ A typical 
+\series bold
+.htaccess
+\series default
+ file may contain the following:
+\end_layout
+
+\begin_layout Quotation
+
+\series bold
+Options +ExecCGI
+\end_layout
+
+\begin_layout Quotation
+
+\series bold
+AddHandler cgi-script .py
+\end_layout
+
+\begin_layout Standard
+and is usually placed in the same folder as the python files that should
+ be run (in this case the only Python file is 
+\series bold
+xml_receive.py
+\series default
+).
+ 
 \end_layout
 
 \begin_layout Subsection
@@ -587,13 +634,6 @@ status open
 
 \end_layout
 
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage newpage
 \end_inset
 
 
@@ -824,6 +864,40 @@ images/
 
 \series bold
 Setup
+\end_layout
+
+\begin_layout Subsection
+
+\series bold
+File Permissions on Server
+\end_layout
+
+\begin_layout Standard
+Unix file permissions on the server side should all be set to 755, with
+ the exception of the data folder for which the permissions should be set
+ to 754, to protect submitted data from global visibility.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Unix file permissions may be set recursively using an FTP program such as
+ FileZilla.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+N.b., also want to set the permissions on the
+\series bold
+ experiments/ 
+\series default
+folder to 754, to prevent any given survey being accessed by someone who
+ was not given the exact path to the specific survey.
 \end_layout
 
 \begin_layout Subsection
@@ -2185,8 +2259,7 @@ subsection{experiments/my-experiment/my-experiment.js}
 \end_layout
 
 \begin_layout Standard
-This example represents a more detailed sample, which is more representative
- of an 
+This more-substantial example is more representative of an 
 \begin_inset Quotes eld
 \end_inset
 
@@ -2194,11 +2267,11 @@ actual
 \begin_inset Quotes erd
 \end_inset
 
- experiment.
+ experiment, than the previous examples.
 \end_layout
 
 \begin_layout Subsubsection
-Study/Test Phase: Multiple Stimuli Pools
+Study/Test Phase: Declaring Multiple Stimuli Pools
 \end_layout
 
 \begin_layout Standard
@@ -2214,6 +2287,201 @@ In this example, the procedure for adding stimulus to a pool is diversified
 
 Note: the required selection from each of the two stimulus pools, happens
  at lines 30 and 31, respectively.
+\end_layout
+
+\begin_layout Subsubsection
+Study/Test Phase: Using Multiple Stimuli Pools to Declare Study and Test
+ Phases
+\end_layout
+
+\begin_layout Standard
+Whereas before when we passed a stimuli pool, when declaring a study_phase
+ or test_phase, e.g.
+ cf the last examples:
+\end_layout
+
+\begin_layout Quote
+
+\series bold
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+study_phase(p)
+\end_layout
+
+\begin_layout Quote
+
+\series bold
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+test_phase(p);
+\end_layout
+
+\begin_layout Standard
+when combining multiple stimuli pools together, we combine the stimuli pools
+ together in an array before passing them, e.g.:
+\end_layout
+
+\begin_layout Quote
+
+\series bold
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+var pools = [p1, p2]
+\end_layout
+
+\begin_layout Quote
+
+\series bold
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+study_phase(pools)
+\end_layout
+
+\begin_layout Quote
+
+\series bold
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+test_phase(pools)
+\end_layout
+
+\begin_layout Standard
+cf lines 34, 37 and 60 in the file 
+\series bold
+my-experiment.js 
+\series default
+below.
+\end_layout
+
+\begin_layout Subsubsection
+Inserting a Delay Task between Study/Test Phases
+\end_layout
+
+\begin_layout Standard
+An important difference between this example, and the earlier 
+\series bold
+experiments/test-phase/ 
+\series default
+example, is: note the delay task inserted between the study and test phases
+ cf line 45 of 
+\series bold
+my-experiment.js
+\series default
+ below.
+\end_layout
+
+\begin_layout Subsubsection
+Modified Instructions Slide between Study/Test Phases
+\end_layout
+
+\begin_layout Standard
+Note on lines 49-51 the modified instructions slide (fixed duration) borrowed
+ from the 
+\series bold
+experiments/instructions/
+\series default
+ example.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+This message that displays for the fixed interval of five seconds, was added
+ to prevent the user from over-running the testing phase, with key presses
+ (we added this interval during testing when we noticed that frantic data
+ entry during the 
+\begin_inset Quotes eld
+\end_inset
+
+delay
+\begin_inset Quotes erd
+\end_inset
+
+ task could result in keypresses that would cause hiding the instructions
+ for the testing phase).
 \end_layout
 
 \begin_layout Subsubsection
@@ -2284,6 +2552,74 @@ status open
 
 \backslash
 subsection{instructions}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Because the instructions example doesn't request any feedback from the user,
+ the data appearing on the server after a run of the 
+\series bold
+experiments/instructions/
+\series default
+ example isn't highly complex or informative.
+ For this example, note that 
+\end_layout
+
+\begin_layout Itemize
+the 
+\begin_inset Quotes eld
+\end_inset
+
+task_type
+\begin_inset Quotes erd
+\end_inset
+
+ field is 
+\begin_inset Quotes eld
+\end_inset
+
+instructions
+\begin_inset Quotes erd
+\end_inset
+
+ in each case;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+the duration for which each message was displayed appear in the col.: 
+\begin_inset Quotes eld
+\end_inset
+
+duration (mS)
+\begin_inset Quotes erd
+\end_inset
+
+;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+the form responsible for generating the data is recorded in the first col.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
 \backslash
  
 \backslash
@@ -2311,9 +2647,63 @@ status open
 
 
 \backslash
-newpage 
-\backslash
 subsection{delay}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Below, an example of data rec'd due to the 
+\series bold
+experiments/delay/ 
+\series default
+example.
+ Noteworthy aspects of this example include:
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+ISI (please see line 3 in the CSV file below);
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+text response data (free form) rec'd as part of the delay task (please see
+ lines 5, 9 and 14 in the file below);
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+differing values for SET on lines 9 and 14 below;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+for line 5, SET is absent (i.e., it's zero).
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
 \backslash
  
 \backslash
@@ -2341,9 +2731,126 @@ status open
 
 
 \backslash
-newpage 
-\backslash
 subsection{study-phase}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For the study_phase example response data below please note the following
+ differences:
+\end_layout
+
+\begin_layout Itemize
+ISI on lines 4, 6, 8, and so on;
+\end_layout
+
+\begin_layout Itemize
+the 
+\begin_inset Quotes eld
+\end_inset
+
+stim_type
+\begin_inset Quotes erd
+\end_inset
+
+ field which takes values of 
+\begin_inset Quotes eld
+\end_inset
+
+word
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+image
+\begin_inset Quotes erd
+\end_inset
+
+ for various lines (each such line represents a screen where word or image
+ data was shown);
+\end_layout
+
+\begin_layout Itemize
+for lines where the 
+\begin_inset Quotes eld
+\end_inset
+
+stim_type
+\begin_inset Quotes erd
+\end_inset
+
+ field takes values of 
+\begin_inset Quotes eld
+\end_inset
+
+word
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+image
+\begin_inset Quotes erd
+\end_inset
+
+: the 
+\begin_inset Quotes eld
+\end_inset
+
+stim_id
+\begin_inset Quotes erd
+\end_inset
+
+ field takes a value which is either the word stimulus displayed (in the
+ case that 
+\begin_inset Quotes eld
+\end_inset
+
+stim_type
+\begin_inset Quotes erd
+\end_inset
+
+==
+\begin_inset Quotes erd
+\end_inset
+
+word
+\begin_inset Quotes erd
+\end_inset
+
+) e.g., line 5, or the file-name of the image displayed (in the case the data
+ line represents a screen where an image was displayed) e.g., in line 7;
+\end_layout
+
+\begin_layout Itemize
+the field 
+\begin_inset Quotes eld
+\end_inset
+
+stim_pool_id
+\begin_inset Quotes erd
+\end_inset
+
+ which is seen to be 1 for each stimulus below (note that, in the last example,
+ this will change).
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
 \backslash
  
 \backslash
@@ -2371,9 +2878,52 @@ status open
 
 
 \backslash
-newpage 
-\backslash
 subsection{test-phase}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For the test_phase example response data below, please note the following
+ news:
+\end_layout
+
+\begin_layout Itemize
+user response to stimuli (
+\begin_inset Quotes eld
+\end_inset
+
+deja-vu
+\begin_inset Quotes erd
+\end_inset
+
+): note that an 
+\begin_inset Quotes eld
+\end_inset
+
+M
+\begin_inset Quotes erd
+\end_inset
+
+ (have already seen this sample) was recorded on line 15 (the data confirms
+ that this sample was previously shown in the study_phase section, on line
+ 6);
+\end_layout
+
+\begin_layout Itemize
+regular ISI lines (blank screen intervals) throughout.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
 \backslash
  
 \backslash
@@ -2401,9 +2951,75 @@ status open
 
 
 \backslash
-newpage 
-\backslash
 subsection{my-experiment}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This more complex example combines aspects of the previous examples.
+ The most important news with this example: note that the 
+\begin_inset Quotes eld
+\end_inset
+
+stim_pool_id
+\begin_inset Quotes erd
+\end_inset
+
+ field varies between samples: e.g., note that 
+\begin_inset Quotes eld
+\end_inset
+
+floccinaucinihilipilification
+\begin_inset Quotes erd
+\end_inset
+
+ carries the desired stimulus pool label 
+\begin_inset Quotes eld
+\end_inset
+
+1
+\begin_inset Quotes erd
+\end_inset
+
+, as it should, whereas 
+\begin_inset Quotes eld
+\end_inset
+
+dogovarivatsya
+\begin_inset Quotes erd
+\end_inset
+
+ carries the stimulus pool label 
+\begin_inset Quotes eld
+\end_inset
+
+2
+\begin_inset Quotes erd
+\end_inset
+
+, as it should.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The various data lines with types including: instructions, isi, study_phase,
+ delay, and test_phase: these follow the pattern of the previous examples.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
 \backslash
  
 \backslash
@@ -2453,7 +3069,8 @@ status open
 
 
 \backslash
-subsection{egg-timer.js}
+subsection{egg-timer.js} This file develops a timer object which is used
+ to control transitions between stimuli or other messages.
 \backslash
  
 \backslash
@@ -2483,7 +3100,11 @@ status open
 \backslash
 newpage 
 \backslash
-subsection{key.js}
+subsection{key.js} This file represents the keyboard event handling which
+ includes filtering of keys, actions determined by various specified keys,
+ and special treatment for the appropriate response for a given key-code,
+ according to the type of experiment component that is currently active.
+ 
 \backslash
  
 \backslash
@@ -2513,7 +3134,12 @@ status open
 \backslash
 newpage 
 \backslash
-subsection{main.js}
+subsection{main.js} This file represents the various housekeeping activities
+ necessary to establish a graphics context in HTML5, set up an experiment
+ according to user specifications, load various scripts and images, and
+ enter an event-driven loop, in order to display a series of stimuli and
+ respond to user interactions.
+ 
 \backslash
  
 \backslash
@@ -2543,7 +3169,12 @@ status open
 \backslash
 newpage 
 \backslash
-subsection{memory.js}
+subsection{memory.js} This file loads the various dependencies in order.
+ Without this kind of approach, JavaScript loads scripts "asynchronously"
+ i.e., not in order, so an approach like this is required for the system to
+ function properly, as the system does not work if the dependencies load
+ out of order.
+ 
 \backslash
  
 \backslash
@@ -2573,7 +3204,10 @@ status open
 \backslash
 newpage 
 \backslash
-subsection{pool.js}
+subsection{pool.js} This file develops the notion of "stimulus pool", a list
+ of objects that might either be word-data or image-data.
+ Importantly, this includes pseudo-random sampling and pseudo-random shuffling
+ of word/image stimulus data.
 \backslash
  
 \backslash
@@ -2603,7 +3237,39 @@ status open
 \backslash
 newpage 
 \backslash
-subsection{state.js}
+subsection{state.js} This file develops the notion of "state": a "state"
+ represents an atomic interaction of the interactive survey (much like a
+ "slide" in MS Powerpoint).
+\backslash
+ 
+\backslash
+
+\backslash
+ 
+\backslash
+ 
+\backslash
+
+\backslash
+ The notion of "state" includes logical aspects of determining whether to
+ wait for specified input keys, before proceeding to the next "state": an
+ experiment is represented as a sequential list of "states".
+\backslash
+ 
+\backslash
+
+\backslash
+ 
+\backslash
+ 
+\backslash
+
+\backslash
+ Notably, the "state" concept includes the functions to display word/image
+ stimuli or messages, on the screen.
+ Logic for dumping data to the server (upon reaching the terminal "state")
+ also resides here.
+ 
 \backslash
  
 \backslash
@@ -2633,7 +3299,11 @@ status open
 \backslash
 newpage 
 \backslash
-subsection{task.js}
+subsection{task.js} This file develops the various types of possible components
+ available from which an experiment is assembled: instructions, delay, feedback,
+ study phase, and test phase; in each case, the component (a "task") is
+ developed in terms a number of the atomic constructions "states" developed
+ in the last file 
 \backslash
  
 \backslash
@@ -2663,7 +3333,9 @@ status open
 \backslash
 newpage 
 \backslash
-subsection{text.js}
+subsection{text.js} This file includes a routine for rendering text, including
+ wrapping, to allow rendering that is somewhat adaptive to the shape of
+ the screen.
 \backslash
  
 \backslash
@@ -2693,7 +3365,10 @@ status open
 \backslash
 newpage 
 \backslash
-subsection{util.js}
+subsection{util.js} This file includes various utilities for aspects such
+ as pseudo-random number generation, transferring data over the internet,
+ and so on.
+ 
 \backslash
  
 \backslash
@@ -2738,15 +3413,6 @@ Source Code: Server Side
 \end_layout
 
 \begin_layout Standard
-The folder 
-\series bold
-data/
-\series default
- in the directory structure, relative to the installation folder: if it
- doesn't yet exist, the server-side python code will create it.
-\end_layout
-
-\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -2754,7 +3420,11 @@ status open
 
 
 \backslash
-subsection{xml-receive.py}
+subsection{xml-receive.py}The folder data/ in the directory structure, relative
+ to the installation folder: if it doesn't yet exist, the server-side python
+ code should create it (provided that the appropriate permissions are available
+ to do so).
+ 
 \backslash
  
 \backslash
@@ -2793,53 +3463,93 @@ newpage
 \begin_layout Section
 
 \series bold
-Recommendations For Further Improvements
+Ideas For Possible Future Improvements
 \end_layout
 
 \begin_layout Standard
-Here's a short point-form list of possible improvements to the software:
+A short point-form list of possible improvements to the software:
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
 Finish drag-and drop implementation, that
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
 prevents programmatic errors;
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
 does not allow invalid experiments to be constructed; and
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
 removes any technicality from the process of coding an experiment.
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
-Smarter image loading
+Smarter image loading:
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
 Automagically detect available images from folder, and
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
 modify program to allow administrator to upload images with file names that
  aren't required to follow the numbered format.
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
 Support for mobile devices, or possibly:
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
 show a warning message for un-supported devices.
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \end_deeper
