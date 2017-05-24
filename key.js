@@ -1,5 +1,3 @@
-var bell = new Audio("../../ding.mp3")
-
 /* convert from unicode to familiar symbol */
 function unicode_from_key_event(e){
   return e.charCode ? e.charCode : e.keyCode
@@ -116,7 +114,6 @@ function keyboard_module(){
         /* break out of free-form text input mode with <esc> key */
         ctx.clear_tmr()
         now.expire()
-        // bell.play()
         
         return key_unicode
 
