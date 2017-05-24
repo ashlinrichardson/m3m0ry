@@ -5,6 +5,9 @@ The Recognition Memory Experiment Framework is an online utility for parametric 
 
 The software is web based, self contained yet comprehensive, and reasonably flexible.
 
+## Documentation
+* [manual.pdf](https://github.com/ashlinrichardson/m3m0ry/blob/master/documentation/manual.pdf)
+
 ## Examples
 
 * [Instructions](http://web.uvic.ca/~lindlab/memory/experiments/instructions/memory.html)
@@ -18,6 +21,3 @@ The software is web based, self contained yet comprehensive, and reasonably flex
 * [Test activity](http://web.uvic.ca/~lindlab/memory/experiments/test-phase/memory.html)
 
 * [More substantial experiment](http://web.uvic.ca/~lindlab/memory/experiments/my-experiment/memory.html)
-
-## Documentation
-* [manual.pdf](https://github.com/ashlinrichardson/m3m0ry/blob/master/documentation/manual.pdf)
