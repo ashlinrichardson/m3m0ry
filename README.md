@@ -20,4 +20,4 @@ The software is web based, self contained yet comprehensive, and reasonably flex
 * [More substantial experiment](http://web.uvic.ca/~lindlab/memory/experiments/my-experiment/memory.html)
 
 ## Documentation
-*[manual.pdf](https://github.com/ashlinrichardson/m3m0ry/blob/master/documentation/manual.pdf)
+* [manual.pdf](https://github.com/ashlinrichardson/m3m0ry/blob/master/documentation/manual.pdf)
