@@ -1,0 +1,8 @@
+url,event_id,task_id,task_type,trial_id,duration(mS),start(yyyy:mm:dd:hh:mn:ss:mls),end(yyyy:mm:dd:hh:mn:ss:mls),isi,set,stim_type,stim_id,stim_pool_id,response
+http://web.uvic.ca/~lindlab/memory/experiments/feedback/memory.html,0,0,instructions,0,11839.1,2017:50:23:21:47:39:174,2017:50:23:21:47:51:130,,,,,,""
+http://web.uvic.ca/~lindlab/memory/experiments/feedback/memory.html,1,1,feedback,0,3421.9,2017:50:23:21:47:51:130,2017:50:23:21:47:54:435,,,,,,"1"
+http://web.uvic.ca/~lindlab/memory/experiments/feedback/memory.html,2,2,instructions,0,1057,2017:50:23:21:47:54:435,2017:50:23:21:47:55:492,,,,,,""
+http://web.uvic.ca/~lindlab/memory/experiments/feedback/memory.html,3,3,feedback,0,1092.8,2017:50:23:21:47:55:492,2017:50:23:21:47:56:585,,,,,,"2"
+http://web.uvic.ca/~lindlab/memory/experiments/feedback/memory.html,4,4,instructions,0,1237.8,2017:50:23:21:47:56:585,2017:50:23:21:47:57:823,,,,,,""
+http://web.uvic.ca/~lindlab/memory/experiments/feedback/memory.html,5,5,feedback,0,1027.9,2017:50:23:21:47:57:823,2017:50:23:21:47:58:851,,,,,,"A"
+http://web.uvic.ca/~lindlab/memory/experiments/feedback/memory.html,6,6,instructions,0,690.7,2017:50:23:21:47:58:851,2017:50:23:21:47:59:541,,,,,,""

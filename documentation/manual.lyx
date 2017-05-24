@@ -593,7 +593,155 @@ and is usually placed in the same folder as the python files that should
 xml_receive.py
 \series default
 ).
- 
+\end_layout
+
+\begin_layout Subsubsection
+install.sh
+\end_layout
+
+\begin_layout Standard
+An automatic script (install.sh) used to download, extract, and set permissions:
+\end_layout
+
+\begin_layout Quotation
+
+\series bold
+rm -f master.zip 
+\end_layout
+
+\begin_layout Quotation
+
+\series bold
+wget https://github.com/ashlinrichardson/m3m0ry/archive/master.zip 
+\end_layout
+
+\begin_layout Quotation
+
+\series bold
+unzip -o master.zip 
+\end_layout
+
+\begin_layout Quotation
+
+\series bold
+mv m3m0ry-master/ memory/ 
+\end_layout
+
+\begin_layout Quotation
+
+\series bold
+chmod -R 755 memory/ 
+\end_layout
+
+\begin_layout Quotation
+
+\series bold
+chmod -R 754 memory/data/
+\end_layout
+
+\begin_layout Standard
+This six line script above was tested on the UVic Unix server: it resulted
+ in the examples being accessible at the following locations:
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Instructions
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://web.uvic.ca/~lindlab/memory/experiments/instructions/memory.html
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Delay activity
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://web.uvic.ca/~lindlab/memory/experiments/delay/memory.html
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Study activity
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://web.uvic.ca/~lindlab/memory/experiments/study-phase/memory.html
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Test activity
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://web.uvic.ca/~lindlab/memory/experiments/test-phase/memory.html
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+More substantial experiment
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://web.uvic.ca/~lindlab/memory/experiments/my-experiment/memory.html
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -2716,6 +2864,62 @@ lstset{linewidth=
 textwidth}
 \backslash
 lstinputlisting{../data/delay.csv}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+subsection{feedback}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For this example, note the numeric (in lines 3 and 5) and the multiple choice
+ (in line 7) feedback, cf the 
+\begin_inset Quotes eld
+\end_inset
+
+response
+\begin_inset Quotes erd
+\end_inset
+
+ field.
+ The instructions lines are as before.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ 
+\backslash
+ 
+\backslash
+lstset{language=TeX} 
+\backslash
+lstset{linewidth=
+\backslash
+textwidth}
+\backslash
+lstinputlisting{../data/feedback.csv}
 \end_layout
 
 \end_inset
