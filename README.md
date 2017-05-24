@@ -23,3 +23,6 @@ http://web.uvic.ca/~lindlab/memory/experiments/test-phase/memory.html
 
 ### More substantial experiment
 http://web.uvic.ca/~lindlab/memory/experiments/my-experiment/memory.html
+
+## Documentation
+https://github.com/ashlinrichardson/m3m0ry/blob/master/documentation/manual.pdf
