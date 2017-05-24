@@ -687,6 +687,26 @@ http://web.uvic.ca/~lindlab/memory/experiments/delay/memory.html
 \begin_layout Standard
 
 \series bold
+Feedback activity
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://web.uvic.ca/~lindlab/memory/experiments/feedback/memory.html
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
 Study activity
 \end_layout
 
@@ -877,6 +897,12 @@ Contains a number of sub-folders, one for each of the included examples:
 \begin_layout Itemize
 
 \series bold
+instructions/
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
 delay/
 \end_layout
 
@@ -884,12 +910,6 @@ delay/
 
 \series bold
 feedback/
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-instructions/
 \end_layout
 
 \begin_layout Itemize
