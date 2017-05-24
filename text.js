@@ -8,7 +8,6 @@ function wrap_text(s, ctx, start_y=0){
     ws = w.split('\n')
     words.push(ws[0])
     if(ws.length > 1){
-      console.log("ws", ws)
       for(var j = 1; j < ws.length; j++){
         words.push('\n')
         if(ws[j] != ""){
