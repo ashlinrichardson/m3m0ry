@@ -6,6 +6,7 @@ The Recognition Memory Experiment Framework is an online utility for parametric 
 The software is web based, self contained yet comprehensive, and reasonably flexible.
 
 ## Examples
+
 * [Instructions](http://web.uvic.ca/~lindlab/memory/experiments/instructions/memory.html)
 
 * [Delay activity](http://web.uvic.ca/~lindlab/memory/experiments/delay/memory.html)
