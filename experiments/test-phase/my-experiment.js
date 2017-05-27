@@ -15,7 +15,10 @@ var my_experiment = function(){
   p.add('supercalifragilisticexpialidocious')
   p.add('umdiddlediddlediddleumdiddlei')
 
-  /* selection from stimulus pool: parameters are N, M as per the requirements */
+  /* selection from stimulus pool: parameters are N, M according to the requirements at https://github.com/ashlinrichardson/m3m0ry/blob/master/documentation/requirements.pdf
+      - "N" is the number of stimuli selected to be shown during the study phase
+      - "M" is the number of additional stimuli to be shown (along with the N stimuli already shown during the study phase) during the test phase
+      - The order that the N + M stimuli appear together in the test phase is determined by pseudo-random shuffling */
   p.select(5, 5)
 
   /* set up `study phase': show selected portions of pool */

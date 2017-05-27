@@ -358,7 +358,7 @@ online interactive visual elements, and
 \end_layout
 
 \begin_layout Itemize
-requests to the participant for feedback.
+requests to the participant for response.
 \begin_inset Newline newline
 \end_inset
 
@@ -1761,11 +1761,11 @@ the array [49, 50, 51, 52, 53] represents the numeric keys 1-5
 \end_layout
 
 \begin_layout Itemize
-[49, 50, 51, 52, 53, 54, 55, 56, 57, 48] represents the numeric keys 0-9
+[48, 49, 50, 51, 52, 53, 54, 55, 56, 57] represents the numeric keys 0-9
 \end_layout
 
 \begin_layout Itemize
-[65, 66, 67, 68] represents the letters A,B,C,D
+[65, 66, 67, 68] represents the letters A, B, C, D
 \begin_inset Newline newline
 \end_inset
 
@@ -1902,7 +1902,7 @@ make a selection of items from the stimulus pool (e.g., line 20 of the file
 
 \begin_deeper
 \begin_layout Itemize
-note that only one parameter is supplied on line 20 (the parameter 
+note that only one parameter was supplied on line 20 (the parameter 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1910,7 +1910,7 @@ N
 \begin_inset Quotes erd
 \end_inset
 
- from the spec), although it will be necessary for a 
+); it will be necessary for a 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1918,8 +1918,15 @@ M
 \begin_inset Quotes erd
 \end_inset
 
- parameter to be included in subsequent examples, in order to implement
- the 
+ parameter to be included in subsequent examples, because the 
+\begin_inset Quotes eld
+\end_inset
+
+M
+\begin_inset Quotes erd
+\end_inset
+
+ parameter is required for the 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1927,14 +1934,105 @@ test-phase
 \begin_inset Quotes erd
 \end_inset
 
-.
- This will be discussed re: the next example.
-\begin_inset Newline newline
+ (more discussion re: this in the next example: i.e., 
+\series bold
+
+\begin_inset Quotes eld
 \end_inset
 
+experiments/test-phase/
+\series default
 
+\begin_inset Quotes erd
+\end_inset
+
+):
 \end_layout
 
+\begin_deeper
+\begin_layout Itemize
+the parameter 
+\begin_inset Quotes eld
+\end_inset
+
+N
+\begin_inset Quotes erd
+\end_inset
+
+ is the number of stimuli seleected to be presented during the study phase;
+\end_layout
+
+\begin_layout Itemize
+the parameter 
+\begin_inset Quotes eld
+\end_inset
+
+M
+\begin_inset Quotes erd
+\end_inset
+
+ is the number of additional (with respect to the corresponding study phase)
+ stimuli selected to be presented during the test phase;
+\end_layout
+
+\begin_layout Itemize
+the 
+\begin_inset Quotes eld
+\end_inset
+
+M
+\begin_inset Quotes erd
+\end_inset
+
+ additional stimuli are to be pseudo-randomly shuffled in with the 
+\begin_inset Quotes eld
+\end_inset
+
+N
+\begin_inset Quotes erd
+\end_inset
+
+ stimuli originally presented during the study phase;
+\end_layout
+
+\begin_layout Itemize
+i.e., 
+\begin_inset Quotes eld
+\end_inset
+
+N
+\begin_inset Quotes erd
+\end_inset
+
+ is the number of stimuli to be presented for the study phase; N + M stimuli
+ are to be presented for the test phase: 
+\begin_inset Quotes eld
+\end_inset
+
+N
+\begin_inset Quotes erd
+\end_inset
+
+ of which were seen before in the study phase (
+\begin_inset Quotes eld
+\end_inset
+
+deja vu
+\begin_inset Quotes erd
+\end_inset
+
+); the other 
+\begin_inset Quotes eld
+\end_inset
+
+M
+\begin_inset Quotes erd
+\end_inset
+
+ stimuli are presented during the test phase only.
+\end_layout
+
+\end_deeper
 \end_deeper
 \begin_layout Enumerate
 declare the study phase:
@@ -3116,15 +3214,9 @@ For the test_phase example response data below, please note the following
 \end_layout
 
 \begin_layout Itemize
-user response to stimuli (
-\begin_inset Quotes eld
-\end_inset
-
-deja-vu
-\begin_inset Quotes erd
-\end_inset
-
-): note that an 
+user response to stimuli (whether or not the given stimulus was seen for
+ the first time in the test phase, or whether the given stimulus had already
+ seen during study phase): note that an 
 \begin_inset Quotes eld
 \end_inset
 
@@ -3132,11 +3224,24 @@ M
 \begin_inset Quotes erd
 \end_inset
 
- (have already seen this sample) was recorded on line 15 (the data confirms
- that this sample was previously shown in the study_phase section, on line
- 6);
+ (i.e., 
+\begin_inset Quotes eld
+\end_inset
+
+have already seen this sample
+\begin_inset Quotes erd
+\end_inset
+
+) was recorded on line 15:
 \end_layout
 
+\begin_deeper
+\begin_layout Itemize
+line 6 of the data confirms that the same sample was indeed shown before
+ in the study_phase section;
+\end_layout
+
+\end_deeper
 \begin_layout Itemize
 regular ISI lines (blank screen intervals) throughout.
 \end_layout
