@@ -162,7 +162,6 @@ var next_task_id = 0
 
 run_before_loading_images()
 
-
 /* load the symbol */
 ++ n_imgs_to_load
 
@@ -183,4 +182,3 @@ for(var i=0; i<ctx.imgs.length; i++){
     load_img(i)
   }
 }
-
