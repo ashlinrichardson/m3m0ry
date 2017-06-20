@@ -1,6 +1,8 @@
 #!/usr/bin/python
 ''' server-side python-CGI script to receive text data sent over
-the internet by the client-side function util.js::xml_send()'''
+the internet by the client-side function util.js::xml_send()
+
+20170620 data now saved to survey-specific subfolders'''
 import os
 import cgi
 import uuid
@@ -27,7 +29,7 @@ def normpath(p):
     return pp
 
 # open a log file ?
-log_fn = normpath(os.getcwd() + '/data/log_file.log')
+log_fn = normpath(os.getcwd() + '/data/') + 'log_file.log'
 log_f = open(log_fn, 'a')
 
 
@@ -36,7 +38,8 @@ def log_entry(msg):
     global log_f
     log_f.write(timestring() + ',' + msg + '\n')
 
-log_entry(string(__file__).strip())
+# got here
+log_entry('exec ' + str(__file__).strip())
 
 # create /data folder if it does not yet exist
 dat_f = normpath(os.getcwd() + '/data/')
@@ -51,16 +54,20 @@ except:
     pass
 
 # write the data to file in the data/ folder
+fn_base = None
 if dat:
-    fn = dat_f + str(datetime.datetime.now().isoformat())
-    open(fn + '_' + str(uuid.uuid4().hex) + '.txt', 'wb').write(dat)
+    fn_base = str(datetime.datetime.now().isoformat())
+    fn_base += '_' + str(uuid.uuid4().hex) + '.txt'
+    fn = dat_f + fn_base
+    open(dat_f + fn_base, 'wb').write(dat)
 
 # determine survey-specific subfolder create if needed
 lines = dat.strip().split('\n')
 url = None
+
 for i in range(1, len(lines)):
     try:
-        my_url = line.strip().split(',')[0].strip()
+        my_url = lines[i].strip().split(',')[0].strip()
         if url:
             if url != my_url:
                 log_f.write('error: url mismatch: ' + url + ' != ' + my_url)
@@ -72,8 +79,16 @@ words = url.split('/')
 if words[-1] != 'memory.html':
     log_f.write('error: unexpected URL: ' + url)
 
-folder_name = words[-2]
-log_f.write('folder_name,' + folder_name)
-    
-log_f.close()
+study_name = words[-2]
 
+# specific data file for a particular study
+study_f = normpath(dat_f + study_name)
+if not os.path.exists(study_f):
+    os.mkdir(study_f)
+
+# write the same data to the study-specific folder, as well
+if dat:
+    open(normpath(study_f) + fn_base, 'wb').write(dat)
+    log_entry(' +w ' + normpath(study_f) + fn_base)
+
+log_f.close()
