@@ -49,7 +49,7 @@ for ext in ['test1.py', 'test2.py']:
         pass_fail = False
 
     # write data to log file
-    log.write(timestring() + ',' + url + ',' + ('pass' if pass_fail else 'fail') + ',' + str([html]) + '\n'
+    log.write(timestring() + ',' + url + ',' + ('pass' if pass_fail else 'fail') + ',' + str([html]) + '\n')
 
 log.close()
 
