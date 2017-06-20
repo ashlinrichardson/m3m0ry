@@ -31,8 +31,8 @@ function rand(max, min, mutable=false){
   }
 }
 
-/* Shuffle array in place, via http://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array 
- * @param {Array} a items The array containing the items. 
+/* Shuffle array in place, via http://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
+ * @param {Array} a items The array containing the items.
 
   setting the parameter "mutable" to true, makes random selections that will change between runs. */
 function shuffle(a, mutable=false) {
@@ -61,7 +61,7 @@ function get_keys(dictionary){
 
   /* keys recursive */
   var keys = []
-  
+
   /* filter for direct ancestors */
   for(var key in dictionary){
     if(dictionary.hasOwnProperty(key)){
@@ -91,7 +91,7 @@ function parse_date_time(today){
               today.getDate(),
               today.getHours(),
               today.getMinutes(),
-              today.getSeconds(), 
+              today.getSeconds(),
               today.getMilliseconds()]
 
   /* pad with zeros */
@@ -124,5 +124,4 @@ function xml_send(s, xml_receive_script_url){
   xhr.open('post', xml_receive_script_url, true)
   xhr.send(data)
 }
-
 
