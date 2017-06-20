@@ -19,33 +19,33 @@ function keyboard_module(){
     if(unicode == 191){
       unicode = 63, key = '?'
     }else if(unicode == 188){
-      unicode = 44, key = ','  
+      unicode = 44, key = ','
     }else if(unicode == 190){
       unicode = 46, key = "."
     }else if(unicode == 13){
-    
+
       /* replace enter with space */
       unicode = 32, key = " "
     }
 
     if(unicode == 27){
-        
+
       /* do nothing if we get a key that is code 27, but not an escape key.. */
       if(!(e.key == "Escape" || e.key == "Esc")){
         return;
-      } 
+      }
     }
 
     if(unicode == 222){
       unicode = 39, key ="'"
     }
-    
+
     /* console.log("unicode", unicode) */
 
     key_unicode[unicode] = true
 
     var ignore = [20, 192, 189, 187, 93, 91, 219, 221, 222, 220, 186, 33, 36, 34, 35, 37, 38, 40]
-  
+
     /* ignore caps-lock and other special key */
     if(ignore.includes(unicode)){
       return
@@ -64,11 +64,11 @@ function keyboard_module(){
 
     /* allow escape key */
     allow.push(27)
-    
+
     /* allow comma */
     allow.push(44)
 
-    /* allow period */ 
+    /* allow period */
     allow.push(46)
 
     /* allow question mark */
@@ -83,9 +83,9 @@ function keyboard_module(){
     if(!allow.includes(unicode)){
       return
     }
-    
+
     /* when are we? */
-    var now = ctx.get_state() 
+    var now = ctx.get_state()
 
     /* record key press, if admissible */
     var admissible_keys = now.get_admissible_keys()
@@ -104,21 +104,21 @@ function keyboard_module(){
         now.txt = ''
       }
       if(unicode == 8){
-      
+
         /* backspace */
         var len = now.txt.length
-        now.txt = now.txt.substring(0, len - 1)    
-      
+        now.txt = now.txt.substring(0, len - 1)
+
       }else if(admissible_keys.includes(27) && unicode == 27){
 
         /* break out of free-form text input mode with <esc> key */
         ctx.clear_tmr()
         now.expire()
-        
+
         return key_unicode
 
       }else{
-  
+
          /* add character to buffer */
         if(unicode >= 65 && unicode <= 90){
           now.txt += key.toLowerCase()
@@ -146,7 +146,7 @@ function keyboard_module(){
             ctx.questions_correct += 1
           }
         }
-      }else{ 
+      }else{
         /* block if a key was required but the one entered was not admissible */
         go = false
       }
