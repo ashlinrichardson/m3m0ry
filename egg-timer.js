@@ -11,7 +11,7 @@ var egg_timer = {
 
     /* what to do when the timer expires */
     this.timeoutID = window.setTimeout(
-      function(){ 
+      function(){
         var now = ctx.get_state()
         var id = now.id
         now.ding = true
