@@ -96,18 +96,18 @@ function run_before_loading_images(){
 
   /* set up an experiment according to user specs/code */
   my_experiment(ctx)
-  
+
   /* display a goodbye message every time */
   instructions('survey complete: thank you for your participation')
-  
+
   ctx.last_state = ctx.last_new_state, ctx.first_state = ctx.first_new_state
-  
+
   /* start at the very beginning, it's a very good place to start.. */
   ctx.set_state(ctx.first_state)
-  
+
   /* respond to keyboard events */
   key_unicode = keyboard_module()
-  
+
   /* start "stopwatch" */
   ctx.t0 = window.performance.now()
 
@@ -132,7 +132,7 @@ for(var i=1; i<=n_imgs; i++){
   var img = new Image()
   img.fn = abs_path + 'images/' + idx[i-1] + '.jpg'   // load_img(img) //var my_img = load_img(img_fn)
   ctx.imgs.push(img)
-} 
+}
 
 var get_image = function(){
   return ctx.imgs[n_imgs_to_load++]
@@ -141,17 +141,17 @@ var get_image = function(){
 /* load image data */
 function load_img(i){
   ctx.imgs[i].onload = function(){
-    
+
     /* have all images been loaded? */
     if(++n_imgs_loaded == n_imgs_to_load){
-      
+
       /* proceed to init the experiment */
       ctx.get_state().start()
     }
   }
 
   /* load the image */
-  ctx.imgs[i].src = ctx.imgs[i].fn 
+  ctx.imgs[i].src = ctx.imgs[i].fn
   return ctx.imgs[i]
 }
 
