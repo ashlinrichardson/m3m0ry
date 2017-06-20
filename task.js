@@ -3,16 +3,16 @@
 /* instructions task (show a slide with a message on it) */
 function instructions(txt){
   var my_task_id = next_task_id++
-  
+
   /* initialize generic "trial" object */
   var x = new state()
-  
+
   /* set associated text field */
   x.txt = txt
-  
-  /* no timer for the trial */  
+
+  /* no timer for the trial */
   x.set_expiry(0)
-  x.type = 'instructions', x.task_id = my_task_id, x.trial_id = 0 
+  x.type = 'instructions', x.task_id = my_task_id, x.trial_id = 0
   return x
 }
 
@@ -30,7 +30,7 @@ function feedback(txt, keys){
   x.type = 'feedback', x.trial_id = 0, x.task_id = my_task_id
 }
 
-/* list as many countries as possible during e.g., a 3-minute period (default, 30s) 
+/* list as many countries as possible during e.g., a 3-minute period (default, 30s)
   20170515: default for delay_time used to be 30000. Today we added the end on <esc>
   key feature
 */
@@ -74,7 +74,7 @@ function study_phase(my_pool, isi=0, time_limit=0, extra_feedback=false, extra_f
 
   var trial_index = -1, my_task_id = next_task_id++
   this.ctx = ctx, this.p = my_pools, this.pool_ids = new Array()
-  
+
   /* for study phase, selection is built from combination of all selection_n arrays, from each of the supplied pools */
   var my_selection = new Array()
   for(var a_pool in my_pools){
@@ -100,10 +100,10 @@ function study_phase(my_pool, isi=0, time_limit=0, extra_feedback=false, extra_f
     ++ trial_index
 
     var a_selection = my_selection[selection_ind]
-    
+
     /* data (word or image) assigned to "trial" */
     var data = a_selection[0], p_id = a_selection[1], extra_feedback_this_slide = a_selection[2]
-  
+
     /* if ISI was set, prefix with a "blank" slide */
     if(isi > 0){
       var x = new state()
@@ -113,7 +113,7 @@ function study_phase(my_pool, isi=0, time_limit=0, extra_feedback=false, extra_f
       x.clear_admissible_keys()
       x.key_expiry = false
     }
-  
+
     /* initialize generic "trial" object for each case */
     var x = new state()
     if(time_limit <= 0){
@@ -126,10 +126,10 @@ function study_phase(my_pool, isi=0, time_limit=0, extra_feedback=false, extra_f
 
     /* discern by image or word, respectively */
     if( typeof(data) === 'object'){
-      x.img_stim = data   
+      x.img_stim = data
     }else if(typeof(data) === 'string'){
       x.wrd_stim = data
-    }  
+    }
     x.type = 'study_phase', x.trial_id = trial_index, x.task_id = my_task_id
     x.set_pool_id(p_id)
     if(extra_feedback_this_slide){
@@ -140,7 +140,7 @@ function study_phase(my_pool, isi=0, time_limit=0, extra_feedback=false, extra_f
 }
 
 /* test phase, formerly known as recognition task - for this phase,
-the random selection is shuffled back into the pool -- all elements 
+the random selection is shuffled back into the pool -- all elements
 from the pool are shown (feedback is recorded).. */
 function test_phase(my_pool, isi=0, time_limit=0, extra_feedback=false, extra_feedback_message="", extra_feedback_keys=[]){
   var my_pools = []
@@ -195,29 +195,28 @@ function test_phase(my_pool, isi=0, time_limit=0, extra_feedback=false, extra_fe
       x.set_expiry(time_limit)
     }
 
-    /* record within the object: do we have deja-vu? */    
+    /* record within the object: do we have deja-vu? */
     x.deja = deja
 
     /* word or image? */
     if( typeof(data) === 'object'){
-      x.img_stim = data    
+      x.img_stim = data
     }else if(typeof(data) ==='string'){
       x.wrd_stim = data
-    }  
-    x.type = 'test_phase', x.trial_id = trial_index, x.task_id = my_task_id 
+    }
+    x.type = 'test_phase', x.trial_id = trial_index, x.task_id = my_task_id
     x.set_pool_id(p_id)
 
     if(extra_feedback_this_slide){
       var x_f = feedback(extra_feedback_message, extra_feedback_keys)
     }
-  } 
+  }
   var m = 'Thank you for completing this section. ', end = instructions(m)
-  
+
   end.action = function(me){
     var msg = m + 'Your score: ' + ctx.questions_correct.toString() + '/' + ctx.questions_total.toString() + ". Please press any key."
     me.txt = msg
   }
   return this
 }
-
 
