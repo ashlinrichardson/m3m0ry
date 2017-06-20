@@ -27,11 +27,11 @@ function pool(){
   this.set_n = function(n){
     this.n = n
   }
-  
+
   /* set number of additional samples to be included for test phase */
   this.set_m = function(m){
 
-    /* subsequently to drawing "n" items from the pool (without replacement), 
+    /* subsequently to drawing "n" items from the pool (without replacement),
        a further "m" samples are drawn from the pool. For the test phase, the
       "n" and "m" selections are mixed together and shuffled. */
     this.m = m
@@ -41,7 +41,7 @@ function pool(){
   this.get_n = function(){
     return this.n
   }
-  
+
   /* get */
   this.get_m = function(){
     return this.m
@@ -67,11 +67,11 @@ function pool(){
       console.log('error: n > this.stimuli.length')
       return null
     }
-    
+
     /* make a pseudorandom selection */
     this.selection_n = new Array()
     var rem = this.stimuli.length
-    for(var i = 0; i < n; i++){ 
+    for(var i = 0; i < n; i++){
       var qx = rand() * parseFloat(rem --), idx = parseInt(qx)
       this.selection_n.push(this.stimuli[idx])
       delete this.stimuli[idx]
@@ -97,31 +97,31 @@ function pool(){
     /* make a pseudorandom selection */
     this.selection_m = new Array()
     var rem = this.stimuli.length
-    for(var i = 0; i < m; i++){ 
+    for(var i = 0; i < m; i++){
       var qx = rand() * parseFloat(rem --), idx = parseInt(qx)
       this.selection_m.push(this.stimuli[idx])
       delete this.stimuli[idx]
       this.remove_blanks()
     }
   }
-  
+
   /* for initializing a test phase: mix "N"-selection and "M"-selection together */
   this.reshuffle = function(){
 
     /* put the "N"-selection and "M" selection, together in array to_shuffle,
       which will be shuffled */
     var to_shuffle = [], i = 0
-    
+
     /* add the "N"-selection */
     for(i = 0; i < this.selection_n.length; i++){
       var dat_i = new Array()
       dat_i.push(this.selection_n[i])
       dat_i.push(true)
       to_shuffle.push(dat_i)
-    }      
+    }
 
     /* add the "M"-selection */
-    for(i = 0; i < this.selection_m.length; i++){  
+    for(i = 0; i < this.selection_m.length; i++){
       var dat_i = new Array()
       dat_i.push(this.selection_m[i])
       dat_i.push(false)
