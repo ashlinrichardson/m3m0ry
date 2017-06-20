@@ -113,7 +113,6 @@ function run_before_loading_images(){
 
 }
 
-
 /* load some image files: need to change if the image database changes */
 var n_imgs = 200, n_imgs_to_load = 0, n_imgs_loaded = 0
 
@@ -155,7 +154,6 @@ function load_img(i){
   ctx.imgs[i].src = ctx.imgs[i].fn 
   return ctx.imgs[i]
 }
-
 
 /* keep track of the "task-index" as the experiment is intialized */
 var next_task_id = 0
