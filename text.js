@@ -29,7 +29,7 @@ function wrap_text(s, ctx, start_y=0){
       }
 
       line_test = line + words[j] + ' '
-     
+
       /* wrap if over the edge */
       if(ctx.measureText(line_test).width > w){
         myY = lines.length * font_size + font_size
@@ -38,7 +38,7 @@ function wrap_text(s, ctx, start_y=0){
       }else{
         line = line_test
       }
-  
+
   }
 
   /* catch last line if something left over */
@@ -46,7 +46,7 @@ function wrap_text(s, ctx, start_y=0){
     current_y = lines.length * font_size + font_size
     lines.push({text: line.trim(), height: current_y})
   }
-   
+
   /* plot text */
   for(var j = 0, len = lines.length; j < len; j++){
     ctx.fillText(lines[j].text, 0, lines[j].height + start_y)
@@ -55,7 +55,7 @@ function wrap_text(s, ctx, start_y=0){
 
 /* write centred text */
 function centre_text(s){
-  var font_size = ctx.font_size, textString = s 
+  var font_size = ctx.font_size, textString = s
   ctx.font = 30 + 'px Arial'
   textWidth = ctx.measureText(textString).width
   ctx.fillText(textString, (canvas.width / 2) - (textWidth / 2), canvas.height / 2)
