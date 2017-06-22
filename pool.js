@@ -11,14 +11,17 @@ function pool(){
 
   /* add a stimulus to the pool */
   this.add = function(stim){
+    console.log('this.add, stim: ', stim);
+    if(stim){
+      stim.load_me = true
+    }
     this.stimuli.push(stim)
-    stim.load_me = true
     return stim
   }
 
   /* add one or more images to the stimulus pool */
   this.add_image = function(n=1){
-    for(var i = 0; i < n; i++){
+    for(var i = 1; i <= n; i++){
       this.add(get_image())
     }
   }
@@ -119,7 +122,6 @@ function pool(){
       dat_i.push(true)
       to_shuffle.push(dat_i)
     }
-
     /* add the "M"-selection */
     for(i = 0; i < this.selection_m.length; i++){
       var dat_i = new Array()
@@ -127,7 +129,6 @@ function pool(){
       dat_i.push(false)
       to_shuffle.push(dat_i)
     }
-
     /* "shuffle"-- randomize the ordering of the combined array */
     var shuffled = new Array(), deja_vu = new Array(), rem = to_shuffle.length
     while((rem --) > 0){

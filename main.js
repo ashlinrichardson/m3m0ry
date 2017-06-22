@@ -1,4 +1,4 @@
-var abs_path = '../../', ctx = canvas.getContext("2d")
+var ctx = canvas.getContext("2d")
 
 /* background color, shape parameter and font size */
 document.bgColor = "#FFFFFF", ctx.pad = 20, ctx.font_size = 30
@@ -93,6 +93,7 @@ ctx.questions_correct = 0, ctx.questions_total = 0
 /* this function sets up the experiment (according to the user function my_experiment)
 and we trigger this function after all the images have loaded. */
 function run_before_loading_images(){
+  console.log('run_before_loading_images()')
 
   /* set up an experiment according to user specs/code */
   my_experiment(ctx)
@@ -113,29 +114,33 @@ function run_before_loading_images(){
 
 }
 
-/* load some image files: need to change if the image database changes */
-var n_imgs = 200, n_imgs_to_load = 0, n_imgs_loaded = 0
-
 var images_to_load = []
 
 /* scan images to determine which need to be loaded */
 var idx = new Array()
 ctx.imgs = new Array()
 for(var i = 1; i <= n_imgs; i++){
-    idx.push(i)
+  idx.push(i)
 }
 
 /* randomize the order of the images */
 shuffle(idx)
+console.log('n_imgs', n_imgs)
 
-for(var i=1; i<=n_imgs; i++){
+if(imgs_path == abs_path){
+  imgs_path = imgs_path + 'images/'
+}
+
+for(var i = 1; i <= n_imgs; i++){
   var img = new Image()
-  img.fn = abs_path + 'images/' + idx[i-1] + '.jpg'   // load_img(img) //var my_img = load_img(img_fn)
+  img.fn = imgs_path + idx[i-1] + '.jpg'
+  console.log('img.fn', img.fn)
   ctx.imgs.push(img)
 }
 
 var get_image = function(){
-  return ctx.imgs[n_imgs_to_load++]
+  /* subtract off the 1 because the counter is tracking the logo, too */
+  return ctx.imgs[(n_imgs_to_load++) - 1]
 }
 
 /* load image data */
@@ -158,19 +163,21 @@ function load_img(i){
 /* keep track of the "task-index" as the experiment is intialized */
 var next_task_id = 0
 
+/* add one for the logo */
+n_imgs_to_load += 1
+
+/* initialize the experiment, which will determine the images to load */
 run_before_loading_images()
 
-/* load the symbol */
-++ n_imgs_to_load
-
+/* load the logo */
 ctx.symbol.onload = function(){
 
-   /* have all images been loaded? */
+  /* have all images been loaded? */
   if(++n_imgs_loaded == n_imgs_to_load){
 
-     /* proceed to init the experiment */
-      ctx.get_state().start()
-   }
+    /* proceed to init the experiment */
+    ctx.get_state().start()
+  }
 }
 ctx.symbol.src = ctx.symbol.fn
 
